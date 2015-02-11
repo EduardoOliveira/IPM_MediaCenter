@@ -1,26 +1,66 @@
 var request = require('request');
 var cheerio = require('cheerio');
-
-module.exports = function(baseUrl){
+var Database = new require('./MovieDatabase');
+var movieDatabase = new Database('localhost', 27017, 'moviesDB');
+module.exports = function (baseUrl) {
     var self = this;
     this.baseUrl = baseUrl;
 
-    this.scrapMovie = function(movieUrl){
-        return request(this.baseUrl+movieUrl,(function(self){ return function(err,resp,body){
-            $ = cheerio.load(body);
-            var genres = $(".infobar [itemprop='genre']");
-            console.log({
-                _id : movieUrl,
-                title : $('#overview-top h1.header span.itemprop[itemprop="name"]').text(),
-                genre0 : genres.eq(0).text(),
-                genre1 : genres.eq(1).text()
-            });
-        }})(self))
+    this.scrapMovie = function (movieUrl) {
+        return request(this.baseUrl + movieUrl, (function (self) {
+            return function (err, resp, body) {
+                $ = cheerio.load(body);
+                var genres = $(".infobar [itemprop='genre']");
+                var movie = {
+                    _id: movieUrl,
+                    title: $('#overview-top h1.header span.itemprop[itemprop="name"]').text(),
+                    genre0: genres.eq(0).text(),
+                    genre1: genres.eq(1).text()
+                };
+                console.log(movie);
+                movieDatabase.insertMovie(movie);
+                self.scrapArtistsList({url: $('#titleCast .see-more a').eq(0).attribs.href});
+                //this.scrapMovieDirectors({movieURL:movieUrl, movieBody:body});
+            }
+        })(this.self))
+    };
+
+    this.scrapArtistPage = function (params) {
+        if (params.body !== undefined) {
+            this._scrapArtistBody(params.body);
+        } else {
+            request(this.baseUrl + params.url, (function (self) {
+                return function (err, resp, body) {
+                    self._scrapArtistBody(body);
+                }
+            })(this.self));
+        }
+    };
+
+    this.scrapArtistsList = function (params) {
+        if (params.body !== undefined) {
+            this._scrapArtistsListBody(params.body);
+        } else {
+            request(this.baseUrl + params.url, (function (self) {
+                return function (err, resp, body) {
+                    self._scrapArtistsListBody(body);
+                }
+            })(this.self));
+        }
+    };
+
+    this._scrapArtistsListBody = function (body) {
+        $ = cheerio.load(body);
+        $('table.cast_list').each(function(){
+
+        });
+    };
+
+    this._scrapArtistBody = function (body) {
+
     };
 
 };
-
-
 
 
 /*
