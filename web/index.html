@@ -10,16 +10,27 @@
     <link href="assets/libs/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="assets/libs/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 
+
+    <!--core-->
+    <script src="assets/js/modules/core/exports.js"></script>
+
+    <!--sessionManager-->
+    <script src="assets/js/modules/session/exports.js"></script>
+    <script src="assets/js/modules/session/js/controllers.js"></script>
+    <script src="assets/js/modules/session/js/directives.js"></script>
+
+
+    <!--Main-->
     <script src="assets/js/main.js"></script>
 </head>
-<body>
-<nav class="navbar navbar-static-top navbar-inverse" style="width: 300px">
-    <div class="container-fluid">
-        <div class="navbar-header" style="width: 120px">
-            <div class="navbar-brand">qweqweqwe</div>
+<body data-ng-app="mediaCenter">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8" data-ng-controller="SessionManagerController">
+            <!--<div data-ng-session-widget></div>-->
         </div>
     </div>
-</nav>
+</div>
 <div class="background-layer">
 
 </div>

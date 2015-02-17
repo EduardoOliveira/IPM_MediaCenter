@@ -1,3 +1,6 @@
-function hello(){
-    alert("hello");
-}
+angular.module('mediaCenter',
+    [
+        'mediaCenter.core',
+        'mediaCenter.session'
+    ]
+);
