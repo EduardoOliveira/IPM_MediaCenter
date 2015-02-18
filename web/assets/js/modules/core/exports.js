@@ -1,1 +1,6 @@
-angular.module('mediaCenter.core',[ ]);
+'use strict';
+
+angular.module('mediaCenter.core', [
+    'mediaCenter.core.configs',
+    'mediaCenter.core.controllers'
+]);

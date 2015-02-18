@@ -1,0 +1,75 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+}
+
+
+session-widget,
+[session-widget]{
+    display: block;
+    width: 300px;
+    float: right;
+}
+
+session-widget > div > button,
+[session-widget] > div > button {
+    width: 100%;
+    border-top: none !important;
+    border-right: none !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+session-widget > div > ul,
+[session-widget] > div > ul {
+    width: 100%;
+}
+
+/*.top-bar.row > div{
+    padding: 0;
+}
+
+
+
+.main-menu .item{
+    height: 300px;
+    background-color: darkgray;
+}*/
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
+.overlay > * {
+    flex: 1 100%;
+}
+
+.overlay .header{
+    height:33px;
+    width: 100%;
+    background-color: red;
+    align-self: flex-start;
+    flex-grow: 0;
+}
+
+.overlay .main-container{
+    background-color: blue;
+}
+
+.overlay .bottom-bar {
+    height: 33px;
+    width: 100%;
+    align-self: flex-end;
+    background-color: greenyellow;
+    order: 99;
+    flex-grow: 0;
+}
