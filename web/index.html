@@ -12,6 +12,7 @@
     <link href="assets/libs/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 
     <link href="assets/css/gui.css" rel="stylesheet">
+    <script src="assets/js/gui_scripts/main_menu.js"></script>
 
     <!--Main-->
     <script src="assets/js/main.js"></script>
@@ -26,29 +27,20 @@
     <script src="assets/js/modules/session/js/directives.js"></script>
     <script src="assets/js/modules/session/js/controllers.js"></script>
 
+    <!--movies-->
+    <script src="assets/js/modules/movies/exports.js"></script>
+    <script src="assets/js/modules/movies/js/controllers.js"></script>
+
 </head>
 <body data-ng-app="mediaCenter">
 <div class="overlay">
     <div class="header">
         <session-widget></session-widget>
     </div>
-    <div class="main-container">
-qweqwe
-    </div>
+    <div class="main-container" ui-view="main-view"></div>
     <div class="bottom-bar">
 wqeqweqwe
     </div>
 </div>
-<!--<div class="container-fluid">
-    <div class="row top-bar">
-        <div class="col-md-2 col-md-offset-10">
-            <session-widget></session-widget>
-        </div>
-    </div>
-
-    <div class="row" ui-view="main-view">
-
-    </div>
-</div>-->
 </body>
 </html>
