@@ -1,4 +1,9 @@
 'use strict';
 
-angular.module('mediaCenter.core.directives', []);
+angular.module('mediaCenter.core.directives', [])
+
+
+;
+
+
 
