@@ -2,10 +2,39 @@
 
 angular.module('mediaCenter.movies.controllers', [])
     .controller('MovieListController', function ($scope) {
-        $scope.teste= 132;
-        console.log('hello');
-    }).controller('MovieDetailsController',function($scope){
+        var movies = [
+            {
+                name: 'Asad',
+                releaseDate: '1990/12/31',
+                rate: 9,
+                description: 'Long Boring ass text',
+                cast: [],
+                director: {}
+            },
+            {
+                name: 'Asad',
+                releaseDate: '1990/12/31',
+                rate: 9,
+                description: 'Long Boring ass text',
+                cast: [],
+                director: {}
+            },
+            {
+                name: 'Asad',
+                releaseDate: '1990/12/31',
+                rate: 9,
+                description: 'Long Boring ass text',
+                cast: [],
+                director: {}
+            }
+        ];
 
-    }).controller('MoviePlaybackController',function(){
+        $scope.list = {
+            elements: movies
+        };
+
+    }).controller('MovieDetailsController', function ($scope) {
+
+    }).controller('MoviePlaybackController', function () {
 
     });

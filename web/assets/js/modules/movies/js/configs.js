@@ -17,7 +17,7 @@ angular.module('mediaCenter.movies.configs', [])
                         controller: 'MovieListController',
                         templateUrl: '/assets/js/modules/core/templates/listComponent.html'
                     },
-                    'rigthPane@movies': {
+                    "rightPane@movies": {
                         controller: 'MovieDetailsController',
                         templateUrl:'/assets/js/modules/core/templates/mediaDetails.html'
                     }
