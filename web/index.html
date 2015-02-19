@@ -22,6 +22,7 @@
     <script src="assets/js/modules/core/js/configs.js"></script>
     <script src="assets/js/modules/core/js/directives.js"></script>
     <script src="assets/js/modules/core/js/controllers.js"></script>
+    <script src="assets/js/modules/core/js/services.js"></script>
 
     <!--sessionManager-->
     <script src="assets/js/modules/session/exports.js"></script>
@@ -35,7 +36,7 @@
 
 </head>
 <body data-ng-app="mediaCenter">
-<div class="overlay">
+<div class="overlay" ng-controller="NavigationController">
     <div class="header">
         <session-widget></session-widget>
     </div>

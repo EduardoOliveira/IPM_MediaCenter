@@ -2,6 +2,7 @@
 
 angular.module('mediaCenter.core', [
     'mediaCenter.core.configs',
-    'mediaCenter.core.controllers',
-    'mediaCenter.core.directives'
+    'mediaCenter.core.directives',
+    'mediaCenter.core.services',
+    'mediaCenter.core.controllers'
 ]);

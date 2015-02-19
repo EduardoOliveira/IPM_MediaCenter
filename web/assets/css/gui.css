@@ -1,12 +1,13 @@
 body {
     margin: 0px;
     padding: 0px;
-    background-color: black;
+    background-image: url("/assets/images/bg.jpg");
 }
 
 /* overlay */
 .overlay {
     position: absolute;
+    background-color: rgba(0,0,0,0.5);
     top: 0;
     bottom: 0;
     width: 100%;
@@ -17,7 +18,6 @@ body {
 .overlay .header {
     height: 33px;
     width: 100%;
-    background-color: red;
     flex-grow: 0;
     align-self: flex-start;
 }
@@ -48,8 +48,13 @@ body {
 
 .main-menu > div {
     margin: 10px;
-    background-color: #dcdcdc;
     width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    box-shadow: 10px 10px 5px #000;
+}
+
+.main-menu > div:hover{
+    box-shadow: none;
 }
 
 /* spit pane*/
