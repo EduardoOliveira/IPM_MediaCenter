@@ -95,6 +95,18 @@ body {
     background-color: #008800;
     margin-left: 10px;
 }
+/* details panel */
+.title-details{
+    background-color: #fff;
+}
+
+.star-details{
+    background-color: #000088;
+}
+
+.info-details{
+    background-color: #245580;
+}
 
 /* session widget */
 session-widget,
