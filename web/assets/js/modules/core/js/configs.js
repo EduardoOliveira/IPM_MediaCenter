@@ -13,5 +13,5 @@ angular.module('mediaCenter.core.configs', [])
                         templateUrl: '/assets/js/modules/core/templates/mainMenu.html'
                     }
                 }
-            }).state('series', {}).state('music', {}).state('settings', {});
+            });
     });
