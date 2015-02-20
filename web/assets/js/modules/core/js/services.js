@@ -16,7 +16,7 @@ angular.module('mediaCenter.core.services', [])
 
         this.navigateTo = function (params) {
             console.log(params);
-            this.graphicalNavigation.activate({
+            this.graphicalNavigation.focus({
                 group: params.group,
                 id: params.id
             });
@@ -24,32 +24,55 @@ angular.module('mediaCenter.core.services', [])
         };
 
         this.goUp = function () {
-            that.navigateTo({
-                group: that.group.navigationGroup,
-                id: that.group.navigationElements[that.group.focused].up({})
-            });
+            var element = that.group.navigationElements[that.group.focused];
+            if (element.up !== undefined){
+                that.navigateTo({
+                    group: that.group.navigationGroup,
+                    id: element.up({})
+                });
+            }
         };
 
         this.goDown = function () {
-            that.navigateTo({
-                group: that.group.navigationGroup,
-                id: that.group.navigationElements[that.group.focused].down({})
-            });
+            var element = that.group.navigationElements[that.group.focused];
+            if (element.down !== undefined) {
+                that.navigateTo({
+                    group: that.group.navigationGroup,
+                    id: element.down({})
+                });
+            }
         };
 
         this.goLeft = function () {
-            that.navigateTo({
-                group: that.group.navigationGroup,
-                id: that.group.navigationElements[that.group.focused].left({})
-            });
+            var element = that.group.navigationElements[that.group.focused];
+            if (element.left !== undefined) {
+                that.navigateTo({
+                    group: that.group.navigationGroup,
+                    id: element.left({})
+                });
+            }
 
         };
 
         this.goRight = function () {
-            that.navigateTo({
-                group: that.group.navigationGroup,
-                id: that.group.navigationElements[that.group.focused].right({})
-            });
+            var element = that.group.navigationElements[that.group.focused];
+            if (element.right !== undefined) {
+                that.navigateTo({
+                    group: that.group.navigationGroup,
+                    id: element.right({})
+                });
+            }
         };
+
+        this.goIn = function () {
+            var element = that.group.navigationElements[that.group.focused];
+            if (element.right !== undefined) {
+                that.navigateTo({
+                    group: that.group.navigationGroup,
+                    id: element.right({})
+                });
+            }
+        };
+
 
     });

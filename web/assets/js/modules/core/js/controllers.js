@@ -22,11 +22,17 @@ angular.module('mediaCenter.core.controllers', [])
             description: 'Go Right!',
             callback: NavigationService.goRight
         });
+        hotkeys.add({
+            combo: 'enter',
+            description: 'Go In!',
+            callback: NavigationService.goIn
+        });
 
         $scope.$on('nav.up', NavigationService.goUp);
         $scope.$on('nav.down', NavigationService.goDown);
         $scope.$on('nav.left', NavigationService.goLeft);
         $scope.$on('nav.right', NavigationService.goRight);
+        $scope.$on('nav.enter', NavigationService.goIn);
     })
 
     .controller('MainMenuController', function ($scope, NavigationService) {
