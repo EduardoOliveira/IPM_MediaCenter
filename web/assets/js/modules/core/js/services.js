@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mediaCenter.core.services', [])
-    .service('NavigationService', function () {
+    .service('NavigationService', function ($timeout) {
         this.group = {};
         this.graphicalNavigation = new GraphicalNavigation();
         var that = this;
@@ -15,12 +15,19 @@ angular.module('mediaCenter.core.services', [])
         };
 
         this.navigateTo = function (params) {
-            console.log(params);
+            var current = $('[data-navigation-group="' + params.group + '"][data-navigation-id].focused');
+            var next = $('[data-navigation-group="' + params.group + '"][data-navigation-id="' + params.id + '"]');
             this.graphicalNavigation.focus({
-                group: params.group,
-                id: params.id
+                current: current,
+                next: next
             });
             this.group.focused = params.id;
+        };
+
+        this.goIn = function () {
+            $timeout(function(){
+                $('[data-navigation-group="'+that.group.navigationGroup+'"][data-navigation-id].focused').click();
+            });
         };
 
         this.goUp = function () {
@@ -55,16 +62,6 @@ angular.module('mediaCenter.core.services', [])
         };
 
         this.goRight = function () {
-            var element = that.group.navigationElements[that.group.focused];
-            if (element.right !== undefined) {
-                that.navigateTo({
-                    group: that.group.navigationGroup,
-                    id: element.right({})
-                });
-            }
-        };
-
-        this.goIn = function () {
             var element = that.group.navigationElements[that.group.focused];
             if (element.right !== undefined) {
                 that.navigateTo({

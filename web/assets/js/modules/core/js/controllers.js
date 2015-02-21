@@ -35,7 +35,7 @@ angular.module('mediaCenter.core.controllers', [])
         $scope.$on('nav.enter', NavigationService.goIn);
     })
 
-    .controller('MainMenuController', function ($scope, NavigationService) {
+    .controller('MainMenuController', function ($scope, NavigationService,$state) {
         var mainMenuGui = new MainMenuGui({$element: $('.main-menu')});
         var navigation = {
             movies: {
@@ -77,5 +77,9 @@ angular.module('mediaCenter.core.controllers', [])
             navigationGroup: 'main-menu',
             navigationElements: navigation
         });
+
+        $scope.go = function(nextView){
+            $state.go(nextView);
+        };
 
     });
