@@ -95,6 +95,14 @@ body {
     background-color: #008800;
     margin-left: 10px;
 }
+
+/* listComponent */
+.list-component{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
 /* details panel */
 .title-details{
     background-color: #fff;
