@@ -1,0 +1,29 @@
+.overlay {
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.overlay .header {
+    height: 33px;
+    width: 100%;
+    flex-grow: 0;
+    align-self: flex-start;
+}
+
+.overlay .main-container {
+    align-self: stretch;
+    flex: 1 100%;
+}
+
+.overlay .bottom-bar {
+    height: 55px;
+    width: 100%;
+    background-color: greenyellow;
+    align-self: flex-end;
+    flex-grow: 0;
+}
