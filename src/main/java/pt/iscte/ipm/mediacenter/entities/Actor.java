@@ -20,7 +20,7 @@ public class Actor {
     private List<Movie> participations;
 
     //Constructor
-    public Actor(String name, String biography, int age, List<Movie> participations){
+    public Actor(String name, String biography, int age, List<Movie> participations) {
         this.name = name;
         this.biography = biography;
         this.age = age;
@@ -28,36 +28,44 @@ public class Actor {
     }
 
     //Getters
-    public int getID(){
+    public int getID() {
         return id;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String getBiography(){
+
+    public String getBiography() {
         return biography;
     }
-    public int getAge(){
+
+    public int getAge() {
         return age;
     }
-    public List<Movie> getParticipations(){
+
+    public List<Movie> getParticipations() {
         return participations;
     }
 
     //Setters
-    public void setID(int id){
+    public void setID(int id) {
         this.id = id;
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
-    public void setBiography(String biography){
+
+    public void setBiography(String biography) {
         this.biography = biography;
     }
-    public void setAge(int age){
+
+    public void setAge(int age) {
         this.age = age;
     }
-    public void addParticipations(Movie m){
+
+    public void addParticipations(Movie m) {
         participations.add(m);
     }
 

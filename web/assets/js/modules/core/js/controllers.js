@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mediaCenter.core.controllers', [])
-    .controller('NavigationController', function ($scope, hotkeys,NavigationService) {
+    .controller('NavigationController', function ($scope, hotkeys, NavigationService) {
         hotkeys.add({
             combo: 'up',
             description: 'Go Up!',

@@ -2,5 +2,5 @@
 
 angular.module('mediaCenter.session.controllers', [])
     .controller('SessionManagerController', function ($scope) {
-        $scope.teste= 132;
+        $scope.teste = 132;
     });

@@ -19,7 +19,7 @@ angular.module('mediaCenter.movies.configs', [])
                     },
                     "rightPane@movies": {
                         controller: 'MovieDetailsController',
-                        templateUrl:'/assets/js/modules/core/templates/mediaDetails.html'
+                        templateUrl: '/assets/js/modules/core/templates/mediaDetails.html'
                     }
                 }
             });

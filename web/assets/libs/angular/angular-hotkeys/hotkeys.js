@@ -13,11 +13,11 @@
  * License: MIT
  */
 
-(function() {
+(function () {
 
     'use strict';
 
-    angular.module('cfp.hotkeys', []).provider('hotkeys', function() {
+    angular.module('cfp.hotkeys', []).provider('hotkeys', function () {
 
         /**
          * Configurable setting to disable the cheatsheet entirely
@@ -66,7 +66,7 @@
             // monkeypatch Mousetrap's stopCallback() function
             // this version doesn't return true when the element is an INPUT, SELECT, or TEXTAREA
             // (instead we will perform this check per-key in the _add() method)
-            Mousetrap.stopCallback = function(event, element) {
+            Mousetrap.stopCallback = function (event, element) {
                 // if the element has the class "mousetrap" then no need to stop
                 if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
                     return false;
@@ -80,23 +80,23 @@
              * @param  {String} combo Key combination, e.g. 'mod+f'
              * @return {String}       The key combination with symbols
              */
-            function symbolize (combo) {
+            function symbolize(combo) {
                 var map = {
-                    command   : '⌘',
-                    shift     : '⇧',
-                    left      : '←',
-                    right     : '→',
-                    up        : '↑',
-                    down      : '↓',
-                    'return'  : '↩',
-                    backspace : '⌫'
+                    command: '⌘',
+                    shift: '⇧',
+                    left: '←',
+                    right: '→',
+                    up: '↑',
+                    down: '↓',
+                    'return': '↩',
+                    backspace: '⌫'
                 };
                 combo = combo.split('+');
 
                 for (var i = 0; i < combo.length; i++) {
                     // try to resolve command / ctrl based on OS:
                     if (combo[i] === 'mod') {
-                        if ($window.navigator && $window.navigator.platform.indexOf('Mac') >=0 ) {
+                        if ($window.navigator && $window.navigator.platform.indexOf('Mac') >= 0) {
                             combo[i] = 'command';
                         } else {
                             combo[i] = 'ctrl';
@@ -119,7 +119,7 @@
              * @param {array}    allowIn     an array of tag names to allow this combo in ('INPUT', 'SELECT', and/or 'TEXTAREA')
              * @param {Boolean}  persistent  Whether the hotkey persists navigation events
              */
-            function Hotkey (combo, description, callback, action, allowIn, persistent) {
+            function Hotkey(combo, description, callback, action, allowIn, persistent) {
                 // TODO: Check that the values are sane because we could
                 // be trying to instantiate a new Hotkey with outside dev's
                 // supplied values
@@ -140,7 +140,7 @@
              *
              * TODO: this gets called a lot.  We should cache the result
              */
-            Hotkey.prototype.format = function() {
+            Hotkey.prototype.format = function () {
 
                 // Don't show all the possible key combos, just the first one.  Not sure
                 // of usecase here, so open a ticket if my assumptions are wrong
@@ -289,7 +289,7 @@
              * @param {array}    allowIn     an array of tag names to allow this combo in ('INPUT', 'SELECT', and/or 'TEXTAREA')
              * @param {boolean}  persistent  if true, the binding is preserved upon route changes
              */
-            function _add (combo, description, callback, action, allowIn, persistent) {
+            function _add(combo, description, callback, action, allowIn, persistent) {
 
                 // used to save original callback for "allowIn" wrapping:
                 var _callback;
@@ -302,11 +302,11 @@
 
                 if (objType === '[object Object]') {
                     description = combo.description;
-                    callback    = combo.callback;
-                    action      = combo.action;
-                    persistent  = combo.persistent;
-                    allowIn     = combo.allowIn;
-                    combo       = combo.combo;
+                    callback = combo.callback;
+                    action = combo.action;
+                    persistent = combo.persistent;
+                    allowIn = combo.allowIn;
+                    combo = combo.combo;
                 }
 
                 // description is optional:
@@ -341,7 +341,7 @@
 
                     // remove anything from preventIn that's present in allowIn
                     var index;
-                    for (var i=0; i < allowIn.length; i++) {
+                    for (var i = 0; i < allowIn.length; i++) {
                         allowIn[i] = allowIn[i].toUpperCase();
                         index = preventIn.indexOf(allowIn[i]);
                         if (index !== -1) {
@@ -350,7 +350,7 @@
                     }
 
                     // create the new wrapper callback
-                    callback = function(event) {
+                    callback = function (event) {
                         var shouldExecute = true;
                         var target = event.target || event.srcElement; // srcElement is IE only
                         var nodeName = target.nodeName.toUpperCase();
@@ -360,7 +360,7 @@
                             shouldExecute = true;
                         } else {
                             // don't execute callback if the event was fired from inside an element listed in preventIn
-                            for (var i=0; i<preventIn.length; i++) {
+                            for (var i = 0; i < preventIn.length; i++) {
                                 if (preventIn[i] === nodeName) {
                                     shouldExecute = false;
                                     break;
@@ -391,7 +391,7 @@
              * @param  {mixed} hotkey   Either the bound key or an instance of Hotkey
              * @return {boolean}        true if successful
              */
-            function _del (hotkey) {
+            function _del(hotkey) {
                 var combo = (hotkey instanceof Hotkey) ? hotkey.combo : hotkey;
 
                 Mousetrap.unbind(combo);
@@ -427,7 +427,7 @@
              * @param  {[string]} combo  the key the Hotkey is bound to
              * @return {Hotkey}          The Hotkey object
              */
-            function _get (combo) {
+            function _get(combo) {
 
                 var hotkey;
 
@@ -448,7 +448,7 @@
              *
              * @param  {Object} scope The scope to bind to
              */
-            function bindTo (scope) {
+            function bindTo(scope) {
                 // Only initialize once to allow multiple calls for same scope.
                 if (!(scope.$id in boundScopes)) {
 
@@ -488,7 +488,7 @@
              * @param  {Function} callback [description]
              * @return {[type]}            [description]
              */
-            function wrapApply (callback) {
+            function wrapApply(callback) {
                 // return mousetrap a function to call
                 return function (event, combo) {
 
@@ -505,7 +505,7 @@
 
                     // this takes place outside angular, so we'll have to call
                     // $apply() to make sure angular's digest happens
-                    $rootScope.$apply(function() {
+                    $rootScope.$apply(function () {
                         // call the original hotkey callback with the keyboard event
                         callback(event, _get(combo));
                     });
@@ -514,17 +514,17 @@
 
 
             var publicApi = {
-                add                   : _add,
-                del                   : _del,
-                get                   : _get,
-                bindTo                : bindTo,
-                template              : this.template,
-                toggleCheatSheet      : toggleCheatSheet,
-                includeCheatSheet     : this.includeCheatSheet,
-                cheatSheetHotkey      : this.cheatSheetHotkey,
-                cheatSheetDescription : this.cheatSheetDescription,
-                purgeHotkeys          : purgeHotkeys,
-                templateTitle         : this.templateTitle
+                add: _add,
+                del: _del,
+                get: _get,
+                bindTo: bindTo,
+                template: this.template,
+                toggleCheatSheet: toggleCheatSheet,
+                includeCheatSheet: this.includeCheatSheet,
+                cheatSheetHotkey: this.cheatSheetHotkey,
+                cheatSheetDescription: this.cheatSheetDescription,
+                purgeHotkeys: purgeHotkeys,
+                templateTitle: this.templateTitle
             };
 
             return publicApi;
@@ -554,14 +554,14 @@
                     });
 
                     // remove the hotkey if the directive is destroyed:
-                    el.bind('$destroy', function() {
+                    el.bind('$destroy', function () {
                         hotkeys.del(key);
                     });
                 }
             };
         }])
 
-        .run(['hotkeys', function(hotkeys) {
+        .run(['hotkeys', function (hotkeys) {
             // force hotkeys to run by injecting it. Without this, hotkeys only runs
             // when a controller or something else asks for it via DI.
         }]);
@@ -590,7 +590,7 @@
  * @version 1.4.6
  * @url craig.is/killing/mice
  */
-(function(window, document, undefined) {
+(function (window, document, undefined) {
 
     /**
      * mapping of special keycodes to their corresponding keys
@@ -639,7 +639,7 @@
             107: '+',
             109: '-',
             110: '.',
-            111 : '/',
+            111: '/',
             186: ';',
             187: '=',
             188: ',',
@@ -1238,7 +1238,7 @@
          * @returns {Function}
          */
         function _increaseSequence(nextAction) {
-            return function() {
+            return function () {
                 _nextExpectedAction = nextAction;
                 ++_sequenceLevels[combo];
                 _resetSequenceTimer();
@@ -1435,7 +1435,7 @@
          * @param {string=} action - 'keypress', 'keydown', or 'keyup'
          * @returns void
          */
-        bind: function(keys, callback, action) {
+        bind: function (keys, callback, action) {
             keys = keys instanceof Array ? keys : [keys];
             _bindMultiple(keys, callback, action);
             return this;
@@ -1458,8 +1458,9 @@
          * @param {string} action
          * @returns void
          */
-        unbind: function(keys, action) {
-            return Mousetrap.bind(keys, function() {}, action);
+        unbind: function (keys, action) {
+            return Mousetrap.bind(keys, function () {
+            }, action);
         },
 
         /**
@@ -1469,7 +1470,7 @@
          * @param {string=} action
          * @returns void
          */
-        trigger: function(keys, action) {
+        trigger: function (keys, action) {
             if (_directMap[keys + ':' + action]) {
                 _directMap[keys + ':' + action]({}, keys);
             }
@@ -1483,7 +1484,7 @@
          *
          * @returns void
          */
-        reset: function() {
+        reset: function () {
             _callbacks = {};
             _directMap = {};
             return this;
@@ -1496,7 +1497,7 @@
          * @param {Element} element
          * @return {boolean}
          */
-        stopCallback: function(e, element) {
+        stopCallback: function (e, element) {
 
             // if the element has the class "mousetrap" then no need to stop
             if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
@@ -1520,4 +1521,4 @@
     if (typeof define === 'function' && define.amd) {
         define(Mousetrap);
     }
-}) (window, document);
+})(window, document);

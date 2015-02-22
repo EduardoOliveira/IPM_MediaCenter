@@ -14,25 +14,26 @@ public class Image {
     private String fileName;
     private double size;
 
-    public Image(String fileName, double size){
+    public Image(String fileName, double size) {
         this.fileName = fileName;
         this.size = size;
     }
 
     //Getters
-    public String getFileName(){
+    public String getFileName() {
         return fileName;
     }
-    public double size(){
+
+    public double size() {
         return size;
     }
 
     //Setters
-    public void setFileName(String fileName){
+    public void setFileName(String fileName) {
         this.fileName = fileName;
     }
 
-    public void setSize(int size){
+    public void setSize(int size) {
         this.size = size;
     }
 }

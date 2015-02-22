@@ -27,7 +27,7 @@ public class Movie {
     private List<Image> images;
 
     //Constructor
-    public Movie(String name, Date releaseDate, String description, List<Actor> cast, Director director, List<Image> images){
+    public Movie(String name, Date releaseDate, String description, List<Actor> cast, Director director, List<Image> images) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.description = description;
@@ -37,48 +37,60 @@ public class Movie {
     }
 
     //Getters
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public Date getReleaseDate(){
+
+    public Date getReleaseDate() {
         return releaseDate;
     }
-    public int getRate(){
+
+    public int getRate() {
         return rate;
     }
-    public String getDescription(){
+
+    public String getDescription() {
         return description;
     }
-    public List<Actor> getActorsList(){
+
+    public List<Actor> getActorsList() {
         return cast;
     }
-    public Director getDirector(){
+
+    public Director getDirector() {
         return director;
     }
-    public List<Image> getScreenShots(){
+
+    public List<Image> getScreenShots() {
         return images;
     }
 
     //Setters
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
-    public void setReleaseDate(){
+
+    public void setReleaseDate() {
         this.releaseDate = releaseDate;
     }
-    public void rate(int rate){
+
+    public void rate(int rate) {
         this.rate = rate;
     }
-    public void setDescription(){
+
+    public void setDescription() {
         this.description = description;
     }
-    public void setDirector(Director d){
+
+    public void setDirector(Director d) {
         this.director = d;
     }
-    public void addActorToCast(Actor a){
+
+    public void addActorToCast(Actor a) {
         cast.add(a);
     }
-    public void addImageToScreenShots(Image i){
+
+    public void addImageToScreenShots(Image i) {
         images.add(i);
     }
 

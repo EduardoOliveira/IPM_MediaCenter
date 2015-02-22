@@ -51,7 +51,7 @@ module.exports = function (baseUrl) {
 
     this._scrapArtistsListBody = function (body) {
         $ = cheerio.load(body);
-        $('table.cast_list').each(function(){
+        $('table.cast_list').each(function () {
 
         });
     };

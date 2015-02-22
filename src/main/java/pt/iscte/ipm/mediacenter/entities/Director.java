@@ -21,7 +21,7 @@ public class Director {
 
 
     //Constructor
-    public Director(String name, int age, String biography, List<Movie> moviesDirected){
+    public Director(String name, int age, String biography, List<Movie> moviesDirected) {
         this.name = name;
         this.age = age;
         this.biography = biography;
@@ -29,33 +29,40 @@ public class Director {
     }
 
     //Getters
-    public int getID(){
+    public int getID() {
         return id;
     }
-    public int getAge(){
+
+    public int getAge() {
         return age;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String getBiography(){
+
+    public String getBiography() {
         return biography;
     }
-    public List<Movie> getDirectedMovies(){
+
+    public List<Movie> getDirectedMovies() {
         return moviesDirected;
     }
 
     //Setters
-    public void setID(int id){
+    public void setID(int id) {
         this.id = id;
     }
-    public void setAge(int age){
+
+    public void setAge(int age) {
         this.age = age;
     }
-    public void setBiography(String bio){
+
+    public void setBiography(String bio) {
         this.biography = bio;
     }
-    public void addToDirectedMovies(Movie movie){
+
+    public void addToDirectedMovies(Movie movie) {
         moviesDirected.add(movie);
     }
 
