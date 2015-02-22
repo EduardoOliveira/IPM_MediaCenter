@@ -13,17 +13,9 @@
 }
 
 .split-container .left-pane{
-    background-color: #ffff00;
     margin-right: 10px;
 }
 .split-container .right-pane{
     background-color: #008800;
     margin-left: 10px;
-}
-
-/* listComponent */
-.list-component{
-    width: 100%;
-    display: flex;
-    flex-flow: column nowrap;
 }

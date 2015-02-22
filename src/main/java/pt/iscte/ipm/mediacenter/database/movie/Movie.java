@@ -28,6 +28,8 @@ public class Movie {
     @Embedded
     private List<Image> images;
 
+    public Movie(){}
+
     //Constructor
     public Movie(String name, Date releaseDate, String description, List<Actor> cast, Director director, List<Image> images) {
         this.name = name;
@@ -66,6 +68,7 @@ public class Movie {
     public List<Image> getScreenShots() {
         return images;
     }
+
     //Setters
     public void setName(String name) {
         this.name = name;

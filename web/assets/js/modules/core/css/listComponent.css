@@ -1,0 +1,27 @@
+
+/* listComponent */
+.list-component{
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.list-component .search-bar{
+    background-color: rgba(0,0,0,0.5);
+    margin-bottom: 5px;
+    height: 35px;
+    width: 100%;
+    flex-grow: 0;
+    align-self: flex-start;
+}
+
+.list-component .list-content{
+    background-color: rgba(0,0,0,0.5);
+    margin-bottom: 0;
+    margin-top: 5px;
+    height: 100%;
+    width: 100%;
+}

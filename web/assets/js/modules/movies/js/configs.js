@@ -8,10 +8,7 @@ angular.module('mediaCenter.movies.configs', [])
                 url: '/movies',
                 views: {
                     'main-view': {
-                        templateUrl: '/assets/js/modules/core/templates/splitPane.html',
-                        controller: function () {
-                            console.log(2);
-                        }
+                        templateUrl: '/assets/js/modules/core/templates/splitPane.html'
                     },
                     'leftPane@movies': {
                         controller: 'MovieListController',
