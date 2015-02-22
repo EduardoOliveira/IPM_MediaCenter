@@ -9,3 +9,9 @@
 .info-details{
     background-color: #245580;
 }
+
+.movie-info{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
