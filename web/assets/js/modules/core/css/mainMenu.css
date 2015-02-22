@@ -1,0 +1,33 @@
+.main-menu {
+    padding-left: 15%;
+    padding-right: 15%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-menu > div {
+    margin: 10px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    box-shadow: 10px 10px 5px #000;
+}
+
+.main-menu svg{
+    width: 100%;
+    height: 100%;
+    padding: 10%;
+    fill:white;
+}
+
+.main-menu > div:hover,
+.main-menu > div.focused{
+    box-shadow: none;
+}
+.main-menu > div:hover > div,
+.main-menu > div.focused > div{
+    width: 95%;
+    height: 95%;
+}
