@@ -4,8 +4,10 @@ import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import com.sun.scenario.Settings;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import pt.iscte.ipm.mediacenter.utils.SettingsManager;
 
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -24,10 +26,13 @@ public class Database {
     }
 
     public static synchronized MongoClient getMongo(){
-        MongoCredential credential = MongoCredential.createMongoCRCredential("root", "admin", "2kyydv966gt2".toCharArray());
+        MongoCredential credential = MongoCredential.createMongoCRCredential(SettingsManager.getSetting("mongo.user"),
+                SettingsManager.getSetting("mongo.authentication_db"),
+                SettingsManager.getSetting("mongo.password").toCharArray());
         if(mongoInst == null){
             try {
-                mongoInst = new MongoClient(new ServerAddress("knoker.no-ip.org", 27017), Arrays.asList(credential));
+                mongoInst = new MongoClient(new ServerAddress(SettingsManager.getSetting("mongo.server"),
+                        SettingsManager.getIntegerSetting("mongo.port")), Arrays.asList(credential));
             } catch (UnknownHostException e) {
                 e.printStackTrace();
             }
@@ -43,7 +48,7 @@ public class Database {
 
     public static  synchronized Datastore startDS(){
         if(ds == null){
-            ds = morphiaInst.createDatastore(mongoInst, "media_center");
+            ds = morphiaInst.createDatastore(mongoInst, SettingsManager.getSetting("mongo.database"));
         }
         ds.ensureIndexes();
         return ds;
