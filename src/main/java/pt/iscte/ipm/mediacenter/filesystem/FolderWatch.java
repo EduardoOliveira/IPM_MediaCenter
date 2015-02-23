@@ -30,7 +30,11 @@ public class FolderWatch extends Thread {
                     if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE) {
 
                         Path newPath = ((Path) key.watchable()).resolve(event.context().toString());
-                        MediaManager.tryManageFile(newPath.toFile());
+                        try {
+                            MediaManager.tryManageFile(newPath.toFile());
+                        } catch (InvalidFileFormatException e) {
+                            e.printStackTrace();
+                        }
 
                         if (((Path) key.watchable()).toFile().isDirectory()) {
                             Files.walkFileTree(newPath, fileVisitor);
@@ -42,8 +46,6 @@ public class FolderWatch extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InvalidFileFormatException e) {
                 e.printStackTrace();
             }
         }
