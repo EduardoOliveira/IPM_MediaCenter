@@ -17,7 +17,7 @@ public class MediaManager {
         if (file.toString().endsWith(".mp3")) {
             MediaHandler musMediaHandler = new MusicHandler();
             //musMediaHandler.handle(file);
-            new Thread(musMediaHandler).start();
+            //new Thread(musMediaHandler).start();
         } else if (file.toString().endsWith(".mp4") || file.toString().endsWith(".mkv")) {
             tryManageVideo(file);
         }
