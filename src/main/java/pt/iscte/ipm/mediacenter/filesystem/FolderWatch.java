@@ -1,8 +1,6 @@
 package pt.iscte.ipm.mediacenter.filesystem;
 
 import pt.iscte.ipm.mediacenter.mediahandler.MediaHandler;
-import pt.iscte.ipm.mediacenter.mediahandler.MediaManager;
-import pt.iscte.ipm.mediacenter.mediahandler.exceptions.InvalidFileFormatException;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -10,11 +8,13 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 public class FolderWatch extends Thread {
 
+    private MediaHandler mediaHandler;
     private Path folder;
     private WatchService watchService;
 
-    public FolderWatch(Path folder) throws IOException {
+    public FolderWatch(Path folder, MediaHandler mediaHandler) throws IOException {
         this.folder = folder;
+        this.mediaHandler = mediaHandler;
         this.watchService = folder.getFileSystem().newWatchService();
         Files.walkFileTree(folder, fileVisitor);
     }
@@ -27,18 +27,17 @@ public class FolderWatch extends Thread {
                 key = watchService.take();
 
                 for (WatchEvent event : key.pollEvents()) {
+
+                    Path thisPath = ((Path) key.watchable()).resolve(event.context().toString());
                     if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE) {
 
-                        Path newPath = ((Path) key.watchable()).resolve(event.context().toString());
-                        try {
-                            MediaManager.tryManageFile(newPath.toFile());
-                        } catch (InvalidFileFormatException e) {
-                            e.printStackTrace();
-                        }
-
                         if (((Path) key.watchable()).toFile().isDirectory()) {
-                            Files.walkFileTree(newPath, fileVisitor);
+                            Files.walkFileTree(thisPath, fileVisitor);
+                        }else{
+                            mediaHandler.handle(thisPath);
                         }
+                    }else if(event.kind() == StandardWatchEventKinds.ENTRY_DELETE){
+                        key.cancel();
                     }
                 }
 

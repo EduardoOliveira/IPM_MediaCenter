@@ -18,8 +18,11 @@ public class SettingsManager {
                 file.createNewFile();
                 setSetting("port", "80");
                 setSetting("movies.dir", "C:\\");
+                setSetting("movies.format","{name}\\{name}.{ext}");
                 setSetting("series.dir", "C:\\");
+                setSetting("series.format","{name}\\{season}\\{episode}-{title}.{ext}");
                 setSetting("music.dir", "C:\\");
+                setSetting("music.format","{artist}\\{album}\\{track}-{title}.{ext}");
                 setSetting("mongo.server", "localhost");
                 setSetting("mongo.port", "27017");
                 setSetting("mongo.user", "root");

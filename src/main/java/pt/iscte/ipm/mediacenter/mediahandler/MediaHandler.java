@@ -1,7 +1,7 @@
 package pt.iscte.ipm.mediacenter.mediahandler;
 
-import java.io.File;
+import java.nio.file.Path;
 
 public interface MediaHandler extends Runnable{
-    public void handle(File f);
+    public void handle(Path p);
 }

@@ -4,6 +4,9 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 import pt.iscte.ipm.mediacenter.filesystem.FolderWatch;
 import pt.iscte.ipm.mediacenter.mediahandler.MediaManager;
+import pt.iscte.ipm.mediacenter.mediahandler.movie.MovieHandler;
+import pt.iscte.ipm.mediacenter.mediahandler.music.MusicHandler;
+import pt.iscte.ipm.mediacenter.mediahandler.serie.SerieHandler;
 import pt.iscte.ipm.mediacenter.utils.SettingsManager;
 
 import java.io.File;
@@ -11,19 +14,14 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        FolderWatch moviesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("movies.dir")),new MovieHandler());
+        moviesWatch.start();
 
-/*
-        try{
-            FolderWatch  folderWatch = new FolderWatch(Paths.get("C:\\Users\\KnoKer\\Desktop"));
-            folderWatch.start();
-        }catch(Exception e){
-            System.err.println("--------------------------------------------------------");
-            System.err.println("File system operations failed to start, continuing boot.");
-            e.printStackTrace();
-            System.err.println("--------------------------------------------------------");
-        }
-*/
-        //MediaManager.tryManageFile(new File("http://zombieblitzkrieg.no-ip.biz/private/Series/Fargo/Season%201/v.2009.S01E13.the.title.avi"));
+        FolderWatch seriesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("series.dir")),new SerieHandler());
+        seriesWatch.start();
+
+        FolderWatch musicWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("music.dir")),new MusicHandler());
+        musicWatch.start();
 
         Server server = new Server(SettingsManager.getIntegerSetting("port"));
         WebAppContext context = new WebAppContext();
