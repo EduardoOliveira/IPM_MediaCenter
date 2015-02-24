@@ -24,7 +24,8 @@ public class MusicHandler implements MediaHandler{
 
         @Override
         public void run() {
-            Pattern patern = Pattern.compile(SettingsManager.getSetting("music.dir"));
+            //Pattern patern = Pattern.compile(SettingsManager.getSetting("music.dir"));
+            Pattern patern = Pattern.compile("\\\\(?<artist>.*)\\\\(?<album>.*)\\\\(?<track>.*)-(?<title>.*)\\.(?<ext>.\\w+)$");
 
             Matcher matcher = patern.matcher(path.toString());
             if(matcher.matches()){
@@ -32,9 +33,12 @@ public class MusicHandler implements MediaHandler{
                 String album = matcher.group("album");
                 String track = matcher.group("track");
                 String title = matcher.group("title");
+                System.out.println(artist);
+                System.out.println(album);
+                System.out.println(title);
                 Collection<Track> search = Track.search(artist, title, 1, SettingsManager.getSetting("lastfm.api_key"));
                 for(Track t: search){
-
+                    System.out.println(t.toString());
                 }
             }
             //grava na base de dados

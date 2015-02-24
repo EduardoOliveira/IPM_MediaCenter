@@ -27,20 +27,32 @@ public class FolderWatch extends Thread {
                 key = watchService.take();
 
                 for (WatchEvent event : key.pollEvents()) {
-
+                    System.out.println(((Path) key.watchable()).toString());
                     Path thisPath = ((Path) key.watchable()).resolve(event.context().toString());
-                    if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE) {
-                        if (((Path) key.watchable()).toFile().isDirectory()) {
-                            Files.walkFileTree(thisPath, fileVisitor);
-                        }else{
-                            mediaHandler.handle(thisPath);
+                    System.out.println(thisPath.toFile().toString());
+                    System.out.println(event.kind().name());
+                    // Overflow event
+                    if (event.kind() == StandardWatchEventKinds.OVERFLOW) {
+                        continue; // loop
+                    }
+                    if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE || event.kind() == StandardWatchEventKinds.ENTRY_MODIFY) {
+                        if (thisPath.toFile().exists()){
+                            if(thisPath.toFile().isDirectory()) {
+                                Files.walkFileTree(thisPath, fileVisitor);
+                            }else{
+                                System.out.println("Handle");
+                                mediaHandler.handle(thisPath);
+                            }
                         }
                     }else if(event.kind() == StandardWatchEventKinds.ENTRY_DELETE){
                         key.cancel();
                     }
+                    boolean valid = key.reset();
+                    if (!valid) {
+                        break;
+                    }
                 }
 
-                key.reset();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (IOException e) {

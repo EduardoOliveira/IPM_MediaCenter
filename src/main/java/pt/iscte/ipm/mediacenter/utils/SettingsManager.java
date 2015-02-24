@@ -29,6 +29,7 @@ public class SettingsManager {
                 setSetting("mongo.authentication_db", "authentication");
                 setSetting("mongo.password", "Iw0ntT3llY0u");
                 setSetting("mongo.database", "media_center");
+                setSetting("lastfm.api_key", "50dfac108b65a719f19d6086eda1ce9f");
                 save();
             } catch (IOException e1) {
                 System.err.println("Could not create settings file. Aborting!");

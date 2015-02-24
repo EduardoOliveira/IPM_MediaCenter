@@ -6,10 +6,6 @@ import java.io.File;
 import java.nio.file.Path;
 
 public class SerieHandler implements MediaHandler {
-    @Override
-    public void run() {
-
-    }
 
     @Override
     public void handle(Path path) {

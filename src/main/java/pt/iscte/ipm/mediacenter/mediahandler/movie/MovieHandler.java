@@ -13,9 +13,4 @@ public class MovieHandler implements MediaHandler {
 
 
     }
-
-    @Override
-    public void run() {
-
-    }
 }
