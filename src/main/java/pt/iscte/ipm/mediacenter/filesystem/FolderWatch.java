@@ -30,7 +30,6 @@ public class FolderWatch extends Thread {
 
                     Path thisPath = ((Path) key.watchable()).resolve(event.context().toString());
                     if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE) {
-
                         if (((Path) key.watchable()).toFile().isDirectory()) {
                             Files.walkFileTree(thisPath, fileVisitor);
                         }else{

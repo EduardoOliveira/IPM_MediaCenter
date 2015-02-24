@@ -1,5 +1,6 @@
 package pt.iscte.ipm.mediacenter.database.actor;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import pt.iscte.ipm.mediacenter.database.movie.Movie;
@@ -14,22 +15,13 @@ import java.util.List;
 public class Actor {
 
     @Id
-    private int id;
+    private ObjectId id;
     private String name;
     private String biography;
-    private int age;
     private List<Movie> participations;
 
-    //Constructor
-    public Actor(String name, String biography, int age, List<Movie> participations) {
-        this.name = name;
-        this.biography = biography;
-        this.age = age;
-        this.participations = participations;
-    }
-
     //Getters
-    public int getID() {
+    public ObjectId getID() {
         return id;
     }
 
@@ -41,29 +33,17 @@ public class Actor {
         return biography;
     }
 
-    public int getAge() {
-        return age;
-    }
-
     public List<Movie> getParticipations() {
         return participations;
     }
 
     //Setters
-    public void setID(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public void setBiography(String biography) {
         this.biography = biography;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public void addParticipations(Movie m) {

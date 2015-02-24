@@ -9,6 +9,7 @@ import java.nio.file.Path;
 public class MusicHandler implements MediaHandler{
     @Override
     public void handle(Path path) {
+
     }
 
     @Override

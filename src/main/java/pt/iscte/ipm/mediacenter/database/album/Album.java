@@ -3,7 +3,7 @@ package pt.iscte.ipm.mediacenter.database.album;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Id;
 import pt.iscte.ipm.mediacenter.database.artist.Artist;
-import pt.iscte.ipm.mediacenter.database.embedded.Song;
+import pt.iscte.ipm.mediacenter.database.song.Song;
 
 import java.util.List;
 

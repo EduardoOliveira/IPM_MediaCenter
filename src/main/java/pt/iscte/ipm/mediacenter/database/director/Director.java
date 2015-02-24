@@ -1,5 +1,6 @@
 package pt.iscte.ipm.mediacenter.database.director;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import pt.iscte.ipm.mediacenter.database.movie.Movie;
@@ -14,28 +15,14 @@ import java.util.List;
 public class Director {
 
     @Id
-    private int id;
+    private ObjectId id;
     private String name;
-    private int age;
     private String biography;
     private List<Movie> moviesDirected;
 
-
-    //Constructor
-    public Director(String name, int age, String biography, List<Movie> moviesDirected) {
-        this.name = name;
-        this.age = age;
-        this.biography = biography;
-        this.moviesDirected = moviesDirected;
-    }
-
     //Getters
-    public int getID() {
+    public ObjectId getID() {
         return id;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public String getName() {
@@ -51,12 +38,8 @@ public class Director {
     }
 
     //Setters
-    public void setID(int id) {
-        this.id = id;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setBiography(String bio) {
