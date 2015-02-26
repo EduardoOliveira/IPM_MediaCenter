@@ -1,17 +1,70 @@
-.title-details{
-    background-color: #fff;
-}
-
-.star-details{
-    background-color: #000088;
-}
-
-.info-details{
-    background-color: #245580;
-}
-
-.movie-info{
+/* media info pane */
+.media-big {
+    background-color: rgba(0,0,0,0.5);
     width: 100%;
-    display: flex;
-    flex-flow: column nowrap;
+    height: 100%;
+    padding: 10px;
 }
+/* media top info and rating*/
+.top-row{
+    justify-content: space-between;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.media-big .top-row .title-details {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 35px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.media-big .top-row .star-details {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 35px;
+    padding-left: 5px;
+    margin-left: 5px;
+}
+
+/* media cover image and detailed info*/
+.content-row{
+    justify-content: space-between;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+..media-big .content-row .content-pic{
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 35px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.media-big .content-row .pic-choose .pic .cover{
+
+}
+
+
+.media-big .content-row .play-btn{
+    padding: 5px;
+}
+
+.media-big .content-row .media-desc {
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+
+.media-big .content-row .media-descTitle {
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.media-big .content-row .media-descInfo {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    width: 100%;
+}
+
