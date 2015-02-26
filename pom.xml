@@ -60,6 +60,13 @@
             <version>0.1.2</version>
         </dependency>
 
+        <!--TvDBApi-->
+        <dependency>
+            <groupId>com.omertron</groupId>
+            <artifactId>thetvdbapi</artifactId>
+            <version>1.5</version>
+        </dependency>
+
     </dependencies>
 
 </project>

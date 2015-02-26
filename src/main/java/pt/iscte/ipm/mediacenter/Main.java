@@ -1,5 +1,6 @@
 package pt.iscte.ipm.mediacenter;
 
+import de.umass.lastfm.Track;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 import pt.iscte.ipm.mediacenter.filesystem.FolderWatch;
@@ -11,17 +12,18 @@ import pt.iscte.ipm.mediacenter.utils.SettingsManager;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.Collection;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        FolderWatch moviesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("movies.dir")),new MovieHandler());
+/*        FolderWatch moviesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("movies.dir")),new MovieHandler());
         moviesWatch.start();
 
         FolderWatch seriesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("series.dir")),new SerieHandler());
         seriesWatch.start();
 
         FolderWatch musicWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("music.dir")),new MusicHandler());
-        musicWatch.start();
+        musicWatch.start();*/
 
         Server server = new Server(SettingsManager.getIntegerSetting("port"));
         WebAppContext context = new WebAppContext();
@@ -31,6 +33,16 @@ public class Main {
         context.setParentLoaderPriority(true);
         server.setHandler(context);
         server.start();
+
+        Collection<Track> search = Track.search("Machine Head","Halo", 1, SettingsManager.getSetting("lastfm.api_key"));
+        for(Track t: search){
+            System.out.println(t.toString());
+        }
+
+
+
         server.join();
+
+
     }
 }
