@@ -4,6 +4,7 @@ import de.umass.lastfm.Track;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 import pt.iscte.ipm.mediacenter.filesystem.FolderWatch;
+import pt.iscte.ipm.mediacenter.lastfm.track.TrackApi;
 import pt.iscte.ipm.mediacenter.mediahandler.MediaManager;
 import pt.iscte.ipm.mediacenter.mediahandler.movie.MovieHandler;
 import pt.iscte.ipm.mediacenter.mediahandler.music.MusicHandler;
@@ -16,9 +17,10 @@ import java.util.Collection;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
 /*        FolderWatch moviesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("movies.dir")),new MovieHandler());
         moviesWatch.start();
-
+f
         FolderWatch seriesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("series.dir")),new SerieHandler());
         seriesWatch.start();
 
@@ -34,10 +36,10 @@ public class Main {
         server.setHandler(context);
         server.start();
 
-        Collection<Track> search = Track.search("Machine Head","Halo", 1, SettingsManager.getSetting("lastfm.api_key"));
-        for(Track t: search){
-            System.out.println(t.toString());
-        }
+        TrackApi trackApi = new TrackApi();
+        trackApi.search("Halo","Machine Head");
+
+        //Collection<Track> search = Track.search("Machine Head","Halo", 1, SettingsManager.getSetting("lastfm.api_key"));
 
 
 
