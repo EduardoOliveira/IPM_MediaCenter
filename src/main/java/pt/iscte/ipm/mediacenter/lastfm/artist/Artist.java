@@ -28,7 +28,7 @@ public class Artist{
 
 
         @JsonProperty("bandmembers")
-        private BandMembersZ bandMembersZ;
+        private BandMembers bandMembers;
 
         private String url;
 
@@ -114,14 +114,14 @@ public class Artist{
             this.image = image;
         }
 
-        public BandMembersZ getBandMembersZ()
+        public BandMembers getBandMembers()
         {
-            return bandMembersZ;
+            return bandMembers;
         }
 
-        public void setBandMembersZ(BandMembersZ bandMembersZ)
+        public void setBandMembers(BandMembers bandMembers)
         {
-            this.bandMembersZ = bandMembersZ;
+            this.bandMembers = bandMembers;
         }
 
         public String getUrl ()
