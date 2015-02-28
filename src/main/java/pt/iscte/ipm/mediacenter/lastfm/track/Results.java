@@ -2,39 +2,68 @@ package pt.iscte.ipm.mediacenter.lastfm.track;
 
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import pt.iscte.ipm.mediacenter.lastfm.commons.Attr;
+import pt.iscte.ipm.mediacenter.lastfm.commons.OpenSearchQuery;
 
-import java.util.List;
+public class Results
+{
 
-class Results {
-    public TrackSearchResult results;
+    private Trackmatches trackmatches;
 
-    public class TrackSearchResult {
+    @JsonProperty("opensearch:Query")
+    private OpenSearchQuery openSearchQuery;
 
-        @JsonProperty("opensearch:Query")
-        public Query query;
-        @JsonProperty("opensearch:totalResults")
-        public String totalResults;
-        @JsonProperty("opensearch:startIndex")
-        public String startIndex;
-        @JsonProperty("opensearch:itemsPerPage")
-        public String itemsPerPage;
-        @JsonProperty("trackmatches")
-        public TrackMatches trackmatches;
+    @JsonProperty("opensearch:totalResults")
+    private Long totalResults;
 
-        public class Query {
+    @JsonProperty("opensearch:startIndex")
+    private Long startIndex;
 
-            @JsonProperty("#text")
-            public String text;
-            public String role;
-            public String searchTerms;
-            public String startPage;
-        }
+    @JsonProperty("opensearch:itemsPerPage")
+    private Long itemPerPage;
 
-        public class TrackMatches {
-            public List<Track> track;
-        }
+    @JsonProperty("@attr")
+    private Attr attr;
 
+    public Trackmatches getTrackmatches ()
+    {
+        return trackmatches;
+    }
 
+    public void setTrackmatches (Trackmatches trackmatches)
+    {
+        this.trackmatches = trackmatches;
+    }
+
+    public OpenSearchQuery getOpenSearchQuery() {
+        return openSearchQuery;
+    }
+
+    public void setOpenSearchQuery(OpenSearchQuery openSearchQuery) {
+        this.openSearchQuery = openSearchQuery;
+    }
+
+    public Long getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(Long startIndex) {
+        this.startIndex = startIndex;
+    }
+
+    public Long getItemPerPage() {
+        return itemPerPage;
+    }
+
+    public void setItemPerPage(Long itemPerPage) {
+        this.itemPerPage = itemPerPage;
+    }
+
+    public Attr getAttr() {
+        return attr;
+    }
+
+    public void setAttr(Attr attr) {
+        this.attr = attr;
     }
 }
-
