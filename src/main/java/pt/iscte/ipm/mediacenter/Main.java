@@ -7,25 +7,28 @@ import pt.iscte.ipm.mediacenter.lastfm.artist.Artist;
 import pt.iscte.ipm.mediacenter.lastfm.artist.ArtistApi;
 import pt.iscte.ipm.mediacenter.lastfm.track.Track;
 import pt.iscte.ipm.mediacenter.lastfm.track.TrackApi;
+import pt.iscte.ipm.mediacenter.mediahandler.MediaManager;
 import pt.iscte.ipm.mediacenter.mediahandler.movie.MovieHandler;
 import pt.iscte.ipm.mediacenter.mediahandler.music.MusicHandler;
 import pt.iscte.ipm.mediacenter.mediahandler.serie.SerieHandler;
 import pt.iscte.ipm.mediacenter.utils.SettingsManager;
 
+import java.io.File;
 import java.nio.file.Paths;
+import java.util.Collection;
 
 
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        FolderWatch moviesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("movies.dir")),new MovieHandler());
+/*        FolderWatch moviesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("movies.dir")),new MovieHandler());
         moviesWatch.start();
 
         FolderWatch seriesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("series.dir")),new SerieHandler());
         seriesWatch.start();
 
         FolderWatch musicWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("music.dir")),new MusicHandler());
-        musicWatch.start();
+        musicWatch.start();*/
 
         Server server = new Server(SettingsManager.getIntegerSetting("port"));
         WebAppContext context = new WebAppContext();
