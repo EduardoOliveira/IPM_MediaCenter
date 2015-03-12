@@ -33,11 +33,10 @@
     </servlet>
     <servlet>
         <servlet-name>websocketServlet</servlet-name>
-        <servlet-class>pt.iscte.ipm.mediacenter.remote.websocket.WebsSocketServletConfig</servlet-class>
+        <servlet-class>pt.iscte.ipm.mediacenter.websocket.WebsSocketServletConfig</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>websocketServlet</servlet-name>
-        <url-pattern>/remote</url-pattern>
+        <url-pattern>/websocket</url-pattern>
     </servlet-mapping>
 </web-app>

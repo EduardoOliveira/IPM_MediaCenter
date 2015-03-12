@@ -1,7 +1,8 @@
-package pt.iscte.ipm.mediacenter.remote.websocket;
+package pt.iscte.ipm.mediacenter.websocket;
 
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
+import pt.iscte.ipm.mediacenter.websocket.WebSocketHandler;
 
 public class WebsSocketServletConfig extends WebSocketServlet{
 

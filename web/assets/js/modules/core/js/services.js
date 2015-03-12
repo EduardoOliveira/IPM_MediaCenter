@@ -25,14 +25,14 @@ angular.module('mediaCenter.core.services', [])
         };
 
         this.goIn = function () {
-            $timeout(function(){
-                $('[data-navigation-group="'+that.group.navigationGroup+'"][data-navigation-id].focused').click();
+            $timeout(function () {
+                $('[data-navigation-group="' + that.group.navigationGroup + '"][data-navigation-id].focused').click();
             });
         };
 
         this.goUp = function () {
             var element = that.group.navigationElements[that.group.focused];
-            if (element.up !== undefined){
+            if (element.up !== undefined) {
                 that.navigateTo({
                     group: that.group.navigationGroup,
                     id: element.up({})
@@ -72,4 +72,27 @@ angular.module('mediaCenter.core.services', [])
         };
 
 
+    })
+    .service('WebSocketService', function ($websocket) {
+        var ws = $websocket.$new('ws://localhost/websocket');
+
+        ws.$on('$open', function () {
+            console.log('Oh my gosh, websocket is really open! Fukken awesome!');
+
+            ws.$emit('pt.iscte.ipm.mediacenter.websocket.events.ConnectEvent', {
+                "deviceType": "pt.iscte.ipm.mediacenter.playbacksession.devices.PlayBackDevice",
+                "deviceName": "MainSession"//TODO: CHANGE ME!
+            });
+            var data = {"keyCode": "wqeqe"};
+
+            ws.$emit('pt.iscte.ipm.mediacenter.remote.events.KeyPressWebSocketEvent', data);
+        });
+
+        ws.$on('$close', function () {
+            console.log('Noooooooooou, I want to have more fun with ngWebsocket, damn it!');
+        });
+
+        this.register = function(event,callback){
+            ws.$on(event,callback);
+        };
     });

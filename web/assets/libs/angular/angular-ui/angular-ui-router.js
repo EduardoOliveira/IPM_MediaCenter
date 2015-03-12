@@ -2932,7 +2932,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                  * you can see its three properties in the example. You can use `event.preventDefault()` to abort the
                  * transition and the promise returned from `go` will be rejected with a `'transition aborted'` value.
                  *
-                 * @param {Object} event RemoteEvent object.
+                 * @param {Object} event WebSocketEvent object.
                  * @param {Object} unfoundState Unfound State information. Contains: `to, toParams, options` properties.
                  * @param {State} fromState Current state object.
                  * @param {Object} fromParams Current state params.
@@ -3208,7 +3208,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                      * to prevent the transition from happening and then the transition promise will be
                      * rejected with a `'transition prevented'` value.
                      *
-                     * @param {Object} event RemoteEvent object.
+                     * @param {Object} event WebSocketEvent object.
                      * @param {State} toState The state being transitioned to.
                      * @param {Object} toParams The params supplied to the `toState`.
                      * @param {State} fromState The current state, pre-transition.
@@ -3297,7 +3297,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                          * @description
                          * Fired once the state transition is **complete**.
                          *
-                         * @param {Object} event RemoteEvent object.
+                         * @param {Object} event WebSocketEvent object.
                          * @param {State} toState The state being transitioned to.
                          * @param {Object} toParams The params supplied to the `toState`.
                          * @param {State} fromState The current state, pre-transition.
@@ -3323,7 +3323,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                      * they will not throw traditionally. You must listen for this $stateChangeError event to
                      * catch **ALL** errors.
                      *
-                     * @param {Object} event RemoteEvent object.
+                     * @param {Object} event WebSocketEvent object.
                      * @param {State} toState The state being transitioned to.
                      * @param {Object} toParams The params supplied to the `toState`.
                      * @param {State} fromState The current state, pre-transition.
@@ -3650,7 +3650,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                          *
                          * Fired once the view **begins loading**, *before* the DOM is rendered.
                          *
-                         * @param {Object} event RemoteEvent object.
+                         * @param {Object} event WebSocketEvent object.
                          * @param {Object} viewConfig The view config properties (template, controller, etc).
                          *
                          * @example
@@ -3980,7 +3980,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                          * @description           *
                          * Fired once the view is **loaded**, *after* the DOM is rendered.
                          *
-                         * @param {Object} event RemoteEvent object.
+                         * @param {Object} event WebSocketEvent object.
                          */
                         currentScope.$emit('$viewContentLoaded');
                         currentScope.$eval(onloadExp);

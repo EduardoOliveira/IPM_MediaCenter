@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mediaCenter.core.controllers', [])
-    .controller('NavigationController', function ($scope, hotkeys, NavigationService) {
+    .controller('NavigationController', function ($scope, hotkeys, NavigationService,WebSocketService) {
         hotkeys.add({
             combo: 'up',
             description: 'Go Up!',
@@ -28,11 +28,21 @@ angular.module('mediaCenter.core.controllers', [])
             callback: NavigationService.goIn
         });
 
-        $scope.$on('nav.up', NavigationService.goUp);
-        $scope.$on('nav.down', NavigationService.goDown);
-        $scope.$on('nav.left', NavigationService.goLeft);
-        $scope.$on('nav.right', NavigationService.goRight);
-        $scope.$on('nav.enter', NavigationService.goIn);
+        WebSocketService.register('pt.iscte.ipm.mediacenter.remote.events.KeyPressWebSocketEvent',function(data){
+            console.log(data);
+            switch (data.keyCode){
+                case "up": NavigationService.goUp();
+                    break;
+                case "down": NavigationService.goDown();
+                    break;
+                case "left": NavigationService.goLeft();
+                    break;
+                case "right": NavigationService.goRight();
+                    break;
+                case "ok": NavigationService.goIn();
+                    break;
+            }
+        });
     })
 
     .controller('MainMenuController', function ($scope, NavigationService,$state) {

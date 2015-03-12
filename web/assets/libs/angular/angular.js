@@ -8862,7 +8862,7 @@
                  * @requires $injector
                  *
                  * @description
-                 * The `$http` service is a core Angular service that facilitates communication with the remote
+                 * The `$http` service is a core Angular service that facilitates communication with the websocket
                  * HTTP servers via the browser's [XMLHttpRequest](https://developer.mozilla.org/en/xmlhttprequest)
                  * object or via [JSONP](http://en.wikipedia.org/wiki/JSONP).
                  *
@@ -14666,7 +14666,7 @@
                      *     to true.
                      *   - `defaultPrevented` - `{boolean}`: true if `preventDefault` was called.
                      *
-                     * @param {string} name RemoteEvent name to listen on.
+                     * @param {string} name WebSocketEvent name to listen on.
                      * @param {function(event, ...args)} listener Function to call when the event is emitted.
                      * @returns {function()} Returns a deregistration function for this listener.
                      */
@@ -14714,9 +14714,9 @@
                      * Any exception emitted from the {@link ng.$rootScope.Scope#$on listeners} will be passed
                      * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
                      *
-                     * @param {string} name RemoteEvent name to emit.
+                     * @param {string} name WebSocketEvent name to emit.
                      * @param {...*} args Optional one or more arguments which will be passed onto the event listeners.
-                     * @return {Object} RemoteEvent object (see {@link ng.$rootScope.Scope#$on}).
+                     * @return {Object} WebSocketEvent object (see {@link ng.$rootScope.Scope#$on}).
                      */
                     $emit: function (name, args) {
                         var empty = [],
@@ -14788,9 +14788,9 @@
                      * Any exception emitted from the {@link ng.$rootScope.Scope#$on listeners} will be passed
                      * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
                      *
-                     * @param {string} name RemoteEvent name to broadcast.
+                     * @param {string} name WebSocketEvent name to broadcast.
                      * @param {...*} args Optional one or more arguments which will be passed onto the event listeners.
-                     * @return {Object} RemoteEvent object, see {@link ng.$rootScope.Scope#$on}
+                     * @return {Object} WebSocketEvent object, see {@link ng.$rootScope.Scope#$on}
                      */
                     $broadcast: function (name, args) {
                         var target = this,
@@ -21499,7 +21499,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngClick {@link guide/expression Expression} to evaluate upon
-     * click. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * click. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -21574,7 +21574,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngDblclick {@link guide/expression Expression} to evaluate upon
-     * a dblclick. (The RemoteEvent object is available as `$event`)
+     * a dblclick. (The WebSocketEvent object is available as `$event`)
      *
      * @example
      <example>
@@ -21598,7 +21598,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngMousedown {@link guide/expression Expression} to evaluate upon
-     * mousedown. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * mousedown. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -21622,7 +21622,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngMouseup {@link guide/expression Expression} to evaluate upon
-     * mouseup. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * mouseup. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -21645,7 +21645,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngMouseover {@link guide/expression Expression} to evaluate upon
-     * mouseover. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * mouseover. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -21669,7 +21669,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngMouseenter {@link guide/expression Expression} to evaluate upon
-     * mouseenter. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * mouseenter. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -21693,7 +21693,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngMouseleave {@link guide/expression Expression} to evaluate upon
-     * mouseleave. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * mouseleave. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -21717,7 +21717,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngMousemove {@link guide/expression Expression} to evaluate upon
-     * mousemove. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * mousemove. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -21741,7 +21741,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngKeydown {@link guide/expression Expression} to evaluate upon
-     * keydown. (RemoteEvent object is available as `$event` and can be interrogated for keyCode, altKey, etc.)
+     * keydown. (WebSocketEvent object is available as `$event` and can be interrogated for keyCode, altKey, etc.)
      *
      * @example
      <example>
@@ -21763,7 +21763,7 @@
      * @element ANY
      * @priority 0
      * @param {expression} ngKeyup {@link guide/expression Expression} to evaluate upon
-     * keyup. (RemoteEvent object is available as `$event` and can be interrogated for keyCode, altKey, etc.)
+     * keyup. (WebSocketEvent object is available as `$event` and can be interrogated for keyCode, altKey, etc.)
      *
      * @example
      <example>
@@ -21789,7 +21789,7 @@
      *
      * @element ANY
      * @param {expression} ngKeypress {@link guide/expression Expression} to evaluate upon
-     * keypress. ({@link guide/expression#-event- RemoteEvent object is available as `$event`}
+     * keypress. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`}
      * and can be interrogated for keyCode, altKey, etc.)
      *
      * @example
@@ -21823,7 +21823,7 @@
      * @element form
      * @priority 0
      * @param {expression} ngSubmit {@link guide/expression Expression} to eval.
-     * ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example module="submitExample">
@@ -21879,7 +21879,7 @@
      * @element window, input, select, textarea, a
      * @priority 0
      * @param {expression} ngFocus {@link guide/expression Expression} to evaluate upon
-     * focus. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * focus. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      * See {@link ng.directive:ngClick ngClick}
@@ -21903,7 +21903,7 @@
      * @element window, input, select, textarea, a
      * @priority 0
      * @param {expression} ngBlur {@link guide/expression Expression} to evaluate upon
-     * blur. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * blur. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      * See {@link ng.directive:ngClick ngClick}
@@ -21919,7 +21919,7 @@
      * @element window, input, select, textarea, a
      * @priority 0
      * @param {expression} ngCopy {@link guide/expression Expression} to evaluate upon
-     * copy. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * copy. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -21940,7 +21940,7 @@
      * @element window, input, select, textarea, a
      * @priority 0
      * @param {expression} ngCut {@link guide/expression Expression} to evaluate upon
-     * cut. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * cut. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -21961,7 +21961,7 @@
      * @element window, input, select, textarea, a
      * @priority 0
      * @param {expression} ngPaste {@link guide/expression Expression} to evaluate upon
-     * paste. ({@link guide/expression#-event- RemoteEvent object is available as `$event`})
+     * paste. ({@link guide/expression#-event- WebSocketEvent object is available as `$event`})
      *
      * @example
      <example>
@@ -23343,7 +23343,7 @@
              * Note that calling this function does not trigger a `$digest`.
              *
              * @param {string} value Value from the view.
-             * @param {string} trigger RemoteEvent that triggered the update.
+             * @param {string} trigger WebSocketEvent that triggered the update.
              */
             this.$setViewValue = function (value, trigger) {
                 ctrl.$viewValue = value;
