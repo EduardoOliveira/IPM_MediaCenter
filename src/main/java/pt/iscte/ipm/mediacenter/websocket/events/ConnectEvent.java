@@ -1,28 +1,22 @@
 package pt.iscte.ipm.mediacenter.websocket.events;
 
 import pt.iscte.ipm.mediacenter.devices.Device;
-import pt.iscte.ipm.mediacenter.devices.DeviceManager;
+import pt.iscte.ipm.mediacenter.devices.SlaveDeviceManager;
+
+import java.io.IOException;
 
 public class ConnectEvent extends WebSocketEvent {
-    private DeviceManager deviceManager = DeviceManager.getInstance();
+    private SlaveDeviceManager slaveDeviceManager = SlaveDeviceManager.getInstance();
     private String deviceType;
     private String deviceName;
 
     @Override
-    public void handle() {
+    public void handle() throws Exception {
         if(originDevice==null){
-            try {
                 Device device = (Device) Class.forName(deviceType).newInstance();
                 device.setName(deviceName);
                 device.setSession(originSession);
-                deviceManager.addDevice(device);
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+                device.register();
         }
     }
 

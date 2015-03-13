@@ -6,46 +6,47 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
-import pt.iscte.ipm.mediacenter.devices.Device;
-import pt.iscte.ipm.mediacenter.devices.DeviceManager;
-import pt.iscte.ipm.mediacenter.playbacksession.PlayBackSessionManager;
+import pt.iscte.ipm.mediacenter.devices.PlayBackDeviceManager;
+import pt.iscte.ipm.mediacenter.devices.SlaveDeviceManager;
 import pt.iscte.ipm.mediacenter.websocket.events.EventWrapper;
 import pt.iscte.ipm.mediacenter.websocket.events.WebSocketEvent;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 
 @WebSocket
 public class WebSocketHandler {
     private ObjectMapper objectMapper = new ObjectMapper();
-    private PlayBackSessionManager playBackSessionManager = new PlayBackSessionManager();
-    private DeviceManager deviceManager = DeviceManager.getInstance();
+    private SlaveDeviceManager slaveDeviceManager = SlaveDeviceManager.getInstance();
+    private PlayBackDeviceManager playBackDeviceManager = PlayBackDeviceManager.getInstance();
 
     @OnWebSocketConnect
-    public void onConnect(Session session){
-        System.out.println("connect");
-        try {
-            session.getRemote().sendString("qeqe");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void onConnect(Session session) {
+        System.out.println("connect:" + session.getRemoteAddress());
     }
 
     @OnWebSocketMessage
-    public void onTextMessage(Session session, String text){
+    public void onTextMessage(Session session, String text) {
         try {
+            System.out.println(text);
             WebSocketEvent event = objectMapper.readValue(text, EventWrapper.class).getEvent();
             event.setOriginSession(session);
-            event.setOriginDevice(deviceManager.getDeviceByAddress(session.getRemoteAddress()));
+            event.setOriginDevice(playBackDeviceManager.getDeviceByAddress(session.getRemoteAddress()));
+            if (event.getOriginDevice() == null)
+                event.setOriginDevice(slaveDeviceManager.getDeviceByAddress(session.getRemoteAddress()));
             event.handle();
-            //session.getRemote().sendString(objectMapper.writeValueAsString(new EventWrapper(new KeyPressWebSocketEvent("left"))));
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            removeDevice(session.getRemoteAddress());
         }
     }
 
+    private void removeDevice(InetSocketAddress remoteAddress) {
+        playBackDeviceManager.unregister(playBackDeviceManager.getDeviceByAddress(remoteAddress));
+        slaveDeviceManager.unregister(slaveDeviceManager.getDeviceByAddress(remoteAddress));
+    }
+
     @OnWebSocketClose
-    public void onClose(Session session, int closeCode, String reason){
-        deviceManager.removeDevice(deviceManager.getDeviceByAddress(session.getRemoteAddress()));
+    public void onClose(Session session, int closeCode, String reason) {
+        removeDevice(session.getRemoteAddress());
     }
 }

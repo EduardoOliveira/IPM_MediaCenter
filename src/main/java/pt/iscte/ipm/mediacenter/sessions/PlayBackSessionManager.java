@@ -1,4 +1,4 @@
-package pt.iscte.ipm.mediacenter.playbacksession;
+package pt.iscte.ipm.mediacenter.sessions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,5 @@ public class PlayBackSessionManager {
     }
 
     private PlayBackSessionManager() {
-
     }
 }

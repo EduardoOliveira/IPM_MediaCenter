@@ -2,20 +2,10 @@ package pt.iscte.ipm.mediacenter;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
-import pt.iscte.ipm.mediacenter.filesystem.FolderWatch;
-import pt.iscte.ipm.mediacenter.lastfm.artist.Artist;
-import pt.iscte.ipm.mediacenter.lastfm.artist.ArtistApi;
-import pt.iscte.ipm.mediacenter.lastfm.track.Track;
-import pt.iscte.ipm.mediacenter.lastfm.track.TrackApi;
-import pt.iscte.ipm.mediacenter.mediahandler.MediaManager;
-import pt.iscte.ipm.mediacenter.mediahandler.movie.MovieHandler;
-import pt.iscte.ipm.mediacenter.mediahandler.music.MusicHandler;
-import pt.iscte.ipm.mediacenter.mediahandler.serie.SerieHandler;
 import pt.iscte.ipm.mediacenter.utils.SettingsManager;
 
-import java.io.File;
-import java.nio.file.Paths;
-import java.util.Collection;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 
 
 public class Main {
@@ -30,7 +20,7 @@ public class Main {
         FolderWatch musicWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("music.dir")),new MusicHandler());
         musicWatch.start();*/
 
-        Server server = new Server(SettingsManager.getIntegerSetting("port"));
+        Server server = new Server(new InetSocketAddress(InetAddress.getByName("192.168.0.4"),80));//SettingsManager.getIntegerSetting("port"));
         WebAppContext context = new WebAppContext();
         context.setDescriptor("web/WEB-INF/web.xml");
         context.setResourceBase("web");

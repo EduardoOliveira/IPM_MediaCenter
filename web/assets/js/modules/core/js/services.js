@@ -74,18 +74,18 @@ angular.module('mediaCenter.core.services', [])
 
     })
     .service('WebSocketService', function ($websocket) {
-        var ws = $websocket.$new('ws://localhost/websocket');
+        var ws = $websocket.$new('ws://'+document.location.host+'/websocket');
 
         ws.$on('$open', function () {
             console.log('Oh my gosh, websocket is really open! Fukken awesome!');
 
             ws.$emit('pt.iscte.ipm.mediacenter.websocket.events.ConnectEvent', {
-                "deviceType": "pt.iscte.ipm.mediacenter.playbacksession.devices.PlayBackDevice",
+                "deviceType": "pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice",
                 "deviceName": "MainSession"//TODO: CHANGE ME!
             });
             var data = {"keyCode": "wqeqe"};
 
-            ws.$emit('pt.iscte.ipm.mediacenter.remote.events.KeyPressWebSocketEvent', data);
+            ws.$emit('pt.iscte.ipm.mediacenter.remote.events.NavigationEvent', data);
         });
 
         ws.$on('$close', function () {

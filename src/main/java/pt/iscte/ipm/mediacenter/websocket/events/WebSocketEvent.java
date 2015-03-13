@@ -4,6 +4,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.eclipse.jetty.websocket.api.Session;
 import pt.iscte.ipm.mediacenter.devices.Device;
 
+import java.io.IOException;
+
 public abstract class WebSocketEvent {
 
     @JsonIgnore
@@ -11,7 +13,7 @@ public abstract class WebSocketEvent {
     @JsonIgnore
     protected Device originDevice;
 
-    public abstract void handle();
+    public abstract void handle() throws Exception;
 
     public Session getOriginSession() {
         return originSession;

@@ -1,7 +1,7 @@
-package pt.iscte.ipm.mediacenter.playbacksession;
+package pt.iscte.ipm.mediacenter.sessions;
 
 import org.eclipse.jetty.websocket.api.Session;
-import pt.iscte.ipm.mediacenter.playbacksession.devices.PlayBackDevice;
+import pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice;
 import pt.iscte.ipm.mediacenter.devices.Device;
 import pt.iscte.ipm.mediacenter.websocket.events.EventWrapper;
 import pt.iscte.ipm.mediacenter.websocket.events.WebSocketEvent;

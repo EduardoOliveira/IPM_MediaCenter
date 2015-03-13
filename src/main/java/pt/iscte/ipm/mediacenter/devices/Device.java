@@ -30,4 +30,6 @@ public abstract class Device {
     public void send(String message) throws IOException {
         this.session.getRemote().sendString(message);
     }
+
+    public abstract void register() throws IOException, Exception;
 }

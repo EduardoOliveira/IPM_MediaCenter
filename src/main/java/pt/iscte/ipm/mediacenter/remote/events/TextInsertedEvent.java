@@ -1,12 +1,11 @@
 package pt.iscte.ipm.mediacenter.remote.events;
 
-import org.eclipse.jetty.websocket.api.Session;
 import pt.iscte.ipm.mediacenter.websocket.events.WebSocketEvent;
 
-public class TextWebSocketEvent extends WebSocketEvent {
+public class TextInsertedEvent extends WebSocketEvent {
     private String text;
 
-    public TextWebSocketEvent() {
+    public TextInsertedEvent() {
     }
 
     public String getText() {
