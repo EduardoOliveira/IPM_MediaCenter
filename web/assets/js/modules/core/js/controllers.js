@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mediaCenter.core.controllers', [])
-    .controller('NavigationController', function ($scope, hotkeys, NavigationService,WebSocketService) {
+    .controller('NavigationController', function ($scope, hotkeys, NavigationService,WebSocketService,$rootScope) {
         hotkeys.add({
             combo: 'up',
             description: 'Go Up!',
@@ -28,7 +28,7 @@ angular.module('mediaCenter.core.controllers', [])
             callback: NavigationService.goIn
         });
 
-        WebSocketService.register('pt.iscte.ipm.mediacenter.remote.events.KeyPressWebSocketEvent',function(data){
+        $rootScope.$on("pt.iscte.ipm.mediacenter.events.remote.NavigationEvent",function(data){
             console.log(data);
             switch (data.keyCode){
                 case "up": NavigationService.goUp();

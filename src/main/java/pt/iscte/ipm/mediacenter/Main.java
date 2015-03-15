@@ -2,7 +2,7 @@ package pt.iscte.ipm.mediacenter;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
-import pt.iscte.ipm.mediacenter.utils.SettingsManager;
+import pt.iscte.ipm.mediacenter.core.utils.SettingsManager;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -20,7 +20,7 @@ public class Main {
         FolderWatch musicWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("music.dir")),new MusicHandler());
         musicWatch.start();*/
 
-        Server server = new Server(new InetSocketAddress(InetAddress.getByName("192.168.0.4"),80));//SettingsManager.getIntegerSetting("port"));
+        Server server = new Server(SettingsManager.getIntegerSetting("port"));
         WebAppContext context = new WebAppContext();
         context.setDescriptor("web/WEB-INF/web.xml");
         context.setResourceBase("web");

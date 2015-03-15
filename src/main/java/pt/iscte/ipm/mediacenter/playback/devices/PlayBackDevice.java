@@ -1,14 +1,11 @@
 package pt.iscte.ipm.mediacenter.playback.devices;
 
-import pt.iscte.ipm.mediacenter.devices.Device;
-import pt.iscte.ipm.mediacenter.devices.PlayBackDeviceManager;
-import pt.iscte.ipm.mediacenter.sessions.PlayBackSession;
-import pt.iscte.ipm.mediacenter.websocket.events.EventWrapper;
-import pt.iscte.ipm.mediacenter.websocket.events.WebSocketEvent;
+import pt.iscte.ipm.mediacenter.core.devices.Device;
+import pt.iscte.ipm.mediacenter.core.devices.PlayBackDeviceManager;
+import pt.iscte.ipm.mediacenter.core.events.Event;
+import pt.iscte.ipm.mediacenter.core.sessions.PlayBackSession;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class PlayBackDevice extends Device {
@@ -17,19 +14,19 @@ public class PlayBackDevice extends Device {
     private PlayBackDeviceManager playBackDeviceManager = PlayBackDeviceManager.getInstance();
     private List<Device> slaves = new ArrayList<>();
 
-    public void broadCastToAll(WebSocketEvent event) {
+    public void broadCastToAll(Event event) {
 
-        try {
+ /*       try {
             broadCastToSlaves(event);
             if (this.getSession().getRemoteAddress() != event.getOriginDevice().getSession().getRemoteAddress())
                 send(String.valueOf(new EventWrapper(event)));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
-    public void broadCastToSlaves(WebSocketEvent event) {
-        for (Iterator<Device> iterator = slaves.iterator(); iterator.hasNext(); ) {
+    public void broadCastToSlaves(Event event) {
+/*        for (Iterator<Device> iterator = slaves.iterator(); iterator.hasNext(); ) {
 
             Device device = iterator.next();
             try {
@@ -39,7 +36,7 @@ public class PlayBackDevice extends Device {
                 e.printStackTrace();
                 iterator.remove();
             }
-        }
+        }*/
     }
 
     @Override

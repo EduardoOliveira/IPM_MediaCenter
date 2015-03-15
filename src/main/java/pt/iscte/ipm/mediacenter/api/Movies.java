@@ -2,7 +2,7 @@ package pt.iscte.ipm.mediacenter.api;
 
 
 
-import pt.iscte.ipm.mediacenter.database.movie.Movie;
+import pt.iscte.ipm.mediacenter.core.database.movie.Movie;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

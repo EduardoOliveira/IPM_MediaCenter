@@ -1,9 +1,7 @@
 package pt.iscte.ipm.mediacenter.remote.devices;
 
-import pt.iscte.ipm.mediacenter.devices.Device;
-import pt.iscte.ipm.mediacenter.devices.SlaveDeviceManager;
-import pt.iscte.ipm.mediacenter.remote.events.PlayBackDeviceSyncEvent;
-import pt.iscte.ipm.mediacenter.websocket.events.EventWrapper;
+import pt.iscte.ipm.mediacenter.core.devices.Device;
+import pt.iscte.ipm.mediacenter.core.devices.SlaveDeviceManager;
 
 public class RemoteControl extends Device{
     private SlaveDeviceManager slaveDeviceManager = SlaveDeviceManager.getInstance();
@@ -11,6 +9,6 @@ public class RemoteControl extends Device{
     @Override
     public void register() throws Exception {
         slaveDeviceManager.register(this);
-        this.getSession().getRemote().sendString(String.valueOf(new EventWrapper(new PlayBackDeviceSyncEvent())));
+        //this.getSession().getRemote().sendString(String.valueOf(new EventWrapper(new PlayBackDeviceSyncEvent())));
     }
 }

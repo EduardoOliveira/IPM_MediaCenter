@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mediaCenter.core.services', [])
-    .service('NavigationService', function ($timeout) {
+    .service('NavigationService', function ($timeout,$rootScope) {
         this.group = {};
         this.graphicalNavigation = new GraphicalNavigation();
         var that = this;
@@ -71,28 +71,32 @@ angular.module('mediaCenter.core.services', [])
             }
         };
 
-
     })
-    .service('WebSocketService', function ($websocket) {
-        var ws = $websocket.$new('ws://'+document.location.host+'/websocket');
+    .service('WebSocketService', function ($websocket,$rootScope) {
+        var dataStream = $websocket('ws://' + document.location.host + '/websocket');
 
-        ws.$on('$open', function () {
+        dataStream.onOpen(function () {
             console.log('Oh my gosh, websocket is really open! Fukken awesome!');
 
-            ws.$emit('pt.iscte.ipm.mediacenter.websocket.events.ConnectEvent', {
-                "deviceType": "pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice",
-                "deviceName": "MainSession"//TODO: CHANGE ME!
-            });
+            dataStream.send(
+                {
+                    "event": 'pt.iscte.ipm.mediacenter.core.events.ConnectEvent',
+                    "handler": 'pt.iscte.ipm.mediacenter.websocket.handling.ConnectEventHandler',
+                    "data": {
+                        "deviceType": "pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice",
+                        "deviceName": "MainSession"//TODO: CHANGE ME!
+                    }
+                });
             var data = {"keyCode": "wqeqe"};
 
-            ws.$emit('pt.iscte.ipm.mediacenter.remote.events.NavigationEvent', data);
+            //dataStream.send('pt.iscte.ipm.mediacenter.remote.events.NavigationEvent', data);
+
+            dataStream.onMessage(function(data){
+                $rootScope.$broadcast(data.event,data);
+            });
         });
 
-        ws.$on('$close', function () {
+        dataStream.onClose(function () {
             console.log('Noooooooooou, I want to have more fun with ngWebsocket, damn it!');
         });
-
-        this.register = function(event,callback){
-            ws.$on(event,callback);
-        };
     });

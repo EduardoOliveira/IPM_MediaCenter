@@ -72,5 +72,7 @@
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" level="project" />
     <orderEntry type="library" name="Maven: com.github.kevinsawicki:http-request:6.0" level="project" />
+    <orderEntry type="module" module-name="IPM_MediaCenterRemoteEvents" />
+    <orderEntry type="module" module-name="IPM_MediaCenterSystemEvents" />
   </component>
 </module>

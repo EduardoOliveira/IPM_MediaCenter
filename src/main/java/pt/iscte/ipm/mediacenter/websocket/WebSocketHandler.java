@@ -6,10 +6,9 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
-import pt.iscte.ipm.mediacenter.devices.PlayBackDeviceManager;
-import pt.iscte.ipm.mediacenter.devices.SlaveDeviceManager;
-import pt.iscte.ipm.mediacenter.websocket.events.EventWrapper;
-import pt.iscte.ipm.mediacenter.websocket.events.WebSocketEvent;
+import pt.iscte.ipm.mediacenter.core.devices.PlayBackDeviceManager;
+import pt.iscte.ipm.mediacenter.core.devices.SlaveDeviceManager;
+import pt.iscte.ipm.mediacenter.core.events.EventHandler;
 
 import java.net.InetSocketAddress;
 
@@ -28,12 +27,9 @@ public class WebSocketHandler {
     public void onTextMessage(Session session, String text) {
         try {
             System.out.println(text);
-            WebSocketEvent event = objectMapper.readValue(text, EventWrapper.class).getEvent();
-            event.setOriginSession(session);
-            event.setOriginDevice(playBackDeviceManager.getDeviceByAddress(session.getRemoteAddress()));
-            if (event.getOriginDevice() == null)
-                event.setOriginDevice(slaveDeviceManager.getDeviceByAddress(session.getRemoteAddress()));
-            event.handle();
+            EventWrapper eventWrapper = objectMapper.readValue(text, EventWrapper.class);
+            EventHandler eventHandler = (EventHandler) Class.forName(eventWrapper.getHandler()).newInstance();
+            eventHandler.handle(eventWrapper.getEvent());
         } catch (Exception e) {
             e.printStackTrace();
             removeDevice(session.getRemoteAddress());
