@@ -1,7 +1,7 @@
 package pt.iscte.ipm.mediacenter.external.lastfm.track;
 
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import pt.iscte.ipm.mediacenter.external.lastfm.commons.Attr;
 import pt.iscte.ipm.mediacenter.external.lastfm.commons.OpenSearchQuery;
 

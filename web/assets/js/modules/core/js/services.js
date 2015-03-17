@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mediaCenter.core.services', [])
-    .service('NavigationService', function ($timeout,$rootScope) {
+    .service('NavigationService', function ($timeout, $rootScope) {
         this.group = {};
         this.graphicalNavigation = new GraphicalNavigation();
         var that = this;
@@ -72,7 +72,7 @@ angular.module('mediaCenter.core.services', [])
         };
 
     })
-    .service('WebSocketService', function ($websocket,$rootScope) {
+    .service('WebSocketService', function ($websocket, $rootScope) {
         var dataStream = $websocket('ws://' + document.location.host + '/websocket');
 
         dataStream.onOpen(function () {
@@ -81,18 +81,16 @@ angular.module('mediaCenter.core.services', [])
             dataStream.send(
                 {
                     "event": 'pt.iscte.ipm.mediacenter.core.events.ConnectEvent',
-                    "handler": 'pt.iscte.ipm.mediacenter.websocket.handling.ConnectEventHandler',
                     "data": {
+                        "handler": 'pt.iscte.ipm.mediacenter.websocket.handling.ConnectEventHandler',
                         "deviceType": "pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice",
                         "deviceName": "MainSession"//TODO: CHANGE ME!
                     }
                 });
-            var data = {"keyCode": "wqeqe"};
 
-            //dataStream.send('pt.iscte.ipm.mediacenter.remote.events.NavigationEvent', data);
-
-            dataStream.onMessage(function(data){
-                $rootScope.$broadcast(data.event,data);
+            dataStream.onMessage(function (data) {
+                var message = JSON.parse(data.data);
+                $rootScope.$broadcast(message.event, message);
             });
         });
 

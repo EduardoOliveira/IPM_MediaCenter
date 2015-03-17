@@ -1,7 +1,7 @@
 package pt.iscte.ipm.mediacenter.external.lastfm;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.kevinsawicki.http.HttpRequest;
-import org.codehaus.jackson.map.ObjectMapper;
 import pt.iscte.ipm.mediacenter.core.utils.SettingsManager;
 
 import java.util.Map;

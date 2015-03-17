@@ -1,6 +1,6 @@
 package pt.iscte.ipm.mediacenter.websocket;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
@@ -8,6 +8,7 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import pt.iscte.ipm.mediacenter.core.devices.PlayBackDeviceManager;
 import pt.iscte.ipm.mediacenter.core.devices.SlaveDeviceManager;
+import pt.iscte.ipm.mediacenter.core.events.Event;
 import pt.iscte.ipm.mediacenter.core.events.EventHandler;
 
 import java.net.InetSocketAddress;
@@ -28,8 +29,9 @@ public class WebSocketHandler {
         try {
             System.out.println(text);
             EventWrapper eventWrapper = objectMapper.readValue(text, EventWrapper.class);
-            EventHandler eventHandler = (EventHandler) Class.forName(eventWrapper.getHandler()).newInstance();
-            eventHandler.handle(eventWrapper.getEvent());
+            Event event = eventWrapper.getData();
+            EventHandler eventHandler = (EventHandler) Class.forName(event.getHandler()).newInstance();
+            eventHandler.handle(event);
         } catch (Exception e) {
             e.printStackTrace();
             removeDevice(session.getRemoteAddress());

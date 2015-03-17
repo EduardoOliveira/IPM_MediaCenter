@@ -1,6 +1,6 @@
 package pt.iscte.ipm.mediacenter.external.lastfm.artist;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import pt.iscte.ipm.mediacenter.external.lastfm.commons.Image;
 
 public class Artist{

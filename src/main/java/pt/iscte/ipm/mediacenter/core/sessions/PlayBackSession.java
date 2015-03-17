@@ -3,8 +3,8 @@ package pt.iscte.ipm.mediacenter.core.sessions;
 import org.eclipse.jetty.websocket.api.Session;
 import pt.iscte.ipm.mediacenter.core.devices.Device;
 import pt.iscte.ipm.mediacenter.core.events.Event;
+import pt.iscte.ipm.mediacenter.core.events.EventOutgoingWrapper;
 import pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice;
-import pt.iscte.ipm.mediacenter.websocket.EventWrapper;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -33,7 +33,7 @@ public class PlayBackSession {
 
             Device device = iterator.next();
             try {
-                device.getSession().getRemote().sendString(String.valueOf(new EventWrapper(event)));
+                device.getSession().getRemote().sendString(String.valueOf(new EventOutgoingWrapper(event)));
             } catch (IOException e) {
                 e.printStackTrace();
                 iterator.remove();
@@ -44,7 +44,7 @@ public class PlayBackSession {
 
     public void sendToPlayBackDevice(Event event) {
         try {
-            playBackDevice.getSession().getRemote().sendString(String.valueOf(new EventWrapper(event)));
+            playBackDevice.getSession().getRemote().sendString(String.valueOf(new EventOutgoingWrapper(event)));
         } catch (IOException e) {
             e.printStackTrace();
         }

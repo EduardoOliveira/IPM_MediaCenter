@@ -1,61 +1,47 @@
 package pt.iscte.ipm.mediacenter.websocket;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import pt.iscte.ipm.mediacenter.core.events.Event;
 
 import java.io.IOException;
 
 public class EventWrapper {
+    private String event;
 
-    private String type;
-    private String handler;
-    private Event event;
+    private Event data;
 
     public EventWrapper() {
     }
 
-    public EventWrapper(Event event) {
-        this.event = event;
-        this.type = event.getClass().getCanonicalName();
+    public EventWrapper(Event data) {
+        this.data = data;
+        this.event = data.getClass().getCanonicalName();
     }
 
-    public Event getEvent() {
-        return event;
+    public Event getData() {
+        return this.data;
     }
 
-    @JsonProperty("data")
     @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "event")
-    public void setEvent(Event event) {
+    public void setData(Event data) {
+        this.data = data;
+    }
+
+    public String getEvent() {
+        return this.event;
+    }
+
+    public void setEvent(String event) {
         this.event = event;
-        this.type = event.getClass().getCanonicalName();
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getHandler() {
-        return handler;
-    }
-
-    public void setHandler(String handler) {
-        this.handler = handler;
-    }
-
-    @Override
     public String toString() {
-
         try {
-            return (new ObjectMapper().writeValueAsString(this));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return e.toString();
+            return (new ObjectMapper()).writeValueAsString(this);
+        } catch (IOException var2) {
+            var2.printStackTrace();
+            return var2.toString();
         }
     }
 }

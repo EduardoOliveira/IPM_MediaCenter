@@ -1,6 +1,7 @@
 package pt.iscte.ipm.mediacenter.external.lastfm.artist;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Link {
 

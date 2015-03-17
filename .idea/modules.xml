@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IPM_MediaCenterRemoteEvents/IPM_MediaCenterRemoteEvents.iml" filepath="$PROJECT_DIR$/IPM_MediaCenterRemoteEvents/IPM_MediaCenterRemoteEvents.iml" />
-      <module fileurl="file://$PROJECT_DIR$/IPM_MediaCenterSystemEvents/IPM_MediaCenterSystemEvents.iml" filepath="$PROJECT_DIR$/IPM_MediaCenterSystemEvents/IPM_MediaCenterSystemEvents.iml" />
       <module fileurl="file://$PROJECT_DIR$/MediaCenter.iml" filepath="$PROJECT_DIR$/MediaCenter.iml" />
     </modules>
   </component>

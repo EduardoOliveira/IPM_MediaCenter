@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="IPM_MediaCenterSystemEvents:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/IPM_MediaCenterSystemEvents_jar</output-path>
+    <root id="archive" name="IPM_MediaCenterSystemEvents.jar">
+      <element id="module-output" name="IPM_MediaCenterSystemEvents" />
+    </root>
+  </artifact>
+</component>

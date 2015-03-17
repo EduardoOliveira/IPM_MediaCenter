@@ -28,9 +28,8 @@ angular.module('mediaCenter.core.controllers', [])
             callback: NavigationService.goIn
         });
 
-        $rootScope.$on("pt.iscte.ipm.mediacenter.events.remote.NavigationEvent",function(data){
-            console.log(data);
-            switch (data.keyCode){
+        $rootScope.$on("pt.iscte.ipm.mediacenter.events.remote.NavigationEvent",function(event,params){
+            switch (params.data.keyCode){
                 case "up": NavigationService.goUp();
                     break;
                 case "down": NavigationService.goDown();
