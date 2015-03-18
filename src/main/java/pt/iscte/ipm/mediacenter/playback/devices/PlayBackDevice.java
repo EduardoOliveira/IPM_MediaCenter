@@ -1,5 +1,6 @@
 package pt.iscte.ipm.mediacenter.playback.devices;
 
+import org.eclipse.jetty.websocket.api.Session;
 import pt.iscte.ipm.mediacenter.core.devices.Device;
 import pt.iscte.ipm.mediacenter.core.devices.PlayBackDeviceManager;
 import pt.iscte.ipm.mediacenter.core.events.Event;
@@ -9,10 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayBackDevice extends Device {
-
     private PlayBackSession playBackSession;
     private PlayBackDeviceManager playBackDeviceManager = PlayBackDeviceManager.getInstance();
     private List<Device> slaves = new ArrayList<>();
+
+    public PlayBackDevice() {
+    }
+
+    public PlayBackDevice(String name, Session session) {
+        super(name, session);
+    }
 
     public void broadCastToAll(Event event) {
 
@@ -42,5 +49,9 @@ public class PlayBackDevice extends Device {
     @Override
     public void register() {
         playBackDeviceManager.register(this);
+    }
+
+    public String getCurrentlyPlaying() {
+        return "Potato";
     }
 }

@@ -27,7 +27,7 @@ public class SlaveDeviceManager {
     }
 
     public void unregister(Device device) {
-        this.devices.remove(device.getSession().getRemoteAddress());
+        if(device!=null)this.devices.remove(device.getSession().getRemoteAddress());
     }
 
     @Override

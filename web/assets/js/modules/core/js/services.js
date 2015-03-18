@@ -73,28 +73,24 @@ angular.module('mediaCenter.core.services', [])
 
     })
     .service('WebSocketService', function ($websocket, $rootScope) {
-        var dataStream = $websocket('ws://' + document.location.host + '/websocket');
+        var dataStream = $websocket.$new('ws://' + document.location.host + '/websocket');
 
-        dataStream.onOpen(function () {
+        dataStream.$on('$open', function () {
             console.log('Oh my gosh, websocket is really open! Fukken awesome!');
 
-            dataStream.send(
-                {
-                    "event": 'pt.iscte.ipm.mediacenter.core.events.ConnectEvent',
-                    "data": {
-                        "handler": 'pt.iscte.ipm.mediacenter.websocket.handling.ConnectEventHandler',
-                        "deviceType": "pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice",
-                        "deviceName": "MainSession"//TODO: CHANGE ME!
-                    }
-                });
-
-            dataStream.onMessage(function (data) {
-                var message = JSON.parse(data.data);
-                $rootScope.$broadcast(message.event, message);
+            dataStream.$emit('pt.iscte.ipm.mediacenter.core.events.ConnectEvent', {
+                "handler": 'pt.iscte.ipm.mediacenter.playback.handling.ConnectEventHandler',
+                "deviceName": "MainSession"//TODO: CHANGE ME!
             });
         });
 
-        dataStream.onClose(function () {
+        dataStream.$on('$close', function () {
             console.log('Noooooooooou, I want to have more fun with ngWebsocket, damn it!');
         });
+        this.register= function(event,handler){
+            dataStream.$on(event,handler);
+        };
+        this.unregister = function(event){
+            dataStream.$un(event);
+        };
     });

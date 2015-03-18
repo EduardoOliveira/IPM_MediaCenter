@@ -11,6 +11,11 @@ public abstract class Device {
     public Device() {
     }
 
+    public Device(String name,Session session) {
+        this.session = session;
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

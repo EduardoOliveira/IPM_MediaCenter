@@ -10,6 +10,9 @@ import pt.iscte.ipm.mediacenter.core.devices.PlayBackDeviceManager;
 import pt.iscte.ipm.mediacenter.core.devices.SlaveDeviceManager;
 import pt.iscte.ipm.mediacenter.core.events.Event;
 import pt.iscte.ipm.mediacenter.core.events.EventHandler;
+import pt.iscte.ipm.mediacenter.core.events.EventIncomingWrapper;
+import pt.iscte.ipm.mediacenter.core.events.EventOutgoingWrapper;
+import pt.iscte.ipm.mediacenter.events.remote.NavigationEvent;
 
 import java.net.InetSocketAddress;
 
@@ -28,10 +31,10 @@ public class WebSocketHandler {
     public void onTextMessage(Session session, String text) {
         try {
             System.out.println(text);
-            EventWrapper eventWrapper = objectMapper.readValue(text, EventWrapper.class);
+            EventIncomingWrapper eventWrapper = objectMapper.readValue(text, EventIncomingWrapper.class);
             Event event = eventWrapper.getData();
             EventHandler eventHandler = (EventHandler) Class.forName(event.getHandler()).newInstance();
-            eventHandler.handle(event);
+            eventHandler.handle(event,session);
         } catch (Exception e) {
             e.printStackTrace();
             removeDevice(session.getRemoteAddress());

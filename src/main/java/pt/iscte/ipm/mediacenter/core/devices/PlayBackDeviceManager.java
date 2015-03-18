@@ -18,7 +18,7 @@ public class PlayBackDeviceManager {
     }
 
     public void unregister(PlayBackDevice device) {
-        this.devices.remove(device.getSession().getRemoteAddress());
+        if(device!=null)this.devices.remove(device.getSession().getRemoteAddress());
     }
 
     public static PlayBackDeviceManager getInstance(){
@@ -43,5 +43,13 @@ public class PlayBackDeviceManager {
         return "PlayBackDeviceManager{" +
                 "devices=" + devices.size() +
                 '}';
+    }
+
+    public List<pt.iscte.ipm.mediacenter.pojos.PlayBackDevice> pojifyDevices() {
+        List<pt.iscte.ipm.mediacenter.pojos.PlayBackDevice> rtn = new ArrayList<>();
+        for(PlayBackDevice playBackDevice : devices.values()){
+            rtn.add(new pt.iscte.ipm.mediacenter.pojos.PlayBackDevice(playBackDevice.getName(),playBackDevice.getCurrentlyPlaying().toString()));
+        }
+        return rtn;
     }
 }

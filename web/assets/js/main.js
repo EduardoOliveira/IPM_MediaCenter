@@ -4,7 +4,7 @@ angular.module('mediaCenter',
     [
         'ui.router',
         'cfp.hotkeys',
-        'angular-websocket',
+        'ngWebsocket',
         'mediaCenter.core',
         'mediaCenter.session',
         'mediaCenter.movies'
