@@ -11,8 +11,6 @@ import pt.iscte.ipm.mediacenter.core.devices.SlaveDeviceManager;
 import pt.iscte.ipm.mediacenter.core.events.Event;
 import pt.iscte.ipm.mediacenter.core.events.EventHandler;
 import pt.iscte.ipm.mediacenter.core.events.EventIncomingWrapper;
-import pt.iscte.ipm.mediacenter.core.events.EventOutgoingWrapper;
-import pt.iscte.ipm.mediacenter.events.remote.NavigationEvent;
 
 import java.net.InetSocketAddress;
 
@@ -37,17 +35,17 @@ public class WebSocketHandler {
             eventHandler.handle(event,session);
         } catch (Exception e) {
             e.printStackTrace();
-            removeDevice(session.getRemoteAddress());
+            removeDevice(session.getRemoteAddress().getHostName());
         }
     }
 
-    private void removeDevice(InetSocketAddress remoteAddress) {
-        playBackDeviceManager.unregister(playBackDeviceManager.getDeviceByAddress(remoteAddress));
-        slaveDeviceManager.unregister(slaveDeviceManager.getDeviceByAddress(remoteAddress));
+    private void removeDevice(String hostName) {
+        playBackDeviceManager.unregister(playBackDeviceManager.getDeviceByAddress(hostName));
+        slaveDeviceManager.unregister(slaveDeviceManager.getDeviceByHostName(hostName));
     }
 
     @OnWebSocketClose
     public void onClose(Session session, int closeCode, String reason) {
-        removeDevice(session.getRemoteAddress());
+        removeDevice(session.getRemoteAddress().getHostName());
     }
 }

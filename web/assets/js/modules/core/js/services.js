@@ -72,7 +72,7 @@ angular.module('mediaCenter.core.services', [])
         };
 
     })
-    .service('WebSocketService', function ($websocket, $rootScope) {
+    .service('WebSocketService', function ($websocket) {
         var dataStream = $websocket.$new('ws://' + document.location.host + '/websocket');
 
         dataStream.$on('$open', function () {

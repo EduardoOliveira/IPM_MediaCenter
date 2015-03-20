@@ -33,6 +33,7 @@ public abstract class Device {
     }
 
     public void send(String message) throws IOException {
+        System.out.println("sending: "+message);
         this.session.getRemote().sendString(message);
     }
 

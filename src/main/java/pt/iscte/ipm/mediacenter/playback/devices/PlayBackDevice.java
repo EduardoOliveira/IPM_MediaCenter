@@ -4,9 +4,12 @@ import org.eclipse.jetty.websocket.api.Session;
 import pt.iscte.ipm.mediacenter.core.devices.Device;
 import pt.iscte.ipm.mediacenter.core.devices.PlayBackDeviceManager;
 import pt.iscte.ipm.mediacenter.core.events.Event;
+import pt.iscte.ipm.mediacenter.core.events.EventOutgoingWrapper;
 import pt.iscte.ipm.mediacenter.core.sessions.PlayBackSession;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class PlayBackDevice extends Device {
@@ -23,27 +26,25 @@ public class PlayBackDevice extends Device {
 
     public void broadCastToAll(Event event) {
 
- /*       try {
+        try {
             broadCastToSlaves(event);
-            if (this.getSession().getRemoteAddress() != event.getOriginDevice().getSession().getRemoteAddress())
-                send(String.valueOf(new EventWrapper(event)));
+            send(String.valueOf(new EventOutgoingWrapper(event)));
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     public void broadCastToSlaves(Event event) {
-/*        for (Iterator<Device> iterator = slaves.iterator(); iterator.hasNext(); ) {
+        for (Iterator<Device> iterator = slaves.iterator(); iterator.hasNext(); ) {
 
             Device device = iterator.next();
             try {
-                if (device.getSession().getRemoteAddress() != event.getOriginDevice().getSession().getRemoteAddress())
-                    device.getSession().getRemote().sendString(String.valueOf(new EventWrapper(event)));
+                device.getSession().getRemote().sendString(String.valueOf(new EventOutgoingWrapper(event)));
             } catch (IOException e) {
                 e.printStackTrace();
                 iterator.remove();
             }
-        }*/
+        }
     }
 
     @Override
@@ -53,5 +54,13 @@ public class PlayBackDevice extends Device {
 
     public String getCurrentlyPlaying() {
         return "Potato";
+    }
+
+    public void removeSlave(Device device) {
+        slaves.remove(device);
+    }
+
+    public void registerSlave(Device device) {
+        slaves.add(device);
     }
 }

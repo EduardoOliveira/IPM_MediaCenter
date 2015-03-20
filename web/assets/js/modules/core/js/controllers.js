@@ -28,7 +28,7 @@ angular.module('mediaCenter.core.controllers', [])
             callback: NavigationService.goIn
         });
 
-        WebSocketService.register("pt.iscte.ipm.mediacenter.events.remote.NavigationEvent",function(event){
+        WebSocketService.register("pt.iscte.ipm.mediacenter.events.remote.NavigationSyncEvent",function(event){
             console.log(event);
             switch (event.eventCode){
                 case "up": NavigationService.goUp();

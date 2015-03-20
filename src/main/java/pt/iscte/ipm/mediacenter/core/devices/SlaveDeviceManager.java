@@ -7,9 +7,9 @@ public class SlaveDeviceManager {
 
     private static SlaveDeviceManager INSTANCE;
 
-    private HashMap<InetSocketAddress,Device> devices = new HashMap<>();
+    private HashMap<String,Device> devices = new HashMap<>();
 
-    public Device getDeviceByAddress(InetSocketAddress address){
+    public Device getDeviceByHostName(String address){
         return devices.get(address);
     }
 
@@ -23,11 +23,12 @@ public class SlaveDeviceManager {
     }
 
     public void register(Device device) {
-        this.devices.put(device.getSession().getRemoteAddress(),device);
+        this.devices.put(device.getSession().getRemoteAddress().getHostName(),device);
     }
 
     public void unregister(Device device) {
-        if(device!=null)this.devices.remove(device.getSession().getRemoteAddress());
+        if(device!=null)
+            this.devices.remove(device.getSession().getRemoteAddress().getHostName());
     }
 
     @Override

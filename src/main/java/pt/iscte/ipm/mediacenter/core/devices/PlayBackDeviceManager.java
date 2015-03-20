@@ -11,14 +11,14 @@ public class PlayBackDeviceManager {
 
     private static PlayBackDeviceManager INSTANCE;
 
-    private HashMap<InetSocketAddress,PlayBackDevice> devices = new HashMap<>();
+    private HashMap<String,PlayBackDevice> devices = new HashMap<>();
 
     public void register(PlayBackDevice device){
-        this.devices.put(device.getSession().getRemoteAddress(),device);
+        this.devices.put(device.getSession().getRemoteAddress().getHostName(),device);
     }
 
     public void unregister(PlayBackDevice device) {
-        if(device!=null)this.devices.remove(device.getSession().getRemoteAddress());
+        if(device!=null)this.devices.remove(device.getSession().getRemoteAddress().getHostName());
     }
 
     public static PlayBackDeviceManager getInstance(){
@@ -30,8 +30,8 @@ public class PlayBackDeviceManager {
     private PlayBackDeviceManager() {
     }
 
-    public PlayBackDevice getDeviceByAddress(InetSocketAddress remoteAddress) {
-        return devices.get(remoteAddress);
+    public PlayBackDevice getDeviceByAddress(String hostName) {
+        return devices.get(hostName);
     }
 
     public List<PlayBackDevice> getAllPlaybackDevices(){
@@ -48,7 +48,9 @@ public class PlayBackDeviceManager {
     public List<pt.iscte.ipm.mediacenter.pojos.PlayBackDevice> pojifyDevices() {
         List<pt.iscte.ipm.mediacenter.pojos.PlayBackDevice> rtn = new ArrayList<>();
         for(PlayBackDevice playBackDevice : devices.values()){
-            rtn.add(new pt.iscte.ipm.mediacenter.pojos.PlayBackDevice(playBackDevice.getName(),playBackDevice.getCurrentlyPlaying().toString()));
+            rtn.add(new pt.iscte.ipm.mediacenter.pojos.PlayBackDevice(playBackDevice.getName(),
+                    playBackDevice.getCurrentlyPlaying().toString(),
+                    playBackDevice.getSession().getRemoteAddress().getHostName()));
         }
         return rtn;
     }
