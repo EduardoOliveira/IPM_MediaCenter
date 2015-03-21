@@ -1,16 +1,14 @@
 package pt.iscte.ipm.mediacenter.remote.devices;
 
 import org.eclipse.jetty.websocket.api.Session;
-import pt.iscte.ipm.mediacenter.core.devices.Device;
-import pt.iscte.ipm.mediacenter.core.devices.SlaveDeviceManager;
-import pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice;
+import pt.iscte.ipm.mediacenter.core.devices.SlaveDevice;
+import pt.iscte.ipm.mediacenter.core.devices.managers.SlaveDeviceManager;
 
-public class RemoteControl extends Device{
+public class RemoteControl extends SlaveDevice {
     private SlaveDeviceManager slaveDeviceManager = SlaveDeviceManager.getInstance();
-    private PlayBackDevice currentPlayBackDevice;
 
     public RemoteControl(String deviceName, Session session) {
-        super(deviceName,session);
+        super(deviceName, session);
     }
 
     @Override
@@ -18,12 +16,14 @@ public class RemoteControl extends Device{
         slaveDeviceManager.register(this);
     }
 
-    public PlayBackDevice getCurrentPlayBackDevice() {
-        return currentPlayBackDevice;
+    @Override
+    public void unregister() {
+        slaveDeviceManager.unregister(this);
     }
 
-    public void registerOnPlaybackDevice(PlayBackDevice playBackDevice) {
-        this.currentPlayBackDevice = playBackDevice;
-        this.currentPlayBackDevice.registerSlave(this);
+    @Override
+    public void kill() {
+        unregister();
+        freeDevice();
     }
 }

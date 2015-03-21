@@ -1,6 +1,8 @@
 package pt.iscte.ipm.mediacenter.core.devices;
 
 import org.eclipse.jetty.websocket.api.Session;
+import pt.iscte.ipm.mediacenter.core.events.Event;
+import pt.iscte.ipm.mediacenter.core.events.EventOutgoingWrapper;
 
 import java.io.IOException;
 
@@ -8,10 +10,8 @@ public abstract class Device {
     private Session session;
     private String name;
 
-    public Device() {
-    }
 
-    public Device(String name,Session session) {
+    public Device(String name, Session session) {
         this.session = session;
         this.name = name;
     }
@@ -32,10 +32,19 @@ public abstract class Device {
         this.session = session;
     }
 
-    public void send(String message) throws IOException {
-        System.out.println("sending: "+message);
-        this.session.getRemote().sendString(message);
+    public void send(Event event){
+        String msg = String.valueOf(new EventOutgoingWrapper(event));
+        System.out.println("sending: " + msg);
+        try {
+            this.session.getRemote().sendString(msg);
+        } catch (IOException e) {
+            this.kill();
+            e.printStackTrace();
+        }
     }
 
-    public abstract void register() throws IOException, Exception;
+    public abstract void register();
+    public abstract void unregister();
+    public abstract void kill();
+
 }

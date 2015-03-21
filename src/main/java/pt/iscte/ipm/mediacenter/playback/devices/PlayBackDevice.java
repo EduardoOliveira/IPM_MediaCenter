@@ -2,23 +2,20 @@ package pt.iscte.ipm.mediacenter.playback.devices;
 
 import org.eclipse.jetty.websocket.api.Session;
 import pt.iscte.ipm.mediacenter.core.devices.Device;
-import pt.iscte.ipm.mediacenter.core.devices.PlayBackDeviceManager;
+import pt.iscte.ipm.mediacenter.core.devices.managers.PlayBackDeviceManager;
+import pt.iscte.ipm.mediacenter.core.devices.SlaveDevice;
+import pt.iscte.ipm.mediacenter.core.devices.managers.SlaveDeviceManager;
 import pt.iscte.ipm.mediacenter.core.events.Event;
-import pt.iscte.ipm.mediacenter.core.events.EventOutgoingWrapper;
+import pt.iscte.ipm.mediacenter.core.events.PlayBackDeviceSyncEvent;
 import pt.iscte.ipm.mediacenter.core.sessions.PlayBackSession;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class PlayBackDevice extends Device {
     private PlayBackSession playBackSession;
     private PlayBackDeviceManager playBackDeviceManager = PlayBackDeviceManager.getInstance();
-    private List<Device> slaves = new ArrayList<>();
-
-    public PlayBackDevice() {
-    }
+    private List<SlaveDevice> slaves = new ArrayList<>();
 
     public PlayBackDevice(String name, Session session) {
         super(name, session);
@@ -26,24 +23,13 @@ public class PlayBackDevice extends Device {
 
     public void broadCastToAll(Event event) {
 
-        try {
-            broadCastToSlaves(event);
-            send(String.valueOf(new EventOutgoingWrapper(event)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        broadCastToSlaves(event);
+        send(event);
     }
 
     public void broadCastToSlaves(Event event) {
-        for (Iterator<Device> iterator = slaves.iterator(); iterator.hasNext(); ) {
-
-            Device device = iterator.next();
-            try {
-                device.getSession().getRemote().sendString(String.valueOf(new EventOutgoingWrapper(event)));
-            } catch (IOException e) {
-                e.printStackTrace();
-                iterator.remove();
-            }
+        for (SlaveDevice device : slaves) {
+            device.send(event);
         }
     }
 
@@ -52,15 +38,33 @@ public class PlayBackDevice extends Device {
         playBackDeviceManager.register(this);
     }
 
+    @Override
+    public void unregister() {
+        playBackDeviceManager.unregister(this);
+    }
+
+    @Override
+    public void kill() {
+        unregister();
+        removeAllSlaves();
+        SlaveDeviceManager.getInstance().broadCast(new PlayBackDeviceSyncEvent(playBackDeviceManager.pojifyDevices()));
+    }
+
     public String getCurrentlyPlaying() {
         return "Potato";
     }
 
-    public void removeSlave(Device device) {
+    public void registerSlave(SlaveDevice device) {
+        slaves.add(device);
+    }
+
+    public void unregisterSlave(SlaveDevice device) {
         slaves.remove(device);
     }
 
-    public void registerSlave(Device device) {
-        slaves.add(device);
+    public void removeAllSlaves() {
+        for (SlaveDevice d : slaves) {
+            d.freeDevice();
+        }
     }
 }
