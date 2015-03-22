@@ -5,7 +5,7 @@ import pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayBackDeviceManager extends DeviceManager<PlayBackDevice> {
+public class PlayBackDeviceManager extends DeviceManager<PlayBackDevice, pt.iscte.ipm.mediacenter.pojos.PlayBackDevice> {
 
     private static PlayBackDeviceManager INSTANCE;
 
@@ -16,6 +16,7 @@ public class PlayBackDeviceManager extends DeviceManager<PlayBackDevice> {
         }
     }
 
+    @Override
     public List<pt.iscte.ipm.mediacenter.pojos.PlayBackDevice> pojifyDevices() {
         List<pt.iscte.ipm.mediacenter.pojos.PlayBackDevice> rtn = new ArrayList<>();
         for (PlayBackDevice playBackDevice : devices.values()) {

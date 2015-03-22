@@ -5,8 +5,9 @@ import pt.iscte.ipm.mediacenter.core.events.Event;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class DeviceManager<T extends Device> {
+public abstract class DeviceManager<T extends Device, K> {
 
     protected HashMap<String,T> devices = new HashMap<>();
 
@@ -32,4 +33,6 @@ public class DeviceManager<T extends Device> {
             device.send(event);
         }
     }
+
+    public abstract List<K> pojifyDevices();
 }
