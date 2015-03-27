@@ -1,7 +1,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var Database = new require('./MovieDatabase');
-var movieDatabase = new Database('localhost', 27017, 'moviesDB');
+var movieDatabase = new Database('128.199.52.250', 27017, 'moviesDB');
 module.exports = function (baseUrl) {
     var self = this;
     this.baseUrl = baseUrl;
@@ -11,53 +11,21 @@ module.exports = function (baseUrl) {
             return function (err, resp, body) {
                 $ = cheerio.load(body);
                 var genres = $(".infobar [itemprop='genre']");
+                var title = $('#overview-top h1.header span.title-extra[itemprop="name"]').text().match(/"(.*?)"/);
+                if (title != null)
+                    title = title[1];
+                if (title == "" || title == null)
+                    title = $('#overview-top h1.header span.itemprop[itemprop="name"]').text();
+                console.log(title + ";");
                 var movie = {
                     _id: movieUrl,
-                    title: $('#overview-top h1.header span.itemprop[itemprop="name"]').text(),
+                    title: title,
                     genre0: genres.eq(0).text(),
                     genre1: genres.eq(1).text()
                 };
-                console.log(movie);
-                movieDatabase.insertMovie(movie);
-                self.scrapArtistsList({url: $('#titleCast .see-more a').eq(0).attribs.href});
-                //this.scrapMovieDirectors({movieURL:movieUrl, movieBody:body});
+                //movieDatabase.insertMovie(movie);
             }
         })(this.self))
-    };
-
-    this.scrapArtistPage = function (params) {
-        if (params.body !== undefined) {
-            this._scrapArtistBody(params.body);
-        } else {
-            request(this.baseUrl + params.url, (function (self) {
-                return function (err, resp, body) {
-                    self._scrapArtistBody(body);
-                }
-            })(this.self));
-        }
-    };
-
-    this.scrapArtistsList = function (params) {
-        if (params.body !== undefined) {
-            this._scrapArtistsListBody(params.body);
-        } else {
-            request(this.baseUrl + params.url, (function (self) {
-                return function (err, resp, body) {
-                    self._scrapArtistsListBody(body);
-                }
-            })(this.self));
-        }
-    };
-
-    this._scrapArtistsListBody = function (body) {
-        $ = cheerio.load(body);
-        $('table.cast_list').each(function () {
-
-        });
-    };
-
-    this._scrapArtistBody = function (body) {
-
     };
 
 };

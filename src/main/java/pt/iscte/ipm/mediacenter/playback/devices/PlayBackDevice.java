@@ -67,4 +67,19 @@ public class PlayBackDevice extends Device {
             d.freeDevice();
         }
     }
+
+
+    public List<pt.iscte.ipm.mediacenter.pojos.SlaveDevice> pojifySlaves() {
+        List<pt.iscte.ipm.mediacenter.pojos.SlaveDevice> rtn = new ArrayList<>();
+        pt.iscte.ipm.mediacenter.pojos.SlaveDevice pojo;
+        for (SlaveDevice device : slaves) {
+            pojo = new pt.iscte.ipm.mediacenter.pojos.SlaveDevice();
+            pojo.setName(device.getName());
+            pojo.setAddress(device.getSession().getRemoteAddress().getHostName());
+            if (!device.isFree())
+                pojo.setMasterAddress(device.getMaster().getSession().getRemoteAddress().getHostName());
+            rtn.add(pojo);
+        }
+        return rtn;
+    }
 }
