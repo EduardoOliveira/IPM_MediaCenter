@@ -9,6 +9,9 @@ module.exports = function (baseUrl) {
     this.scrapMovie = function (movieUrl) {
         return request(this.baseUrl + movieUrl, (function (self) {
             return function (err, resp, body) {
+                if (err) {
+                    return console.log(err);
+                }
                 $ = cheerio.load(body);
                 var genres = $(".infobar [itemprop='genre']");
                 var title = $('#overview-top h1.header span.title-extra[itemprop="name"]').text().match(/"(.*?)"/);
@@ -16,14 +19,17 @@ module.exports = function (baseUrl) {
                     title = title[1];
                 if (title == "" || title == null)
                     title = $('#overview-top h1.header span.itemprop[itemprop="name"]').text();
+                var desc = $(".article.title-overview p[itemprop='description']").text();
+                console.log(desc);
                 console.log(title + ";");
                 var movie = {
                     _id: movieUrl,
                     title: title,
                     genre0: genres.eq(0).text(),
-                    genre1: genres.eq(1).text()
+                    genre1: genres.eq(1).text(),
+                    description:desc
                 };
-                //movieDatabase.insertMovie(movie);
+                movieDatabase.insertMovie(movie);
             }
         })(this.self))
     };
