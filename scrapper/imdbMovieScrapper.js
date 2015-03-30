@@ -20,6 +20,7 @@ module.exports = function (baseUrl) {
                 if (title == "" || title == null)
                     title = $('#overview-top h1.header span.itemprop[itemprop="name"]').text();
                 var desc = $(".article.title-overview p[itemprop='description']").text();
+                var full_desc = $(".article#titleStoryLine [itemprop='description']").text();
                 console.log(desc);
                 console.log(title + ";");
                 var movie = {
@@ -27,7 +28,8 @@ module.exports = function (baseUrl) {
                     title: title,
                     genre0: genres.eq(0).text(),
                     genre1: genres.eq(1).text(),
-                    description:desc
+                    description: desc,
+                    full_desc: full_desc
                 };
                 movieDatabase.insertMovie(movie);
             }
