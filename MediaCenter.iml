@@ -69,5 +69,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.2.1" level="project" />
+    <orderEntry type="library" name="Node.js v0.10.36 Core Modules" level="application" />
   </component>
 </module>
