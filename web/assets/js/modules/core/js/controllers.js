@@ -44,7 +44,6 @@ angular.module('mediaCenter.core.controllers', [])
             }
         });
     })
-
     .controller('MainMenuController', function ($scope, NavigationService,$state) {
         var mainMenuGui = new MainMenuGui({$element: $('.main-menu')});
         var navigation = {

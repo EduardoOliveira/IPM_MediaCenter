@@ -12,7 +12,7 @@ import pt.iscte.ipm.mediacenter.core.devices.managers.SlaveDeviceManager;
 import pt.iscte.ipm.mediacenter.core.events.Event;
 import pt.iscte.ipm.mediacenter.core.events.EventHandler;
 import pt.iscte.ipm.mediacenter.core.events.EventIncomingWrapper;
-import pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice;
+import pt.iscte.ipm.mediacenter.core.events.Ping;
 
 @WebSocket
 public class WebSocketHandler {
@@ -28,9 +28,10 @@ public class WebSocketHandler {
     @OnWebSocketMessage
     public void onTextMessage(Session session, String text) {
         try {
-            System.out.println("receiving: " + text);
             EventIncomingWrapper eventWrapper = objectMapper.readValue(text, EventIncomingWrapper.class);
             Event event = eventWrapper.getData();
+            if(!Ping.class.isInstance(event))
+                System.out.println("receiving: " + text);
             EventHandler eventHandler = (EventHandler) Class.forName(event.getHandler()).newInstance();
             eventHandler.handle(event, session);
         } catch (Exception e) {

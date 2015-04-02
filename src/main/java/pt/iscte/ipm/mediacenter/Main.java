@@ -20,7 +20,8 @@ public class Main {
         FolderWatch musicWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("music.dir")),new MusicHandler());
         musicWatch.start();*/
 
-        Server server = new Server(SettingsManager.getIntegerSetting("port"));
+        Server server = new Server(new InetSocketAddress(InetAddress.getByName("0.0.0.0"), SettingsManager.getIntegerSetting("port")));
+        //Server server = new Server(SettingsManager.getIntegerSetting("port"));
         WebAppContext context = new WebAppContext();
         context.setDescriptor("web/WEB-INF/web.xml");
         context.setResourceBase("web");

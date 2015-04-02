@@ -7,10 +7,12 @@ import pt.iscte.ipm.mediacenter.core.devices.SlaveDevice;
 import pt.iscte.ipm.mediacenter.core.devices.managers.SlaveDeviceManager;
 import pt.iscte.ipm.mediacenter.core.events.Event;
 import pt.iscte.ipm.mediacenter.core.events.PlayBackDeviceSyncEvent;
+import pt.iscte.ipm.mediacenter.core.events.SlaveDeviceSyncEvent;
 import pt.iscte.ipm.mediacenter.core.sessions.PlayBackSession;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class PlayBackDevice extends Device {
     private PlayBackSession playBackSession;
@@ -19,6 +21,10 @@ public class PlayBackDevice extends Device {
 
     public PlayBackDevice(String name, Session session) {
         super(name, session);
+    }
+
+    public PlayBackDevice(String deviceName, Session session, UUID uuid) {
+        super(deviceName, session, uuid);
     }
 
     public void broadCastToAll(Event event) {
@@ -60,6 +66,7 @@ public class PlayBackDevice extends Device {
 
     public void unregisterSlave(SlaveDevice device) {
         slaves.remove(device);
+        send(new SlaveDeviceSyncEvent(pojifySlaves()));
     }
 
     public void removeAllSlaves() {
@@ -75,7 +82,7 @@ public class PlayBackDevice extends Device {
         for (SlaveDevice device : slaves) {
             pojo = new pt.iscte.ipm.mediacenter.pojos.SlaveDevice();
             pojo.setName(device.getName());
-            pojo.setAddress(device.getSession().getRemoteAddress().getHostName());
+            pojo.setUuid(device.getUuid().toString());
             if (!device.isFree())
                 pojo.setMasterAddress(device.getMaster().getSession().getRemoteAddress().getHostName());
             rtn.add(pojo);

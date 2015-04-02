@@ -1,13 +1,8 @@
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-            aria-expanded="true">
-        Dropdown {{teste}}
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-        <li role="presentation" class="dropdown-header">Another action</li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-    </ul>
+<div class="session-name">{{sessionName}}</div>
+<div class="devices">
+    <div class="device" data-ng-repeat="slave in slaves">
+        <i class="glyphicon glyphicon-phone icon"></i>
+        <span class="name">{{slave.name}}</span>
+        <i class="glyphicon glyphicon-remove remove" data-ng-click="removeSlave(slave.uuid)"></i>
+    </div>
 </div>

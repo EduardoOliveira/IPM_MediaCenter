@@ -33,8 +33,8 @@ public class SlaveDeviceManager extends DeviceManager<SlaveDevice, pt.iscte.ipm.
         for (SlaveDevice device : devices.values()) {
             pojo = new pt.iscte.ipm.mediacenter.pojos.SlaveDevice();
             pojo.setName(device.getName());
-            pojo.setAddress(device.getSession().getRemoteAddress().getHostName());
-            if(!device.isFree())pojo.setMasterAddress(device.getMaster().getSession().getRemoteAddress().getHostName());
+            pojo.setAddress(device.getUuid().toString());
+            if(!device.isFree())pojo.setMasterAddress(device.getMaster().getUuid().toString());
             rtn.add(pojo);
         }
         return rtn;

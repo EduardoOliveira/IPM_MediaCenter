@@ -3,7 +3,6 @@ package pt.iscte.ipm.mediacenter.api;
 
 import pt.iscte.ipm.mediacenter.core.devices.managers.PlayBackDeviceManager;
 import pt.iscte.ipm.mediacenter.core.devices.managers.SlaveDeviceManager;
-import pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice;
 import pt.iscte.ipm.mediacenter.pojos.SlaveDevice;
 
 import javax.ws.rs.GET;
@@ -12,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Path("devices/{master}/slaves")
 public class MasterSlaveDevices {
@@ -20,16 +20,16 @@ public class MasterSlaveDevices {
 
     @GET
     @Produces("application/json")
-    public List<SlaveDevice> getAllSlaves(@PathParam("master") String master) {
+    public List<SlaveDevice> getAllSlaves(@PathParam("master") UUID master) {
         if (master == null) return new ArrayList<>();
-        return playBackDeviceManager.getDeviceByHostName(master).pojifySlaves();
+        return playBackDeviceManager.getDeviceByUuid(master).pojifySlaves();
     }
 
     @GET
     @Produces("applications/json")
     @Path("disconnect/{slave}")
-    public String disconnect(@PathParam("master") String master, @PathParam("slave") String slave) {
-        slaveDeviceManager.getDeviceByHostName(slave).freeDevice();
+    public String disconnect(@PathParam("master") UUID master, @PathParam("slave") UUID slave) {
+        slaveDeviceManager.getDeviceByUuid(slave).freeDevice();
         return "ok";
     }
 }

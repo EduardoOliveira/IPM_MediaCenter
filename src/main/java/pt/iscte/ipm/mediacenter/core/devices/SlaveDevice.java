@@ -3,11 +3,17 @@ package pt.iscte.ipm.mediacenter.core.devices;
 import org.eclipse.jetty.websocket.api.Session;
 import pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice;
 
+import java.util.UUID;
+
 public abstract class SlaveDevice extends Device {
     private PlayBackDevice master;
 
     public SlaveDevice(String name, Session session) {
         super(name, session);
+    }
+
+    public SlaveDevice(String deviceName, Session session, UUID uuid) {
+        super(deviceName,session,uuid);
     }
 
     public PlayBackDevice getMaster() {

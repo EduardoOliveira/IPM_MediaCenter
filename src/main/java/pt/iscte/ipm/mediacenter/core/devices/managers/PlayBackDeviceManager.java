@@ -10,19 +10,12 @@ public class PlayBackDeviceManager extends DeviceManager<PlayBackDevice, pt.isct
     private static PlayBackDeviceManager INSTANCE;
 
     @Override
-    public void unregister(PlayBackDevice device) {
-        if (device != null) {
-            this.devices.remove(device.getSession().getRemoteAddress().getHostName());
-        }
-    }
-
-    @Override
     public List<pt.iscte.ipm.mediacenter.pojos.PlayBackDevice> pojifyDevices() {
         List<pt.iscte.ipm.mediacenter.pojos.PlayBackDevice> rtn = new ArrayList<>();
         for (PlayBackDevice playBackDevice : devices.values()) {
             rtn.add(new pt.iscte.ipm.mediacenter.pojos.PlayBackDevice(playBackDevice.getName(),
                     playBackDevice.getCurrentlyPlaying().toString(),
-                    playBackDevice.getSession().getRemoteAddress().getHostName()));
+                    playBackDevice.getUuid().toString()));
         }
         return rtn;
     }

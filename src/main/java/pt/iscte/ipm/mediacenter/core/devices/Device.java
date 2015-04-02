@@ -5,15 +5,23 @@ import pt.iscte.ipm.mediacenter.core.events.Event;
 import pt.iscte.ipm.mediacenter.core.events.EventOutgoingWrapper;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public abstract class Device {
     private Session session;
     private String name;
+    private UUID uuid;
 
 
     public Device(String name, Session session) {
         this.session = session;
         this.name = name;
+    }
+
+    public Device(String name,Session session,  UUID uuid) {
+        this.session = session;
+        this.name = name;
+        this.uuid = uuid;
     }
 
     public String getName() {
@@ -32,6 +40,18 @@ public abstract class Device {
         this.session = session;
     }
 
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public String getHostName(){
+        return this.session.getRemoteAddress().getHostName();
+    }
+
     public void send(Event event){
         String msg = String.valueOf(new EventOutgoingWrapper(event));
         System.out.println("sending: " + msg);
@@ -46,5 +66,6 @@ public abstract class Device {
     public abstract void register();
     public abstract void unregister();
     public abstract void kill();
+
 
 }
