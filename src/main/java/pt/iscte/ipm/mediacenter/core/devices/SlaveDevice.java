@@ -1,6 +1,7 @@
 package pt.iscte.ipm.mediacenter.core.devices;
 
 import org.eclipse.jetty.websocket.api.Session;
+import pt.iscte.ipm.mediacenter.core.events.DisconnectedFromPlayBackDeviceSyncEvent;
 import pt.iscte.ipm.mediacenter.playback.devices.PlayBackDevice;
 
 import java.util.UUID;
@@ -13,7 +14,7 @@ public abstract class SlaveDevice extends Device {
     }
 
     public SlaveDevice(String deviceName, Session session, UUID uuid) {
-        super(deviceName,session,uuid);
+        super(deviceName, session, uuid);
     }
 
     public PlayBackDevice getMaster() {
@@ -31,6 +32,13 @@ public abstract class SlaveDevice extends Device {
         if (!isFree()) {
             this.master.unregisterSlave(this);
             this.master = null;
+        }
+    }
+
+    public void freeDevice(int code) {
+        if (!isFree()) {
+            send(new DisconnectedFromPlayBackDeviceSyncEvent(code, master.getUuid().toString()));
+            freeDevice();
         }
     }
 

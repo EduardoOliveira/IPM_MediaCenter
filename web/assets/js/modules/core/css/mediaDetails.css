@@ -36,7 +36,7 @@
     align-items: center;
     margin-bottom: 5px;
 }
-..media-big .content-row .content-pic{
+.media-big .content-row .content-pic{
     background-color: rgba(0, 0, 0, 0.5);
     height: 35px;
     padding-right: 5px;

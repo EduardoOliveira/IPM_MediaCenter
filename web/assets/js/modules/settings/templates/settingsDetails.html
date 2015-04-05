@@ -1,0 +1,27 @@
+<div class="media-big">
+    <div class="container-fluid">
+        <div class="row top-row">
+            <div class="col-md-12">
+                {{selected.label}}
+            </div>
+        </div>
+        <div class="row top-row">
+            <div class="col-md-12">
+                {{selected.description}}
+            </div>
+        </div>
+        <div class="row content-row" data-ng-repeat="setting in selected.settings">
+            <div class="col-md-6">
+                {{setting.label}}
+            </div>
+            <div class="col-md-6">
+                <input data-ng-model="setting.value" style="color: black">
+            </div>
+        </div>
+        <div class="row top-row">
+            <div class="col-md-offset-8 col-md-4">
+                <button type="button" class="btn btn-default" data-ng-click="save(selected)">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

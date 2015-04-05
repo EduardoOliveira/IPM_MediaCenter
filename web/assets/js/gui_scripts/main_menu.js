@@ -18,7 +18,7 @@ function MainMenuGui(params) {
     this.init = function () {
         this._resizeButtons({data: {that: this}});
         this._initListeners();
-    }
+    };
 
     this.init();
 }

@@ -2,10 +2,12 @@
     padding-left: 15%;
     padding-right: 15%;
     height: 100%;
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    align-self: center;
 }
 
 .main-menu > div {
@@ -13,6 +15,10 @@
     width: 100%;
     background-color: rgba(0,0,0,0.8);
     box-shadow: 10px 10px 5px #000;
+}
+.main-menu > div > div{
+    width: 100%;
+    height: 100%;
 }
 
 .main-menu svg{

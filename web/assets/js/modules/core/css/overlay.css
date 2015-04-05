@@ -1,7 +1,6 @@
 /* overlay */
 .overlay {
     position: absolute;
-    background-color: rgba(0,0,0,0.5);
     top: 0;
     bottom: 0;
     width: 100%;
@@ -19,6 +18,7 @@
 .overlay .main-container {
     align-self: stretch;
     flex: 1 100%;
+    display: flex;
 }
 
 .overlay .bottom-bar {

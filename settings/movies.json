@@ -1,0 +1,1 @@
+{"label":"Movies","id":"movies","description":"Movies configurations","settings":[{"label":"Movies directory","id":"dir","value":"C:\\\\","description":"Movies library location"},{"label":"Movies format","id":"format","value":"/(?<title>.*)/(.*?)\\.(?<ext>.\\w+)$","description":"Movies library format"}]}

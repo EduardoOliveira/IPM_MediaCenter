@@ -1,15 +1,14 @@
 .split-container{
     padding: 20px;
-    height: 100%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: center;
+    flex-grow: 99;
 }
 
 .split-container > div{
     width: 100%;
-    height: 100%;
+    position: relative;
 }
 
 .split-container .left-pane{

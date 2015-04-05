@@ -2,6 +2,8 @@
 
 angular.module('mediaCenter',
     [
+        'duScroll',
+        'jQueryScrollbar',
         'ngResource',
         'LocalStorageModule',
         'ui.router',
@@ -9,7 +11,8 @@ angular.module('mediaCenter',
         'ngWebsocket',
         'mediaCenter.core',
         'mediaCenter.session',
-        'mediaCenter.movies'
+        'mediaCenter.movies',
+        'mediaCenter.settings'
     ]
 );
 

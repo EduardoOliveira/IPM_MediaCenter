@@ -11,11 +11,14 @@
     <script src="assets/libs/angular/angular-resource/angular-resource.min.js"></script>
     <script src="assets/libs/angular/angular-websocket/ng-websocket.js"></script>
     <script src="assets/libs/angular/angular-local-storage/angular-local-storage.min.js"></script>
+    <script src="assets/libs/jquery/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="assets/libs/angular/angular-scroll/angular-scroll.min.js"></script>
 
 
     <script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
     <link href="assets/libs/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="assets/libs/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="assets/libs/jquery/jquery.scrollbar/jquery.scrollbar.css" rel="stylesheet">
 
     <link href="assets/css/gui.css" rel="stylesheet">
     <script src="assets/js/gui_scripts/main_menu.js"></script>
@@ -36,6 +39,7 @@
     <link href="assets/js/modules/core/css/mediaDetails.css" rel="stylesheet">
     <link href="assets/js/modules/core/css/overlay.css" rel="stylesheet">
     <link href="assets/js/modules/core/css/splitPane.css" rel="stylesheet">
+    <link href="assets/js/modules/core/css/loadingScreen.css" rel="stylesheet">
 
 
     <!--sessionManager-->
@@ -49,6 +53,13 @@
     <script src="assets/js/modules/movies/exports.js"></script>
     <script src="assets/js/modules/movies/js/configs.js"></script>
     <script src="assets/js/modules/movies/js/controllers.js"></script>
+    <script src="assets/js/modules/movies/js/services.js"></script>
+
+    <!--movies-->
+    <script src="assets/js/modules/settings/exports.js"></script>
+    <script src="assets/js/modules/settings/js/controllers.js"></script>
+    <script src="assets/js/modules/settings/js/services.js"></script>
+    <script src="assets/js/modules/settings/js/configs.js"></script>
 
 </head>
 <body data-ng-app="mediaCenter">
@@ -61,5 +72,6 @@
         wqeqweqwe
     </div>
 </div>
+<loading-screen/>
 </body>
 </html>

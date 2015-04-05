@@ -3,13 +3,25 @@ session-widget,
     display: block;
     width: 300px;
     float: right;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.5);
 }
 
 session-widget .session-name,
 [session-widget] .session-name{
     padding: 5px;
     text-align: center;
+    cursor: pointer;
+}
+
+session-widget .devices,
+[session-widget] .devices{
+    display: none;
+}
+
+
+session-widget .devices.open,
+[session-widget] .devices.open{
+    display: block;
 }
 
 session-widget .devices .device,
@@ -17,9 +29,11 @@ session-widget .devices .device,
     text-align: left;
     padding-left: 5px;
     padding-right: 5px;
-
 }
-
+session-widget .devices .device.focused,
+[session-widget] .devices .device.focused {
+    border:solid #ffffff 1px;
+}
 session-widget .devices .device i.icon,
 [session-widget] .devices .device i.icon{
     float: left;

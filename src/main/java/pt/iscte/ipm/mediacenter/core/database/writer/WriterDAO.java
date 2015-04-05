@@ -3,14 +3,14 @@ package pt.iscte.ipm.mediacenter.core.database.writer;
 import com.mongodb.MongoClient;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.dao.BasicDAO;
-import pt.iscte.ipm.mediacenter.core.utils.SettingsManager;
+import pt.iscte.ipm.mediacenter.core.settings.SettingsManager;
 
 /**
  * Created by Admin on 24-02-2015.
  */
 public class WriterDAO extends BasicDAO<Writer, String> {
     public WriterDAO(Morphia morphia, MongoClient mongo){
-        super(mongo, morphia, SettingsManager.getSetting("mongo.database"));
+        super(mongo, morphia, SettingsManager.getSetting("mongo","database"));
 
     }
 }

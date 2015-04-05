@@ -5,6 +5,7 @@ import pt.iscte.ipm.mediacenter.core.devices.Device;
 import pt.iscte.ipm.mediacenter.core.devices.managers.PlayBackDeviceManager;
 import pt.iscte.ipm.mediacenter.core.devices.SlaveDevice;
 import pt.iscte.ipm.mediacenter.core.devices.managers.SlaveDeviceManager;
+import pt.iscte.ipm.mediacenter.core.events.DisconnectedFromPlayBackDeviceSyncEvent;
 import pt.iscte.ipm.mediacenter.core.events.Event;
 import pt.iscte.ipm.mediacenter.core.events.PlayBackDeviceSyncEvent;
 import pt.iscte.ipm.mediacenter.core.events.SlaveDeviceSyncEvent;
@@ -71,7 +72,7 @@ public class PlayBackDevice extends Device {
 
     public void removeAllSlaves() {
         for (SlaveDevice d : slaves) {
-            d.freeDevice();
+            d.freeDevice(DisconnectedFromPlayBackDeviceSyncEvent.Code.MASTER_DISCONNECTED);
         }
     }
 

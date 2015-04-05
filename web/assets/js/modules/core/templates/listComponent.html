@@ -1,8 +1,10 @@
-<div class="list-component">
+<div class="list-component" data-list-component="{{list.name}}">
     <div class="search-bar">
-        QEWQWE
+        <input data-ng-model="search[list.content]">
     </div>
-    <ul class="list-content">
-        <li></li>
+    <ul class="list-content scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions" >
+        <li data-ng-repeat="element in list.elements | filter:search "
+            class="list-element" data-ng-click="select($index)" data-ng-class="isSelected(element)"
+            data-navigation-group="{{list.name}}" data-navigation-id="{{$index}}">{{element[list.content]}}</li>
     </ul>
 </div>

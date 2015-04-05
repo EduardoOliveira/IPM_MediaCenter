@@ -1,6 +1,6 @@
-<div class="session-name">{{sessionName}}</div>
+<div class="session-name" data-ng-click="openDevices()">{{sessionName}} <i class="glyphicon glyphicon-chevron-down"></i></div>
 <div class="devices">
-    <div class="device" data-ng-repeat="slave in slaves">
+    <div class="device" data-ng-repeat="slave in slaves" data-navigation-group="devices" data-navigation-id="{{$index}}">
         <i class="glyphicon glyphicon-phone icon"></i>
         <span class="name">{{slave.name}}</span>
         <i class="glyphicon glyphicon-remove remove" data-ng-click="removeSlave(slave.uuid)"></i>

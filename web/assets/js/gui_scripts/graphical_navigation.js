@@ -5,4 +5,11 @@ function GraphicalNavigation() {
         params.next.addClass('focused');
     };
 
+    this.open = function($element){
+        $element.addClass("open");
+    };
+
+    this.close = function($element){
+        $element.removeClass("open");
+    };
 }
