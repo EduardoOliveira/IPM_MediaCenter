@@ -24,7 +24,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -36,6 +36,7 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="library" name="Node.js v0.10.36 Core Modules" level="application" />
     <orderEntry type="library" name="Maven: org.mongodb.morphia:morphia:0.110" level="project" />
     <orderEntry type="library" name="Maven: org.mongodb:mongo-java-driver:2.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.mongodb.morphia:morphia-util:0.110" level="project" />
@@ -69,6 +70,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.2.1" level="project" />
-    <orderEntry type="library" name="Node.js v0.10.36 Core Modules" level="application" />
+    <orderEntry type="library" name="Maven: com.mpatric:mp3agic:0.8.1" level="project" />
   </component>
 </module>

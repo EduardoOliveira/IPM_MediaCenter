@@ -23,13 +23,11 @@ public class Album {
 
 
     //Contructor
-    public Album(String name, long duration, Artist artist, String genre, List<Song> songs){
+    public Album(String name, Artist artist){
         this.name = name;
-        this.duration = duration;
         this.artist = artist;
-        this.genre = genre;
-        this.songs = songs;
-    }
+
+}
 
     //Getters
     public String getName(){

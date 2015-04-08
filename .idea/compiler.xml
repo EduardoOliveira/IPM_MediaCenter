@@ -26,5 +26,8 @@
         <module name="MediaCenter" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MediaCenter" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

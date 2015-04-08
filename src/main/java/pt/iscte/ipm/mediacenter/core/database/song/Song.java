@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import pt.iscte.ipm.mediacenter.core.database.album.Album;
+import pt.iscte.ipm.mediacenter.core.database.artist.Artist;
 import pt.iscte.ipm.mediacenter.core.database.embedded.Genre;
 import pt.iscte.ipm.mediacenter.core.database.embedded.Studio;
 import pt.iscte.ipm.mediacenter.core.database.producer.Producer;
@@ -23,6 +24,14 @@ public class Song {
     private Studio recStudio;
     private Genre genre;
     private int trackNum;
+    private Artist artist;
+
+    public Song (String name, double runTime, Artist artist, Album album){
+        this.name = name;
+        this.runTime = runTime;
+        this.artist = artist;
+        this.album = album;
+    }
 
     //Getters
     public ObjectId getId(){
