@@ -1,13 +1,14 @@
-package pt.iscte.ipm.mediacenter.core.database.embedded;
+package pt.iscte.ipm.mediacenter.core.database.studio;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 /**
  * Created by Admin on 24-02-2015.
  */
-@Embedded
+@Entity("studios")
 public class Studio {
 
     @Id

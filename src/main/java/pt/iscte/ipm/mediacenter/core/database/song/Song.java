@@ -3,28 +3,36 @@ package pt.iscte.ipm.mediacenter.core.database.song;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 import pt.iscte.ipm.mediacenter.core.database.album.Album;
 import pt.iscte.ipm.mediacenter.core.database.artist.Artist;
-import pt.iscte.ipm.mediacenter.core.database.embedded.Genre;
-import pt.iscte.ipm.mediacenter.core.database.embedded.Studio;
+import pt.iscte.ipm.mediacenter.core.database.Genre.Genre;
+import pt.iscte.ipm.mediacenter.core.database.studio.Studio;
 import pt.iscte.ipm.mediacenter.core.database.producer.Producer;
 
 /**
  * Created by Admin on 19-02-2015.
  */
-@Entity
+@Entity("songs")
 public class Song {
 
     @Id
     private ObjectId id;
+
     private String name;
-    private Album album;
     private double runTime;
-    private Producer producer;
-    private Studio recStudio;
-    private Genre genre;
     private int trackNum;
+
+    @Reference
+    private Album album;
+    @Reference
+    private Producer producer;
+    @Reference
+    private Studio recStudio;
+    @Reference
     private Artist artist;
+    @Reference
+    private Genre genre;
 
     public Song (String name, double runTime, Artist artist, Album album){
         this.name = name;

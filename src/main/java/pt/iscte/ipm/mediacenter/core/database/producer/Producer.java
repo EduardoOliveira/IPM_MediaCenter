@@ -11,11 +11,12 @@ import java.util.List;
  * Created by Admin on 24-02-2015.
  */
 
-@Entity
+@Entity("producers")
 public class Producer {
 
     @Id
     private ObjectId id;
+
     private String name;
     private String biography;
     private List<Album> productions;

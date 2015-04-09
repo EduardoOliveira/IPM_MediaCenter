@@ -1,22 +1,31 @@
 package pt.iscte.ipm.mediacenter.core.database.album;
 
 import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 import pt.iscte.ipm.mediacenter.core.database.artist.Artist;
 import pt.iscte.ipm.mediacenter.core.database.song.Song;
+import pt.iscte.ipm.mediacenter.core.database.studio.Studio;
 
 import java.util.List;
 
 /**
  * Created by Admin on 19-02-2015.
  */
+
+@Entity("albums")
 public class Album {
 
     @Id
     private String name;
     private long duration;
-    private Artist artist;
     private String genre;
+
+    @Reference
+    private Artist artist;
+    @Reference
+    private Studio studio;
 
     @Embedded
     private List<Song> songs;

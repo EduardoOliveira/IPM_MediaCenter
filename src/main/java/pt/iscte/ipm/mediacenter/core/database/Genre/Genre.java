@@ -1,11 +1,12 @@
-package pt.iscte.ipm.mediacenter.core.database.embedded;
+package pt.iscte.ipm.mediacenter.core.database.Genre;
 
 import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Entity;
 
 /**
  * Created by Admin on 24-02-2015.
  */
-@Embedded
+@Entity("genres")
 public enum Genre {
     //Movies / TvShows
     ACTION, ADVENTURE, ANIMATION, BIOGRAPHY, COMEDY, CRIME, DOCUMENTARY, DRAMA,

@@ -1,10 +1,13 @@
 package pt.iscte.ipm.mediacenter.core.database.artist;
 
+import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 /**
  * Created by Admin on 19-02-2015.
  */
+
+@Entity("artists")
 public class Artist {
 
     @Id

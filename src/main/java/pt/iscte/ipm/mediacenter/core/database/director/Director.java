@@ -11,14 +11,18 @@ import java.util.List;
  * Created by Admin on 17-02-2015.
  */
 
-@Entity
+@Entity("directors")
 public class Director {
 
     @Id
     private ObjectId id;
     private String name;
     private String biography;
-    private List<Movie> moviesDirected;
+
+
+    public Director(String name){
+        this.name = name;
+    }
 
     //Getters
     public ObjectId getID() {
@@ -33,9 +37,7 @@ public class Director {
         return biography;
     }
 
-    public List<Movie> getDirectedMovies() {
-        return moviesDirected;
-    }
+
 
     //Setters
     public void setName(String name) {
@@ -46,8 +48,6 @@ public class Director {
         this.biography = bio;
     }
 
-    public void addToDirectedMovies(Movie movie) {
-        moviesDirected.add(movie);
-    }
+
 
 }

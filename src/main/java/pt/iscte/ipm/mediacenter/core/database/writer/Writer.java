@@ -10,14 +10,14 @@ import java.util.List;
 /**
  * Created by Admin on 24-02-2015.
  */
-@Entity
+@Entity("writers")
 public class Writer {
 
     @Id
     private ObjectId id;
     private String name;
     private String biography;
-    private List<Movie> writtings;
+
 
 
     //Getters
@@ -30,9 +30,7 @@ public class Writer {
     public String getBio(){
         return biography;
     }
-    public List<Movie> getWrittings(){
-        return writtings;
-    }
+
 
     //Setters
     public void setName(String name){
@@ -41,7 +39,5 @@ public class Writer {
     public void editBio(String newBio){
         this.biography = newBio;
     }
-    public void addMovieToWrittings(Movie m){
-        writtings.add(m);
-    }
+
 }

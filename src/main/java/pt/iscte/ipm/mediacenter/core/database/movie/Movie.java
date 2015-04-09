@@ -4,12 +4,10 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
-import pt.iscte.ipm.mediacenter.core.database.actor.Actor;
-import pt.iscte.ipm.mediacenter.core.database.director.Director;
-import pt.iscte.ipm.mediacenter.core.database.embedded.Genre;
+import org.mongodb.morphia.annotations.Reference;
+import pt.iscte.ipm.mediacenter.core.database.Genre.Genre;
 import pt.iscte.ipm.mediacenter.core.database.embedded.Image;
-import pt.iscte.ipm.mediacenter.core.database.embedded.Studio;
-import pt.iscte.ipm.mediacenter.core.database.writer.Writer;
+import pt.iscte.ipm.mediacenter.core.database.studio.Studio;
 
 import java.util.List;
 
@@ -17,24 +15,26 @@ import java.util.List;
  * Created by Admin on 17-02-2015.
  */
 
-@Entity
+@Entity("movies")
 public class Movie {
 
     @Id
     private ObjectId id;
+
     private String name;
     private String plot_summary;
     private String fullPlot;
     private int releaseYear;
     private int rate;
     private String country;
-    private List<Actor> cast;
-    private Director director;
-    private List<Writer> writers;
+
+
 
     @Embedded
     private List<Image> images;
+    @Reference
     private Studio studio;
+    @Reference
     private Genre genre;
 
     //Constructor
@@ -61,21 +61,15 @@ public class Movie {
     public Studio getStudio(){
         return studio;
     }
-    public List<Writer> getWriters(){
-        return writers;
-    }
+
     public int getReleaseYear() {
         return releaseYear;
     }
     public int getRate() {
         return rate;
     }
-    public List<Actor> getActorsList() {
-        return cast;
-    }
-    public Director getDirector() {
-        return director;
-    }
+
+
     public List<Image> getScreenShots() {
         return images;
     }
@@ -108,17 +102,6 @@ public class Movie {
         this.country = country;
     }
 
-    public void addWriter(Writer w){
-        writers.add(w);
-    }
-
-    public void setDirector(Director d) {
-        this.director = d;
-    }
-
-    public void addActorToCast(Actor a) {
-        cast.add(a);
-    }
 
     public void addImageToScreenShots(Image i) {
         images.add(i);
