@@ -6,7 +6,7 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 import pt.iscte.ipm.mediacenter.core.database.album.Album;
 import pt.iscte.ipm.mediacenter.core.database.artist.Artist;
-import pt.iscte.ipm.mediacenter.core.database.Genre.Genre;
+import pt.iscte.ipm.mediacenter.core.database.genre.Genre;
 import pt.iscte.ipm.mediacenter.core.database.studio.Studio;
 import pt.iscte.ipm.mediacenter.core.database.producer.Producer;
 

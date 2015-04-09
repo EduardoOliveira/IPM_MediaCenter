@@ -3,6 +3,7 @@ package pt.iscte.ipm.mediacenter.core.database.embedded;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 import pt.iscte.ipm.mediacenter.core.database.tvShows.TvShow;
 
 /**
@@ -13,8 +14,11 @@ public class Season {
 
     @Id
     private ObjectId id;
-    private TvShow tvShow;
+
     private int number;
+
+    @Reference
+    private TvShow tvShow;
 
     //Getters
     public ObjectId getId(){
