@@ -64,6 +64,7 @@ public class MusicHandler implements MediaHandler{
             Datastore ds = morphia.createDatastore(mongo, "media_center");
 
             //Insert the new song in database
+            //BLA BLA
 
             Mp3File music = null;
             try {
