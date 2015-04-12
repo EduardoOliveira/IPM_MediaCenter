@@ -3,7 +3,7 @@ package pt.iscte.ipm.mediacenter.core.database.song;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
-import pt.iscte.ipm.mediacenter.core.database.genre.Genre2;
+import pt.iscte.ipm.mediacenter.core.database.genre.Genre;
 import pt.iscte.ipm.mediacenter.core.database.studio.Studio;
 import pt.iscte.ipm.mediacenter.core.database.producer.Producer;
 
@@ -22,7 +22,7 @@ public class Song {
     private Producer producer;
     @Reference
     private Studio recStudio;
-    private Genre2 genre;
+    private Genre genre;
 
     public Song() {
     }
@@ -55,7 +55,7 @@ public class Song {
     public Studio getRecStudio(){
         return recStudio;
     }
-    public Genre2 getGenre(){
+    public Genre getGenre(){
         return genre;
     }
     public int getTrackNum(){
@@ -78,7 +78,7 @@ public class Song {
     public void setRecStudio(Studio s){
         this.recStudio = s;
     }
-    public void setGenre(Genre2 g){
+    public void setGenre(Genre g){
         this.genre = g;
     }
     public void setTrackNum(int trackNum){
