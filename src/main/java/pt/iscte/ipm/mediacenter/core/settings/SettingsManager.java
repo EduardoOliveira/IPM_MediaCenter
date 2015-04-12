@@ -1,6 +1,8 @@
 package pt.iscte.ipm.mediacenter.core.settings;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import pt.iscte.ipm.mediacenter.core.settings.pojos.Group;
 import pt.iscte.ipm.mediacenter.core.settings.pojos.Setting;
 
@@ -13,11 +15,11 @@ import java.util.Properties;
 public class SettingsManager {
     private static ObjectMapper mapper = new ObjectMapper();
     private static SettingsManager INSTANCE = null;
-    private static final String SETTINGS_FOLDER = "settings/";
+    private static final String SETTINGS_FOLDER = "./settings/";
     private static HashMap<String,Group> groups = new HashMap<>();
-    //private static Properties props = new Properties();
 
     private SettingsManager() {
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
         File folder = new File(SETTINGS_FOLDER);
         File[] listOfFiles = folder.listFiles();
 
@@ -33,7 +35,7 @@ public class SettingsManager {
 
     public static void save() throws IOException {
         getInstance();
-        for(Group g : groups.values()){
+        for (Group g : groups.values()) {
             mapper.writeValue(new File(SETTINGS_FOLDER+g.getId()+".json"), g);
         }
     }

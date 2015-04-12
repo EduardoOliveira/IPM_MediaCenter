@@ -1,20 +1,15 @@
 package pt.iscte.ipm.mediacenter.core.database.album;
 
-import org.mongodb.morphia.annotations.Embedded;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Reference;
-import pt.iscte.ipm.mediacenter.core.database.artist.Artist;
+import org.mongodb.morphia.annotations.*;
 import pt.iscte.ipm.mediacenter.core.database.song.Song;
 import pt.iscte.ipm.mediacenter.core.database.studio.Studio;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-/**
- * Created by Admin on 19-02-2015.
- */
-
-@Entity("albums")
+@Entity("album")
 public class Album {
 
     @Id
@@ -23,51 +18,62 @@ public class Album {
     private String genre;
 
     @Reference
-    private Artist artist;
-    @Reference
     private Studio studio;
 
-    @Embedded
-    private List<Song> songs;
-
+    @Reference
+    private Set<Song> songs = new HashSet<>();
 
     //Contructor
-    public Album(String name, Artist artist){
-        this.name = name;
-        this.artist = artist;
 
-}
+    public Album() {
+    }
+
+    public Album(String name) {
+        this.name = name;
+    }
+
+    public Album(String name,Set<Song> songs) {
+        this.songs = songs;
+        this.name = name;
+    }
 
     //Getters
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public long getDuration(){
+
+    public long getDuration() {
         return duration;
     }
-    public Artist getArtist(){
-        return artist;
+
+    public String getGenre() {
+        return genre;
     }
-    public String getGenre(){ return genre; }
-    public List<Song> getSongs(){
+
+    public Set<Song> getSongs() {
         return songs;
     }
 
 
+
     //Setters
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
-    public void setDuration(long duration){
+
+    public void setDuration(long duration) {
         this.duration = duration;
     }
-    public void setArtist(Artist artist){
-        this.artist = artist;
-    }
-    public void setGenre(String genre){
+
+    public void setGenre(String genre) {
         this.genre = genre;
     }
-    public void addSongs(Song s){
+
+    public void addSong(Song s) {
         songs.add(s);
+    }
+
+    public void setSongs(Set<Song> songs) {
+        this.songs = songs;
     }
 }

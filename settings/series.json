@@ -1,1 +1,16 @@
-{"label":"Series","id":"series","description":"Series configurations","settings":[{"label":"Series directory","id":"dir","value":"C:\\\\qwdqdqd","description":"Series library location"},{"label":"Series format","id":"format","value":"/(?<showName>.*)/Season(?<season>\\d2)/(?<episode>.*)-(?<title>.*)\\.(?<ext>.\\w+)$","description":"Series library format"}]}
+{
+  "label" : "Series",
+  "id" : "series",
+  "description" : "Series configurations",
+  "settings" : [ {
+    "label" : "Series directory",
+    "id" : "dir",
+    "value" : "C:\\\\qwdqdqd",
+    "description" : "Series library location"
+  }, {
+    "label" : "Series format",
+    "id" : "format",
+    "value" : "/(?<showName>.*)/Season(?<season>\\d2)/(?<episode>.*)-(?<title>.*)\\.(?<ext>.\\w+)$",
+    "description" : "Series library format"
+  } ]
+}

@@ -1,55 +1,50 @@
 package pt.iscte.ipm.mediacenter.core.database.song;
 
-import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
-import pt.iscte.ipm.mediacenter.core.database.album.Album;
-import pt.iscte.ipm.mediacenter.core.database.artist.Artist;
-import pt.iscte.ipm.mediacenter.core.database.genre.Genre;
+import pt.iscte.ipm.mediacenter.core.database.Genre.Genre;
 import pt.iscte.ipm.mediacenter.core.database.studio.Studio;
 import pt.iscte.ipm.mediacenter.core.database.producer.Producer;
 
-/**
- * Created by Admin on 19-02-2015.
- */
 @Entity("songs")
 public class Song {
 
     @Id
-    private ObjectId id;
+    private String md5;
 
     private String name;
     private double runTime;
     private int trackNum;
+    private String location;
 
-    @Reference
-    private Album album;
     @Reference
     private Producer producer;
     @Reference
     private Studio recStudio;
-    @Reference
-    private Artist artist;
-    @Reference
     private Genre genre;
 
-    public Song (String name, double runTime, Artist artist, Album album){
+    public Song() {
+    }
+
+    public Song (String name, double runTime){
         this.name = name;
         this.runTime = runTime;
-        this.artist = artist;
-        this.album = album;
+    }
+
+    public Song(String md5, String name, double runTime,String location) {
+        this.md5 = md5;
+        this.name = name;
+        this.runTime = runTime;
+        this.location = location;
     }
 
     //Getters
-    public ObjectId getId(){
-        return id;
+    public String getMd5(){
+        return md5;
     }
     public String getName(){
         return name;
-    }
-    public Album getAlbum(){
-        return album;
     }
     public double getRunTime(){
         return runTime;
@@ -66,13 +61,13 @@ public class Song {
     public int getTrackNum(){
         return trackNum;
     }
+    public String getLocation() {
+        return location;
+    }
 
     //Setters
     public void setName(String name){
         this.name = name;
-    }
-    public void setAlbum(Album a){
-        this.album = a;
     }
     public void setRunTime(int r){
         this.runTime = r;
@@ -89,5 +84,13 @@ public class Song {
     public void setTrackNum(int trackNum){
         this.trackNum = trackNum;
     }
-
+    public void setMd5(String md5) {
+        this.md5 = md5;
+    }
+    public void setRunTime(double runTime) {
+        this.runTime = runTime;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

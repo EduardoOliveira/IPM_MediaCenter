@@ -1,0 +1,19 @@
+<div class="media-big">
+    <div class="container-fluid">
+        <div class="row top-row">
+            <div class="col-md-12">
+                {{selected.name}}
+            </div>
+        </div>
+        <div class="row content-row" data-ng-repeat="album in selected.albums">
+            <div class="col-md-12 container-fluid">
+                <div class="row">
+                    <div class="col-md-12">{{album.name}}</div>
+                </div>
+                <div class="row container-fluid" data-ng-repeat="song in album.songs">
+                    <div class="col-md-12">{{song.name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

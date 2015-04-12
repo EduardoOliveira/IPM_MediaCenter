@@ -9,11 +9,9 @@ import java.nio.file.attribute.BasicFileAttributes;
 public class FolderWatch extends Thread {
 
     private MediaHandler mediaHandler;
-    private Path folder;
     private WatchService watchService;
 
     public FolderWatch(Path folder, MediaHandler mediaHandler) throws IOException {
-        this.folder = folder;
         this.mediaHandler = mediaHandler;
         this.watchService = folder.getFileSystem().newWatchService();
         Files.walkFileTree(folder, fileVisitor);
@@ -36,6 +34,7 @@ public class FolderWatch extends Thread {
                         continue; // loop
                     }
                     if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE || event.kind() == StandardWatchEventKinds.ENTRY_MODIFY) {
+                        System.out.println(thisPath);
                         if (thisPath.toFile().exists()){
                             if(thisPath.toFile().isDirectory()) {
                                 Files.walkFileTree(thisPath, fileVisitor);
@@ -53,9 +52,7 @@ public class FolderWatch extends Thread {
                     }
                 }
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
         }
@@ -64,6 +61,7 @@ public class FolderWatch extends Thread {
     final SimpleFileVisitor<Path> fileVisitor = new SimpleFileVisitor<Path>() {
         @Override
         public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+            System.out.println(dir);
             dir.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.ENTRY_DELETE);
 
             return FileVisitResult.CONTINUE;

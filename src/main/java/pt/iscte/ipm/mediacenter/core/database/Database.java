@@ -10,45 +10,44 @@ import pt.iscte.ipm.mediacenter.core.settings.SettingsManager;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 
-/**
- * Created by Admin on 22-02-2015.
- */
 public class Database {
+    private static Database INSTANCE = new Database();
+    private MongoClient mongo = null;
+    private Morphia morphia = null;
+    private Datastore ds = null;
 
-    private static MongoClient mongoInst = null;
-    private static Morphia morphiaInst = null;
-    private static Datastore ds = null;
+    private Database() {
+        MongoCredential credential = MongoCredential.createMongoCRCredential(SettingsManager.getSetting("mongo", "user"),
+                SettingsManager.getSetting("mongo", "authentication_db"),
+                SettingsManager.getSetting("mongo", "password").toCharArray());
+        try {
+            mongo = new MongoClient(new ServerAddress(SettingsManager.getSetting("mongo", "server"),
+                    SettingsManager.getIntegerSetting("mongo", "port")), Arrays.asList(credential));
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
 
-    private Database(){
-
+        morphia = new Morphia();
     }
 
-    public static synchronized MongoClient getMongo(){
-        MongoCredential credential = MongoCredential.createMongoCRCredential(SettingsManager.getSetting("mongo","user"),
-                SettingsManager.getSetting("mongo","authentication_db"),
-                SettingsManager.getSetting("mongo","password").toCharArray());
-        if(mongoInst == null){
-            try {
-                mongoInst = new MongoClient(new ServerAddress(SettingsManager.getSetting("mongo","server"),
-                        SettingsManager.getIntegerSetting("mongo","port")), Arrays.asList(credential));
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            }
-        }
-        return mongoInst;
-    }
-    public static synchronized Morphia getMorphia(){
-        if(morphiaInst == null){
-            morphiaInst = new Morphia();
-        }
-        return morphiaInst;
+    public MongoClient getMongo() {
+        return mongo;
     }
 
-    public static  synchronized Datastore startDS(){
-        if(ds == null){
-            ds = morphiaInst.createDatastore(mongoInst, SettingsManager.getSetting("mongo","database"));
+    public Morphia getMorphia() {
+        return morphia;
+    }
+
+    public synchronized Datastore getDataStore() {
+        if (ds == null) {
+            ds = morphia.createDatastore(mongo, SettingsManager.getSetting("mongo", "database"));
+            ds.ensureIndexes();
         }
-        ds.ensureIndexes();
         return ds;
+    }
+
+
+    public static Database getInstance() {
+        return INSTANCE;
     }
 }

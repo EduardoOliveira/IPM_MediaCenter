@@ -1,1 +1,36 @@
-{"label":"MongoDB","id":"mongo","description":"Mongo db server configurations","settings":[{"label":"Server Address","id":"server","value":"localhost","description":"Server location"},{"label":"Server port","id":"port","value":"2701","description":"Server port"},{"label":"Database name","id":"database","value":"media_center","description":"Main storage database"},{"label":"Authentication Database name","id":"authentication_db","value":"authentication","description":"Authentication database"},{"label":"Username","id":"user","value":"root","description":"Database user"},{"label":"Password","id":"password","value":"Iw0ntT3llY0u","description":"Database Password"}]}
+{
+  "label" : "MongoDB",
+  "id" : "mongo",
+  "description" : "Mongo db server configurations",
+  "settings" : [ {
+    "label" : "Server Address",
+    "id" : "server",
+    "value" : "128.199.52.250",
+    "description" : "Server location"
+  }, {
+    "label" : "Server port",
+    "id" : "port",
+    "value" : "27017",
+    "description" : "Server port"
+  }, {
+    "label" : "Database name",
+    "id" : "database",
+    "value" : "media_center",
+    "description" : "Main storage database"
+  }, {
+    "label" : "Authentication Database name",
+    "id" : "authentication_db",
+    "value" : "admin",
+    "description" : "Authentication database"
+  }, {
+    "label" : "Username",
+    "id" : "user",
+    "value" : "rute",
+    "description" : "Database user"
+  }, {
+    "label" : "Password",
+    "id" : "password",
+    "value" : "pfleotesla1",
+    "description" : "Database Password"
+  } ]
+}

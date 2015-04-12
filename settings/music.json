@@ -1,1 +1,16 @@
-{"label":"Music","id":"music","description":"Music configurations","settings":[{"label":"Music Directory","id":"dir","value":"C:\\\\","description":"Music library location"},{"label":"Music format","id":"format","value":"/(?<artist>.*)/(?<album>.*)/(?<track>.*)-(?<title>.*)\\.(?<ext>.\\w+)$","description":"Music library format"}]}
+{
+  "label" : "Music",
+  "id" : "music",
+  "description" : "Music configurations",
+  "settings" : [ {
+    "label" : "Music Directory",
+    "id" : "dir",
+    "value" : "Z:\\knoker.no-ip.org\\transmission\\",
+    "description" : "Music library location"
+  }, {
+    "label" : "Music format",
+    "id" : "format",
+    "value" : "/(?<artist>.*)/(?<album>.*)/(?<track>.*)-(?<title>.*)\\.(?<ext>.\\w+)$",
+    "description" : "Music library format"
+  } ]
+}

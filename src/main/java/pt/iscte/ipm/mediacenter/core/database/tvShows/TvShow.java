@@ -5,7 +5,7 @@ import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
-import pt.iscte.ipm.mediacenter.core.database.genre.Genre;
+import pt.iscte.ipm.mediacenter.core.database.Genre.Genre;
 import pt.iscte.ipm.mediacenter.core.database.actor.Actor;
 import pt.iscte.ipm.mediacenter.core.database.director.Director;
 import pt.iscte.ipm.mediacenter.core.database.embedded.*;

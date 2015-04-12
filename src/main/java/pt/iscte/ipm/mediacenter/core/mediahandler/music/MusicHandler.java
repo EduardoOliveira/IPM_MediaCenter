@@ -1,34 +1,38 @@
 package pt.iscte.ipm.mediacenter.core.mediahandler.music;
 
-import com.mongodb.*;
 import com.mpatric.mp3agic.*;
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
 import pt.iscte.ipm.mediacenter.core.database.Database;
 import pt.iscte.ipm.mediacenter.core.database.album.Album;
+import pt.iscte.ipm.mediacenter.core.database.album.AlbumDAO;
 import pt.iscte.ipm.mediacenter.core.database.artist.Artist;
+import pt.iscte.ipm.mediacenter.core.database.artist.ArtistDAO;
 import pt.iscte.ipm.mediacenter.core.database.song.Song;
+import pt.iscte.ipm.mediacenter.core.database.song.SongDAO;
 import pt.iscte.ipm.mediacenter.core.mediahandler.MediaHandler;
+import pt.iscte.ipm.mediacenter.core.settings.SettingsManager;
+import pt.iscte.ipm.mediacenter.core.utils.FileUtils;
 
-import javax.xml.crypto.Data;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class MusicHandler implements MediaHandler{
+public class MusicHandler implements MediaHandler {
 
+    ArtistDAO artistDao = new ArtistDAO();
+    AlbumDAO albumDao = new AlbumDAO();
+    SongDAO songDao = new SongDAO();
 
     @Override
     public void handle(Path path) {
-        if(path.toString().endsWith(".mp3"))
+        if (path.toString().endsWith(".mp3"))
             new Thread(new MusicProcess(path)).start();
     }
 
-    private class MusicProcess implements Runnable{
+    private class MusicProcess implements Runnable {
         private Path path;
+
         public MusicProcess(Path path) {
             this.path = path;
         }
@@ -57,11 +61,9 @@ public class MusicHandler implements MediaHandler{
             //}
             //grava na base de dados
 
+            System.out.println(path);
 
-            MongoClient mongo = Database.getMongo();
-            Morphia morphia = Database.getMorphia();
-
-            Datastore ds = morphia.createDatastore(mongo, "media_center");
+            Datastore ds = Database.getInstance().getDataStore();
 
             //Insert the new song in database
 
@@ -69,36 +71,56 @@ public class MusicHandler implements MediaHandler{
             Mp3File music = null;
             try {
                 music = new Mp3File(path.toString());
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (UnsupportedTagException e) {
-                e.printStackTrace();
-            } catch (InvalidDataException e) {
+            } catch (IOException | UnsupportedTagException | InvalidDataException e) {
                 e.printStackTrace();
             }
             ID3v2 tag;
-            if(music.hasId3v2Tag()){
+            if ((music != null) && music.hasId3v2Tag()) {
                 tag = music.getId3v2Tag();
-            }
-            else{
+            } else {
                 tag = new ID3v22Tag();
                 tag.setArtist("Unknown");
                 tag.setAlbum("Unknown");
                 tag.setTitle("Unknown");
 
             }
+            String md5 = FileUtils.digest(path.toFile(), FileUtils.DIGEST_MD5);
             String trackName = tag.getTitle();
-            String artist = tag.getArtist();
-            String album = tag.getAlbum();
+            String artistName = tag.getArtist();
+            String albumName = tag.getAlbum();
             double length = tag.getLength();
+            String location = ".\\" + path.toString().substring(SettingsManager.getSetting("music", "dir").length());
+            System.out.println(location);
 
-            Artist ar = new Artist(artist);
-            Album al = new Album(album, ar);
-            Song s = new Song(trackName, length, ar, al);
+            Song song = songDao.findOne("md5", md5);
+            if (song == null) {
+                song = new Song(md5, trackName, length, location);
+            }
+            song.setName(trackName);
+            songDao.save(song);
+
+            Album album = albumDao.findOne("name", albumName);
+            if (album == null) {
+                album = new Album(albumName);
+            }
+            album.addSong(song);
+            albumDao.save(album);
+
+            Artist artist = artistDao.findOne("name", artistName);
+            if (artist == null) {
+                artist = new Artist(artistName);
+            }
+            artist.addAlbum(album);
+            artistDao.save(artist);
+
+/*
+            Song s = new Song(FileUtils.digest(path.toFile(),FileUtils.DIGEST_MD5), trackName, length,location);
+            Album al = new Album(album, Arrays.asList(s));
+            Artist ar = new Artist(artist,Arrays.asList(al));
 
             ds.save(s);
-
-
+            ds.save(al);
+            ds.save(ar);*/
         }
     }
 }

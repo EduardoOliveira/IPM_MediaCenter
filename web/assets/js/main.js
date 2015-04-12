@@ -12,7 +12,8 @@ angular.module('mediaCenter',
         'mediaCenter.core',
         'mediaCenter.session',
         'mediaCenter.movies',
-        'mediaCenter.settings'
+        'mediaCenter.settings',
+        'mediaCenter.music',
     ]
 );
 
