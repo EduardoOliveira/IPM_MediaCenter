@@ -5,7 +5,7 @@ import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
-import pt.iscte.ipm.mediacenter.core.database.Genre.Genre;
+import pt.iscte.ipm.mediacenter.core.database.genre.Genre2;
 import pt.iscte.ipm.mediacenter.core.database.embedded.Image;
 import pt.iscte.ipm.mediacenter.core.database.studio.Studio;
 
@@ -35,7 +35,7 @@ public class Movie {
     @Reference
     private Studio studio;
     @Reference
-    private Genre genre;
+    private Genre2 genre;
 
     //Constructor
     public Movie() {
@@ -55,7 +55,7 @@ public class Movie {
     public String getFullPlot(){
         return fullPlot;
     }
-    public Genre getGenre(){
+    public Genre2 getGenre(){
         return genre;
     }
     public Studio getStudio(){
@@ -111,7 +111,7 @@ public class Movie {
         this.studio = s;
     }
 
-    public void setGenre(Genre g){
+    public void setGenre(Genre2 g){
         this.genre = genre;
     }
 
