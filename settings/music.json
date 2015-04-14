@@ -1,16 +1,25 @@
 {
-  "label" : "Music",
-  "id" : "music",
-  "description" : "Music configurations",
-  "settings" : [ {
-    "label" : "Music Directory",
-    "id" : "dir",
-    "value" : "Z:\\knoker.no-ip.org\\transmission\\",
-    "description" : "Music library location"
-  }, {
-    "label" : "Music format",
-    "id" : "format",
-    "value" : "/(?<artist>.*)/(?<album>.*)/(?<track>.*)-(?<title>.*)\\.(?<ext>.\\w+)$",
-    "description" : "Music library format"
-  } ]
+  "label": "Music",
+  "id": "music",
+  "description": "Music configurations",
+  "settings": [
+    {
+      "label": "Music Directory",
+      "id": "dir",
+      "value": "C:\\Users\\KnoKer\\Music",
+      "description": "Music library location"
+    },
+    {
+      "label": "Music format",
+      "id": "format",
+      "value": "/(?<artist>.*)/(?<album>.*)/(?<track>.*)-(?<title>.*)\\.(?<ext>.\\w+)$",
+      "description": "Music library format"
+    },
+    {
+      "label": "Image Storage",
+      "id": "images_dir",
+      "value": ".\\web\\assets\\images\\music",
+      "description": "Location of the music images"
+    }
+  ]
 }

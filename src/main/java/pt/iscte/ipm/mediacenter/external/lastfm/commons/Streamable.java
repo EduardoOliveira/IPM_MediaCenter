@@ -1,4 +1,4 @@
-package pt.iscte.ipm.mediacenter.external.lastfm.track;
+package pt.iscte.ipm.mediacenter.external.lastfm.commons;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

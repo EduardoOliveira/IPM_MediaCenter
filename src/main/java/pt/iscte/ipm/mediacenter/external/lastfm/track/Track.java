@@ -1,6 +1,7 @@
 package pt.iscte.ipm.mediacenter.external.lastfm.track;
 
 import pt.iscte.ipm.mediacenter.external.lastfm.commons.Image;
+import pt.iscte.ipm.mediacenter.external.lastfm.commons.Streamable;
 
 public class Track
 {

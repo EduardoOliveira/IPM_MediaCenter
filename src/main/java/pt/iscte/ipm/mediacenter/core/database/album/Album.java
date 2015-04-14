@@ -1,6 +1,7 @@
 package pt.iscte.ipm.mediacenter.core.database.album;
 
 import org.mongodb.morphia.annotations.*;
+import pt.iscte.ipm.mediacenter.core.database.embedded.Image;
 import pt.iscte.ipm.mediacenter.core.database.song.Song;
 import pt.iscte.ipm.mediacenter.core.database.studio.Studio;
 
@@ -15,6 +16,7 @@ public class Album {
     @Id
     private String name;
     private long duration;
+    private String releaseDate;
     private String genre;
 
     @Reference
@@ -23,6 +25,8 @@ public class Album {
     @Reference
     private Set<Song> songs = new HashSet<>();
 
+    @Embedded
+    private List<Image> images = new ArrayList<>();
     //Contructor
 
     public Album() {
@@ -54,7 +58,13 @@ public class Album {
         return songs;
     }
 
+    public List<Image> getImages() {
+        return images;
+    }
 
+    public String getReleaseDate() {
+        return releaseDate;
+    }
 
     //Setters
     public void setName(String name) {
@@ -76,4 +86,17 @@ public class Album {
     public void setSongs(Set<Song> songs) {
         this.songs = songs;
     }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public void addImage(Image image){
+        this.images.add(image);
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
 }

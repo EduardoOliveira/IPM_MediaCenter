@@ -1,5 +1,7 @@
 package pt.iscte.ipm.mediacenter.external.lastfm;
 
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.kevinsawicki.http.HttpRequest;
 import pt.iscte.ipm.mediacenter.core.settings.SettingsManager;
@@ -14,7 +16,7 @@ public abstract class LastfmAPI {
     protected ObjectMapper objectMapper = new ObjectMapper();
 
     public LastfmAPI(){
-        //objectMapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        //objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
 

@@ -1,4 +1,4 @@
-package pt.iscte.ipm.mediacenter.external.lastfm.artist;
+package pt.iscte.ipm.mediacenter.external.lastfm.commons;
 
 public class Tag
 {

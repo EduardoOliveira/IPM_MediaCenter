@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
-public class FolderScanner extends Thread{
+public class FolderScanner implements Runnable {
 
     private final MediaHandler mediaHandler;
     private final Path folder;

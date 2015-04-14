@@ -5,16 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Image {
     @JsonProperty("#text")
-    private String text;
+    private String url;
 
     private String size;
 
-    public String getText() {
-        return text;
+    public String getUrl() {
+        return url;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getSize() {

@@ -4,9 +4,6 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Id;
 
-/**
- * Created by Admin on 19-02-2015.
- */
 @Embedded
 public class Image {
 
@@ -14,6 +11,15 @@ public class Image {
     private ObjectId id;
     private String description;
     private String path;
+    private String size;
+
+    public Image() {
+    }
+
+    public Image(String path, String size) {
+        this.size = size;
+        this.path = path;
+    }
 
     //Getters
     public ObjectId getId(){
@@ -25,6 +31,9 @@ public class Image {
     public String getPath(){
         return path;
     }
+    public String getDescription() {
+        return description;
+    }
 
     //Setters
     public void setDescription(String d){
@@ -33,5 +42,7 @@ public class Image {
     public void setPath(String path){
         this.path = path;
     }
-
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
 }

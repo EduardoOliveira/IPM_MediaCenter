@@ -5,7 +5,7 @@
   "settings" : [ {
     "label" : "Series directory",
     "id" : "dir",
-    "value" : "C:\\\\qwdqdqd",
+    "value" : "Z:\\knoker.no-ip.org\\series\\",
     "description" : "Series library location"
   }, {
     "label" : "Series format",

@@ -1,16 +1,25 @@
 {
-  "label" : "Server",
-  "id" : "server",
-  "description" : "Server Configuration (Requires Restart)",
-  "settings" : [ {
-    "label" : "Server port",
-    "id" : "port",
-    "value" : "80",
-    "description" : "Server Port"
-  }, {
-    "label" : "Server interface",
-    "id" : "interface",
-    "value" : "0.0.0.0",
-    "description" : "Server Interface"
-  } ]
+  "label": "Server",
+  "id": "server",
+  "description": "Server Configuration (Requires Restart)",
+  "settings": [
+    {
+      "label": "Server port",
+      "id": "port",
+      "value": "80",
+      "description": "Server Port"
+    },
+    {
+      "label": "Server interface",
+      "id": "interface",
+      "value": "0.0.0.0",
+      "description": "Server Interface"
+    },
+    {
+      "label": "Number of Workers",
+      "id": "workers",
+      "value": "4",
+      "description": "Number of workers to run in background"
+    }
+  ]
 }
