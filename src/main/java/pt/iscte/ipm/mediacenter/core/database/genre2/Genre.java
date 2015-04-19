@@ -1,4 +1,4 @@
-package pt.iscte.ipm.mediacenter.core.database.Genre;
+package pt.iscte.ipm.mediacenter.core.database.genre2;
 
 import org.mongodb.morphia.annotations.Entity;
 
