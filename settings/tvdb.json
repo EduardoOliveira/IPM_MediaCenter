@@ -1,0 +1,13 @@
+{
+  "label": "TheTVDB",
+  "id": "tvdb",
+  "description": "TheTVDB configurations",
+  "settings": [
+    {
+      "label": "API Key",
+      "id": "api_key",
+      "value": "BDC1D4448FFB5231",
+      "description": "TheTVDB API key"
+    }
+  ]
+}

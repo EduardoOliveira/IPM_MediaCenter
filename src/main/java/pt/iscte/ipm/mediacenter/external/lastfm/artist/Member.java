@@ -1,10 +1,16 @@
 package pt.iscte.ipm.mediacenter.external.lastfm.artist;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Member
 {
+    @JsonProperty("yearto")
+    private String yearTo;
+
     private String name;
 
-    private String yearfrom;
+    @JsonProperty("yearfrom")
+    private String yearFrom;
 
     public String getName ()
     {
@@ -16,13 +22,21 @@ public class Member
         this.name = name;
     }
 
-    public String getYearfrom ()
+    public String getYearFrom()
     {
-        return yearfrom;
+        return yearFrom;
     }
 
-    public void setYearfrom (String yearfrom)
+    public void setYearFrom(String yearFrom)
     {
-        this.yearfrom = yearfrom;
+        this.yearFrom = yearFrom;
+    }
+
+    public String getYearTo() {
+        return yearTo;
+    }
+
+    public void setYearTo(String yearTo) {
+        this.yearTo = yearTo;
     }
 }

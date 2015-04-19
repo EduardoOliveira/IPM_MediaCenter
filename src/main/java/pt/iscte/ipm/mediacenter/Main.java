@@ -17,14 +17,15 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-
+    /*
         FolderScanner musicScanner = new FolderScanner(Paths.get(SettingsManager.getSetting("music","dir")), new MusicHandler());
-        WorkersManager.addRunnable(musicScanner);
-        /*
+        WorkersManager.addRunnable(musicScanner);*/
         FolderScanner seriesScanner = new FolderScanner(Paths.get(SettingsManager.getSetting("series","dir")), new SeriesHandler());
-        seriesScanner.start();
-        */
-        /*
+        WorkersManager.addRunnable(seriesScanner);
+
+        //(new SeriesHandler()).handle(Paths.get("Z:\\knoker.no-ip.org\\series\\Constantine\\S01\\Constantine.S01E12.HDTV.x264-LOL.mp4"));
+        //(new SeriesHandler()).handle(Paths.get("Z:\\knoker.no-ip.org\\series\\Constantine\\S01\\Constantine.S01E12.HDTV.x264-LOL.mp4"));
+/*
         FolderWatch moviesWatch = new FolderWatch(Paths.get(SettingsManager.getSetting("movies.dir")),new MovieHandler());
         moviesWatch.start();
 

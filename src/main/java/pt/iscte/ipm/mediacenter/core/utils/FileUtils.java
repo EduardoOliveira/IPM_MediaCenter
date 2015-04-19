@@ -1,9 +1,14 @@
 package pt.iscte.ipm.mediacenter.core.utils;
 
+import com.github.kevinsawicki.http.HttpRequest;
+import pt.iscte.ipm.mediacenter.core.database.embedded.Image;
+import pt.iscte.ipm.mediacenter.core.settings.SettingsManager;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -37,5 +42,21 @@ public class FileUtils {
             e.printStackTrace();
         }
         return sb != null ? sb.toString() : null;
+    }
+
+    public static void downloadFile(String url, String destination) throws IOException {
+        HttpRequest request = HttpRequest.get(url);
+        File f = new File(destination);
+        f.getParentFile().mkdirs();
+        f.createNewFile();
+        request.receive(f);
+    }
+
+    public static String extractExtension(String path) {
+        return path.substring(path.lastIndexOf('.') + 1);
+    }
+
+    public static String relativizePath(String start, String full) {
+        return "." + File.separator + full.substring(start.length());
     }
 }

@@ -2,6 +2,7 @@ package pt.iscte.ipm.mediacenter.core.database.artist;
 
 import org.mongodb.morphia.annotations.*;
 import pt.iscte.ipm.mediacenter.core.database.album.Album;
+import pt.iscte.ipm.mediacenter.core.database.embedded.Image;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,6 +14,8 @@ public class Artist {
 
     @Id
     private String name;
+
+    private List<Image> images = new ArrayList<>();
 
     @Reference
     private Set<Album> albums = new HashSet<>();
@@ -47,5 +50,17 @@ public class Artist {
 
     public void addAlbum(Album album){
         albums.add(album);
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public void addImage(Image image){
+        this.images.add(image);
     }
 }

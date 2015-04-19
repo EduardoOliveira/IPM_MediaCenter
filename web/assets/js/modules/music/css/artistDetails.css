@@ -1,0 +1,20 @@
+.artist-info-container{
+    position: relative;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.artist-container{
+    height: 100%;
+}
+
+.artist-container .artist-image{
+    height: 200px;
+}
+
+.artist-container .albums-container{
+    overflow-y: scroll;
+}
+

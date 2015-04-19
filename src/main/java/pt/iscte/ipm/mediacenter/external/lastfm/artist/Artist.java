@@ -24,7 +24,8 @@ public class Artist{
 
         private String streamable;
 
-        private Image[] image;
+        @JsonProperty("image")
+        private Image[] images;
 
 
         @JsonProperty("bandmembers")
@@ -104,14 +105,14 @@ public class Artist{
             this.streamable = streamable;
         }
 
-        public Image[] getImage ()
+        public Image[] getImages()
         {
-            return image;
+            return images;
         }
 
-        public void setImage (Image[] image)
+        public void setImages(Image[] images)
         {
-            this.image = image;
+            this.images = images;
         }
 
         public BandMembers getBandMembers()

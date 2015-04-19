@@ -6,9 +6,6 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 import pt.iscte.ipm.mediacenter.core.database.tvShows.TvShow;
 
-/**
- * Created by Admin on 24-02-2015.
- */
 @Embedded
 public class Season {
 

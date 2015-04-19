@@ -10,7 +10,12 @@
   }, {
     "label" : "Series format",
     "id" : "format",
-    "value" : "/(?<showName>.*)/Season(?<season>\\d2)/(?<episode>.*)-(?<title>.*)\\.(?<ext>.\\w+)$",
+    "value" : "((?<ShowNameA>[^\\\\\\/]*[^ (_.])[ (_.]+((?<ShowYearA>\\d{4})([(_.]+S(?<SeasonA>\\d{1,2})E(?<EpisodeA>\\d{1,2}))?|(?<!\\d{4}[ (_.])S(?<SeasonB>\\d{1,2})E(?<EpisodeB>\\d{1,2})|(?<EpisodeC>\\d{3})))",
     "description" : "Series library format"
+  }, {
+    "label" : "Image Storage",
+    "id" : "images_dir",
+    "value" : ".\\web\\assets\\images\\series",
+    "description" : "Location of the series images"
   } ]
 }

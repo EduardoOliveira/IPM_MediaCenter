@@ -16,7 +16,7 @@ public class SettingsManager {
     private static ObjectMapper mapper = new ObjectMapper();
     private static SettingsManager INSTANCE = null;
     private static final String SETTINGS_FOLDER = "./settings/";
-    private static HashMap<String,Group> groups = new HashMap<>();
+    private static HashMap<String, Group> groups = new HashMap<>();
 
     private SettingsManager() {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -25,8 +25,8 @@ public class SettingsManager {
 
         for (File f : listOfFiles) {
             try {
-                Group group = (Group)mapper.readValue(f, Group.class);
-                groups.put(group.getId(),group);
+                Group group = (Group) mapper.readValue(f, Group.class);
+                groups.put(group.getId(), group);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -36,21 +36,21 @@ public class SettingsManager {
     public static void save() throws IOException {
         getInstance();
         for (Group g : groups.values()) {
-            mapper.writeValue(new File(SETTINGS_FOLDER+g.getId()+".json"), g);
+            mapper.writeValue(new File(SETTINGS_FOLDER + g.getId() + ".json"), g);
         }
     }
 
-    public static String getSetting(String group,String key) {
+    public static String getSetting(String group, String key) {
         getInstance();
         return groups.get(group).getSetting(key).getValue();
     }
 
-    public static Integer getIntegerSetting(String group,String key) {
+    public static Integer getIntegerSetting(String group, String key) {
         getInstance();
         return Integer.parseInt(groups.get(group).getSetting(key).getValue());
     }
 
-    public static void setSetting(String group,String key, String value) {
+    public static void setSetting(String group, String key, String value) {
         getInstance();
         groups.get(group).getSetting(key).setValue(value);
     }
@@ -67,6 +67,6 @@ public class SettingsManager {
     }
 
     public static void setGroup(Group group) {
-        groups.put(group.getId(),group);
+        groups.put(group.getId(), group);
     }
 }

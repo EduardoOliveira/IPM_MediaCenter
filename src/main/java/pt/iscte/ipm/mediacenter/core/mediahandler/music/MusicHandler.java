@@ -1,6 +1,5 @@
 package pt.iscte.ipm.mediacenter.core.mediahandler.music;
 
-import com.github.kevinsawicki.http.HttpRequest;
 import com.mpatric.mp3agic.*;
 import pt.iscte.ipm.mediacenter.core.database.album.Album;
 import pt.iscte.ipm.mediacenter.core.database.album.AlbumDAO;
@@ -66,7 +65,7 @@ public class MusicHandler implements MediaHandler {
             String artistName = tag.getArtist();
             String albumName = tag.getAlbum();
             double length = tag.getLength();
-            String location = ".\\" + path.toString().substring(SettingsManager.getSetting("music", "dir").length());
+            String location = FileUtils.relativizePath(SettingsManager.getSetting("music", "dir"), path.toString());
 
             Song song = songDao.findOne("md5", md5);
             if (song == null) {
@@ -78,35 +77,60 @@ public class MusicHandler implements MediaHandler {
 
             Album album = albumDao.findOne("name", albumName);
             if (album == null) {
-                album = new Album(albumName.replaceAll("[^a-zA-Z0-9]", ""));
-                pt.iscte.ipm.mediacenter.external.lastfm.album.Album albumInfo = albumApi.getInfo(albumName, artistName);
-                for (pt.iscte.ipm.mediacenter.external.lastfm.commons.Image i : albumInfo.getImages()) {
-                    HttpRequest request = HttpRequest.get(i.getUrl());
-                    try {
-                        String extension = i.getUrl().substring(i.getUrl().lastIndexOf('.') + 1);
-                        String path = SettingsManager.getSetting("music", "images_dir") + File.separator + album.getName()
-                                + "-" + i.getSize() + "." + extension;
-                        File f = new File(path);
-                        f.getParentFile().mkdirs();
-                        f.createNewFile();
-                        request.receive(f);
-                        album.addImage(new Image(path, i.getSize()));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                album.setReleaseDate(albumInfo.getReleaseDate().trim());
+                album = processAlbum(artistName, albumName);
             }
             album.addSong(song);
             albumDao.save(album);
 
             Artist artist = artistDao.findOne("name", artistName);
             if (artist == null) {
-                artist = new Artist(artistName);
-
+                artist = processArtist(artistName);
             }
             artist.addAlbum(album);
             artistDao.save(artist);
+        }
+
+        private Artist processArtist(String artistName) {
+            Artist artist;
+            artist = new Artist(artistName);
+            pt.iscte.ipm.mediacenter.external.lastfm.artist.Artist.ArtistInfo artistInfo = artistApi.getInfo(artistName);
+            for (pt.iscte.ipm.mediacenter.external.lastfm.commons.Image i : artistInfo.getImages()) {
+
+                String path = SettingsManager.getSetting("music", "images_dir") + File.separator +
+                        artist.getName().replaceAll("[^a-zA-Z0-9]", "") + "-" +
+                        i.getSize() + "." + FileUtils.extractExtension(i.getUrl());
+                try {
+                    FileUtils.downloadFile(i.getUrl(), path);
+                    artist.addImage(new Image(path, i.getSize(),
+                            FileUtils.relativizePath(SettingsManager.getSetting("server","web_folder"),path)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            return artist;
+        }
+
+        private Album processAlbum(String artistName, String albumName) {
+            Album album;
+            album = new Album(albumName);
+            pt.iscte.ipm.mediacenter.external.lastfm.album.Album albumInfo = albumApi.getInfo(albumName, artistName);
+            for (pt.iscte.ipm.mediacenter.external.lastfm.commons.Image i : albumInfo.getImages()) {
+
+                String path = SettingsManager.getSetting("music", "images_dir") + File.separator +
+                        album.getName().replaceAll("[^a-zA-Z0-9]", "") + "-" +
+                        i.getSize() + "." + FileUtils.extractExtension(i.getUrl());
+                try {
+                    FileUtils.downloadFile(i.getUrl(), path);
+                    album.addImage(new Image(path, i.getSize(),
+                            FileUtils.relativizePath(SettingsManager.getSetting("server", "web_folder"), path)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            album.setReleaseDate(albumInfo.getReleaseDate().trim());
+            return album;
         }
     }
 }

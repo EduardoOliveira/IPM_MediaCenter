@@ -1,25 +1,26 @@
 {
-  "label": "Server",
-  "id": "server",
-  "description": "Server Configuration (Requires Restart)",
-  "settings": [
-    {
-      "label": "Server port",
-      "id": "port",
-      "value": "80",
-      "description": "Server Port"
-    },
-    {
-      "label": "Server interface",
-      "id": "interface",
-      "value": "0.0.0.0",
-      "description": "Server Interface"
-    },
-    {
-      "label": "Number of Workers",
-      "id": "workers",
-      "value": "4",
-      "description": "Number of workers to run in background"
-    }
-  ]
+  "label" : "Server",
+  "id" : "server",
+  "description" : "Server Configuration (Requires Restart)",
+  "settings" : [ {
+    "label" : "Server port",
+    "id" : "port",
+    "value" : "80",
+    "description" : "Server Port"
+  }, {
+    "label" : "Server interface",
+    "id" : "interface",
+    "value" : "0.0.0.0",
+    "description" : "Server Interface"
+  }, {
+    "label" : "Web folder location",
+    "id" : "web_folder",
+    "value" : ".\\web",
+    "description" : "Web folder location"
+  }, {
+    "label" : "Number of Workers",
+    "id" : "workers",
+    "value" : "4",
+    "description" : "Number of workers to run in background"
+  } ]
 }

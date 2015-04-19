@@ -23,11 +23,12 @@ public class Database {
         try {
             mongo = new MongoClient(new ServerAddress(SettingsManager.getSetting("mongo", "server"),
                     SettingsManager.getIntegerSetting("mongo", "port")), Arrays.asList(credential));
+            morphia = new Morphia();
+            ds = morphia.createDatastore(mongo, SettingsManager.getSetting("mongo", "database"));
+            ds.ensureIndexes();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-
-        morphia = new Morphia();
     }
 
     public MongoClient getMongo() {
@@ -39,10 +40,6 @@ public class Database {
     }
 
     public synchronized Datastore getDataStore() {
-        if (ds == null) {
-            ds = morphia.createDatastore(mongo, SettingsManager.getSetting("mongo", "database"));
-            ds.ensureIndexes();
-        }
         return ds;
     }
 
