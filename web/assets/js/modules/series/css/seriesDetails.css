@@ -1,0 +1,105 @@
+.series-info-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.series-info-container .header-block {
+    margin-bottom: 5px;
+    height: 35px;
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-self: flex-start;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.series-info-container .header-block .title {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 35%;
+}
+
+.series-info-container .header-block .rating {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 25%;
+}
+
+.series-info-container .details-block {
+    align-self: stretch;
+    flex-grow: 0;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    min-height: 329px;
+    margin-bottom: 5px;
+}
+
+.series-info-container .details-block .left {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.series-info-container .details-block .left .img-wrapper {
+    align-self: stretch;
+    flex: 1 auto;
+    width: 197px;
+    height: 100%;
+    margin-bottom: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.series-info-container .details-block .left .img-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.series-info-container .details-block .left .play {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 35px;
+    width: 100%;
+    align-self: flex-end;
+    flex-grow: 0;
+}
+
+.series-info-container .details-block .right {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 60%;
+    flex: 1 0 auto;
+    margin-left: 5px;
+    padding: 10px;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.series-info-container .details-block .right .detail-row.labeled{
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
+    height: 35px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.series-info-container .episodes-block {
+    width: 100%;
+    background-color: blue;
+    align-self: flex-end;
+    flex: 1 100%;
+}

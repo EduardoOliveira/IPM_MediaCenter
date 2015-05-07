@@ -110,7 +110,7 @@ angular.module('mediaCenter.core.controllers', [])
             }
         });
     })
-    .controller('MainMenuController', function ($scope, NavigationService, $state) {
+    .controller('MainMenuController', function ($scope, NavigationService,BackgroundImageService, $state) {
         var mainMenuGui = new MainMenuGui({$element: $('.main-menu')});
         this.navigation = function (current) {
             var opts = {
@@ -173,5 +173,4 @@ angular.module('mediaCenter.core.controllers', [])
         $scope.go = function (nextView) {
             $state.go(nextView);
         };
-
     });

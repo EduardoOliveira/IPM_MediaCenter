@@ -59,4 +59,6 @@ public class Image {
     public void setSize(String size) {
         this.size = size;
     }
+
+
 }

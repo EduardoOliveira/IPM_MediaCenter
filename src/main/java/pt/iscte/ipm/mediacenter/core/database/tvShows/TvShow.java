@@ -115,4 +115,80 @@ public class TvShow {
     public void addEpisode(Episode epi){
         episodes.add(epi);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public String getPlotSummary() {
+        return plotSummary;
+    }
+
+    public String getFirstAired() {
+        return firstAired;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public int getNumEpisodes() {
+        return numEpisodes;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public List<Actor> getCast() {
+        return cast;
+    }
+
+    public List<Writer> getWriters() {
+        return writers;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public Set<Episode> getEpisodes() {
+        return episodes;
+    }
+
+    public List<Season> getSeasons() {
+        return seasons;
+    }
+
+    public Studio getStudio() {
+        return studio;
+    }
+
+    public List<Image> getBannerImages() {
+        return bannerImages;
+    }
+
+    public List<Image> getPosterImages() {
+        return posterImages;
+    }
+
+    public List<Image> getFanArtImages() {
+        return fanArtImages;
+    }
+
+    public List<Image> getSeasonImages() {
+        return seasonImages;
+    }
 }

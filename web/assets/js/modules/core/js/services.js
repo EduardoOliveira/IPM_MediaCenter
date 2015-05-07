@@ -125,4 +125,10 @@ angular.module('mediaCenter.core.services', [])
         this.stop=function(){
             this.loaders--;
         };
+    })
+    .service('BackgroundImageService',function(){
+        this.getDefault = function(){
+            return "/assets/images/bg.jpg";
+        };
+        this.image = this.getDefault();
     });

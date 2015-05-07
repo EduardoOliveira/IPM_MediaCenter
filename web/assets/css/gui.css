@@ -1,7 +1,11 @@
 body {
     margin: 0px;
     padding: 0px;
-    background: url("/assets/images/bg.jpg") no-repeat center center fixed;
-    background-size: cover;
+    background-color: black;
+/*    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;*/
+/*    background: url("/assets/images/bg.jpg") no-repeat center center fixed;
+    background-size: cover;*/
     color: #ffffff;
 }

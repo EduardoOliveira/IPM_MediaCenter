@@ -108,9 +108,9 @@ public class SeriesHandler implements MediaHandler {
             for (Banner b : banners) {
                 StringBuilder builder = new StringBuilder();
                 builder.append(SettingsManager.getSetting("series", "images_dir"));
-                builder.append(File.separator);
+                builder.append("/");
                 builder.append(id);
-                builder.append(File.separator);
+                builder.append("/");
                 builder.append(b.getId());
                 builder.append("-");
                 builder.append(b.getBannerType2().toString());

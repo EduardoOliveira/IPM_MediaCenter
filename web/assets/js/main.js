@@ -14,6 +14,7 @@ angular.module('mediaCenter',
         'mediaCenter.movies',
         'mediaCenter.settings',
         'mediaCenter.music',
+        'mediaCenter.series',
     ]
 );
 

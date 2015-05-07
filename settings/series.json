@@ -15,7 +15,7 @@
   }, {
     "label" : "Image Storage",
     "id" : "images_dir",
-    "value" : ".\\web\\assets\\images\\series",
+    "value" : "./web/assets/images/series",
     "description" : "Location of the series images"
   } ]
 }

@@ -29,4 +29,60 @@ public class Episode {
 
     public Episode() {
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public void setPlot(String plot) {
+        this.plot = plot;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
+    public String getFirstAired() {
+        return firstAired;
+    }
+
+    public void setFirstAired(String firstAired) {
+        this.firstAired = firstAired;
+    }
+
+    public int getSeason() {
+        return season;
+    }
+
+    public void setSeason(int season) {
+        this.season = season;
+    }
+
+    public int getEpNum() {
+        return epNum;
+    }
+
+    public void setEpNum(int epNum) {
+        this.epNum = epNum;
+    }
 }
