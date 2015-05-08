@@ -63,6 +63,12 @@
             <version>1.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.omertron</groupId>
+            <artifactId>themoviedbapi</artifactId>
+            <version>4.0</version>
+        </dependency>
+
         <!--HTTP Requests-->
         <dependency>
             <groupId>com.github.kevinsawicki</groupId>
