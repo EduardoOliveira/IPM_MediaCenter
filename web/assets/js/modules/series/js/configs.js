@@ -5,8 +5,8 @@ angular.module('mediaCenter.series.configs', [])
         $stateProvider
             .state('series', {
                 url: '/series',
-                resolve:{
-                    ListService:function(SeriesListService){
+                resolve: {
+                    ListService: function (SeriesListService) {
                         return SeriesListService;
                     }
                 },
@@ -17,7 +17,12 @@ angular.module('mediaCenter.series.configs', [])
                     'leftPane@series': {
                         controller: 'ListController',
                         templateUrl: '/assets/js/modules/core/templates/listComponent.html'
-                    },
+                    }
+                }
+            })
+            .state('series.selected', {
+                url: '/:name',
+                views: {
                     'rightPane@series': {
                         controller: 'SeriesManagerController',
                         templateUrl: 'assets/js/modules/series/templates/seriesDetails.html'

@@ -22,47 +22,13 @@
         </div>
     </div>
     <div class="episodes-block">
-
+        <ul>
+            <li data-ng-repeat="season in selected.seasons | orderBy : 'number'">
+                <span>Season {{season.number}}</span>
+                <ul>
+                    <li data-ng-repeat="episode in season.episodes | orderBy : 'epNum'">{{episode.epNum}} - {{episode.name}}</li>
+                </ul>
+            </li >
+        </ul>
     </div>
-    <!--<div class="container-fluid series-container">
-        <div class="row">
-            <div class="col-md-6 name">
-                {{selected.name}}
-            </div>
-            <div class="col-md-4 col-md-offset-2 stars">
-                stars
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <img data-ng-src="{{poster}}" class="series-poster">
-            </div>
-            <div class="col-md-8 container-fluid details">
-                <div class="row">
-                    <div class="col-md-4">First aired:</div>
-                    <div class="col-md-8">{{selected.firstAired}}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">Plot:</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">{{selected.plotSummary}}</div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 series-container">
-                <div class="album-container" data-ng-repeat="album in selected.albums">
-                    <div class="col-md-12 container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">{{album.name}}</div>
-                        </div>
-                        <div class="row container-fluid" data-ng-repeat="song in album.songs">
-                            <div class="col-md-12">{{song.name}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
 </div>

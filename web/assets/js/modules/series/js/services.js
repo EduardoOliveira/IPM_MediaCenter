@@ -2,7 +2,7 @@
 
 angular.module('mediaCenter.series.services', [])
     .service('SeriesListService', function (SeriesService) {
-        this.series = SeriesService.query();
+        this.series = SeriesService.series;
         this.selected = {};
         this.getList = function () {
             return {
@@ -17,6 +17,9 @@ angular.module('mediaCenter.series.services', [])
             this.selected = series;
         };
     })
-    .factory('SeriesService', function ($resource) {
+    .service('SeriesService',function(SeriesFactory){
+        this.series = SeriesFactory.query();
+    })
+    .factory('SeriesFactory', function ($resource) {
         return $resource('/api/series/');
     });

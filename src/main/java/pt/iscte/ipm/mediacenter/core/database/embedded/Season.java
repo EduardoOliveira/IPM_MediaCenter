@@ -1,38 +1,44 @@
 package pt.iscte.ipm.mediacenter.core.database.embedded;
 
-import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Embedded;
-import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
-import pt.iscte.ipm.mediacenter.core.database.tvShows.TvShow;
+import pt.iscte.ipm.mediacenter.core.database.episode.Episode;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Embedded
 public class Season {
 
-    @Id
-    private ObjectId id;
-
     private int number;
 
     @Reference
-    private TvShow tvShow;
+    private Set<Episode> episodes = new HashSet<>();
 
-    //Getters
-    public ObjectId getId(){
-        return id;
+    public Season() {
     }
-    public TvShow getTvShow(){
-        return tvShow;
+
+    public Season(int number) {
+        this.number = number;
     }
-    public int getNumber(){
+
+    public int getNumber() {
         return number;
     }
 
-    //Setters
-    public void setTvShow(TvShow tvs){
-        this.tvShow = tvs;
+    public void setNumber(int number) {
+        this.number = number;
     }
-    public void setNumber(int n){
-        this.number = n;
+
+    public Set<Episode> getEpisodes() {
+        return episodes;
+    }
+
+    public void setEpisodes(Set<Episode> episodes) {
+        this.episodes = episodes;
+    }
+
+    public void addEpisode(Episode epi) {
+        episodes.add(epi);
     }
 }
