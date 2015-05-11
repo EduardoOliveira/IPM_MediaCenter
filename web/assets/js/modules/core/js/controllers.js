@@ -1,23 +1,23 @@
 'use strict';
 
 angular.module('mediaCenter.core.controllers', [])
-    .controller('ListController', function ($scope, $window, ListService, NavigationService) {
+    .controller('ListController', function ($scope, $window, ListService, NavigationService,$state) {
         this.navigation = function(current){
-            var $listContainer = angular.element('[data-list-component="'+$scope.list.name+'"] ul');
+            //var $listContainer = angular.element('[data-list-component="'+$scope.list.name+'"] ul');
             return {
                 up: function (p) {
                     var next =(current - 1 < 0)?0:(current - 1);
 
-                    $listContainer.scrollToElement($listContainer.children('li[data-navigation-id='+next+']'));
+                    //$listContainer.scrollToElement($listContainer.children('li[data-navigation-id='+next+']'));
                     return next;
                 },
                 down: function (p) {
                     var next = (current + 1 > $scope.list.elements.length - 1)?$scope.list.elements.length - 1:(current + 1);
-                    $listContainer.scrollToElement($listContainer.children('li[data-navigation-id='+next+']'));
+                    //$listContainer.scrollToElement($listContainer.children('li[data-navigation-id='+next+']'));
                     return next;
                 },
                 in: function (p) {
-                    $listContainer.scrollToElement($listContainer.children('li[data-navigation-id='+current+']'));
+                    //$listContainer.scrollToElement($listContainer.children('li[data-navigation-id='+current+']'));
                     $scope.select(current)
                 }
             };
@@ -30,20 +30,21 @@ angular.module('mediaCenter.core.controllers', [])
             navFn: this.navigation
         });
         NavigationService.setActiveGroup($scope.list.name);
-        $scope.jqueryScrollbarOptions = {
+/*        $scope.jqueryScrollbarOptions = {
             type: "simple",
             onScroll: function (y, x) {
             }
-        };
+        };*/
         $scope.isSelected = function (element) {
             return ($scope.selected[$scope.list.id] == element[$scope.list.id] ? "selected" : "");
         };
         $scope.select = function (i) {
-            var $listContainer =angular.element('[data-list-component="'+$scope.list.name+'"] ul');
-            $listContainer.scrollToElement($listContainer.children('li[data-navigation-id='+i+']'));
+            //var $listContainer =angular.element('[data-list-component="'+$scope.list.name+'"] ul');
+            //$listContainer.scrollToElement($listContainer.children('li[data-navigation-id='+i+']'));
             $scope.selected = $scope.list.elements[i];
             NavigationService.navigateTo(i);
             ListService.setSelected($scope.selected);
+            $state.go("series.selected", $scope.selected);
         };
     })
     .controller('NavigationController', function ($scope, hotkeys, NavigationService, WebSocketService) {
