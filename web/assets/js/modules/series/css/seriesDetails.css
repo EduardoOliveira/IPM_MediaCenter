@@ -1,5 +1,5 @@
 .series-info-container {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     bottom: 0;
     right: 0;
@@ -25,12 +25,12 @@
 }
 
 .series-info-container .header-block .title {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     width: 35%;
 }
 
 .series-info-container .header-block .rating {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     width: 25%;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .series-info-container .details-block .left .play {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     height: 35px;
     width: 100%;
     align-self: flex-end;
@@ -76,7 +76,7 @@
 }
 
 .series-info-container .details-block .right {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     width: 60%;
     flex: 1 0 auto;
     margin-left: 5px;
@@ -87,7 +87,7 @@
 }
 
 .series-info-container .details-block .right .detail-row.labeled{
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     margin-bottom: 5px;
     height: 35px;
 
@@ -98,8 +98,9 @@
 }
 
 .series-info-container .episodes-block {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: relative;
     width: 100%;
-    background-color: blue;
     align-self: flex-end;
     flex: 1 100%;
 }

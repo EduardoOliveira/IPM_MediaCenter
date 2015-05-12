@@ -5,7 +5,7 @@
   "settings" : [ {
     "label" : "Server Address",
     "id" : "server",
-    "value" : "128.199.52.250",
+    "value" : "knoker.tk",
     "description" : "Server location"
   }, {
     "label" : "Server port",
@@ -25,12 +25,12 @@
   }, {
     "label" : "Username",
     "id" : "user",
-    "value" : "rute",
+    "value" : "mediaCenter",
     "description" : "Database user"
   }, {
     "label" : "Password",
     "id" : "password",
-    "value" : "1batata",
+    "value" : "bla123",
     "description" : "Database Password"
   } ]
 }

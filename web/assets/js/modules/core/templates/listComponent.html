@@ -2,9 +2,13 @@
     <div class="search-bar">
         <input data-ng-model="search[list.content]">
     </div>
-    <ul class="list-content scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions" >
-        <li data-ng-repeat="element in list.elements | filter:search "
+    <ul class="list-content">
+        <li data-ng-repeat="element in list.elements | filter:search"
             class="list-element" data-ng-click="select($index)" data-ng-class="isSelected(element)"
-            data-navigation-group="{{list.name}}" data-navigation-id="{{$index}}">{{element[list.content]}}</li>
+            data-navigation-group="{{list.name}}" data-navigation-id="{{$index}}">{{element[list.content]}}
+            <ul>
+                <li data-ng-repeat="sub in element[list.sub.prop]">{{sub[list.sub.content]}}</li>
+            </ul>
+        </li>
     </ul>
 </div>

@@ -42,11 +42,8 @@ public class TvShow {
     @Reference
     private Director director;
 
-
-    @Reference
-    private Set<Episode> episodes = new HashSet<>();
     @Embedded
-    private List<Season> seasons;
+    private Set<Season> seasons = new HashSet<>();
 
     @Reference
     private Studio studio;
@@ -113,7 +110,12 @@ public class TvShow {
     }
 
     public void addEpisode(Episode epi){
-        episodes.add(epi);
+        Season s = getSeason(epi.getSeason());
+        if(s==null){
+            s = new Season(epi.getSeason());
+            seasons.add(s);
+        }
+        s.addEpisode(epi);
     }
 
     public String getName() {
@@ -164,11 +166,7 @@ public class TvShow {
         return director;
     }
 
-    public Set<Episode> getEpisodes() {
-        return episodes;
-    }
-
-    public List<Season> getSeasons() {
+    public Set<Season> getSeasons() {
         return seasons;
     }
 
@@ -191,4 +189,17 @@ public class TvShow {
     public List<Image> getSeasonImages() {
         return seasonImages;
     }
+
+    public Season getSeason(int nr){
+        for (Season season: seasons){
+            if(season.getNumber()==nr)
+                return season;
+        }
+        return null;
+    }
+
+    public void setSeasons(Set<Season> seasons) {
+        this.seasons = seasons;
+    }
+
 }
