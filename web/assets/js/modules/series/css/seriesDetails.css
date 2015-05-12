@@ -99,12 +99,8 @@
 
 .series-info-container .episodes-block {
     background-color: rgba(0, 0, 0, 0.2);
+    position: relative;
     width: 100%;
     align-self: flex-end;
     flex: 1 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-.series-info-container .episodes-block ul{
-    height: 100%;
 }

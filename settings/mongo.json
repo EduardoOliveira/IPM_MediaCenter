@@ -5,7 +5,7 @@
   "settings" : [ {
     "label" : "Server Address",
     "id" : "server",
-    "value" : "knoker.no-ip.org",
+    "value" : "knoker.tk",
     "description" : "Server location"
   }, {
     "label" : "Server port",

@@ -22,10 +22,19 @@ angular.module('mediaCenter.series.configs', [])
             })
             .state('series.selected', {
                 url: '/:name',
+                resolve: {
+                    ListService: function (EpisodeListService) {
+                        return EpisodeListService;
+                    }
+                },
                 views: {
                     'rightPane@series': {
                         controller: 'SeriesManagerController',
                         templateUrl: 'assets/js/modules/series/templates/seriesDetails.html'
+                    },
+                    'episodesBlock@series.selected': {
+                        controller: 'ListController',
+                        templateUrl: '/assets/js/modules/core/templates/listComponent.html'
                     }
                 }
             });

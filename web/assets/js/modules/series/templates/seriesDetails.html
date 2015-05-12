@@ -21,14 +21,6 @@
             </div>
         </div>
     </div>
-    <div class="episodes-block">
-        <ul>
-            <li data-ng-repeat="season in selected.seasons | orderBy : 'number'">
-                <span>Season {{season.number}}</span>
-                <ul>
-                    <li data-ng-repeat="episode in season.episodes | orderBy : 'epNum'">{{episode.epNum}} - {{episode.name}}</li>
-                </ul>
-            </li >
-        </ul>
+    <div class="episodes-block" data-ui-view="episodesBlock">
     </div>
 </div>
