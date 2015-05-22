@@ -55,5 +55,18 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.mpatric:mp3agic:0.8.1" level="project" />
+    <orderEntry type="library" name="Node.js v0.12.2 Core Modules" level="application" />
+    <orderEntry type="library" name="weka" level="project" />
+    <orderEntry type="library" name="jpl" level="project" />
+    <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Program Files/swipl/lib/jpl.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

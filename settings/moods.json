@@ -1,0 +1,11 @@
+{
+  "label" : "MoodsPlugIn",
+  "id" : "moods",
+  "description" : "Moods plugin Configuration",
+  "settings" : [  {
+    "label" : "Database name",
+    "id" : "database",
+    "value" : "moviesDB",
+    "description" : "Movies storage database"
+  } ]
+}

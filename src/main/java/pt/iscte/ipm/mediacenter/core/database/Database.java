@@ -14,7 +14,7 @@ public class Database {
     private static Database INSTANCE = new Database();
     private MongoClient mongo = null;
     private Morphia morphia = null;
-    private Datastore ds = null;
+
 
     private Database() {
         MongoCredential credential = MongoCredential.createMongoCRCredential(SettingsManager.getSetting("mongo", "user"),
@@ -24,8 +24,7 @@ public class Database {
             mongo = new MongoClient(new ServerAddress(SettingsManager.getSetting("mongo", "server"),
                     SettingsManager.getIntegerSetting("mongo", "port")), Arrays.asList(credential));
             morphia = new Morphia();
-            ds = morphia.createDatastore(mongo, SettingsManager.getSetting("mongo", "database"));
-            ds.ensureIndexes();
+
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -37,10 +36,6 @@ public class Database {
 
     public Morphia getMorphia() {
         return morphia;
-    }
-
-    public synchronized Datastore getDataStore() {
-        return ds;
     }
 
 
