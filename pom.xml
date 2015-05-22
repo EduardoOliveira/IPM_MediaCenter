@@ -42,6 +42,12 @@
             <artifactId>websocket-server</artifactId>
             <version>9.3.0.M2</version>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+            <version>9.3.0.M2</version>
+        </dependency>
+
 
         <!--Jersey-->
         <!--Jersey-->

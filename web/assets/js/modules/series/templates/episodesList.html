@@ -1,0 +1,13 @@
+<div class="list-component" data-list-component="{{list.name}}">
+    <div class="search-bar">
+        <input data-ng-model="search[list.content]" >
+    </div>
+    <ul class="list-content">
+        <li data-ng-repeat-start="season in selectedSeries.seasons | filter:search | orderBy:'-number'"
+            class="list-element"
+            data-navigation-group="{{list.name}}" data-navigation-id="{{$index}}">Season {{season.number}}
+        </li>
+        <li data-ng-repeat-end data-ng-repeat="episode in season.episodes | orderBy:'-epNum'"
+            class="list-element">{{episode.epNum}} - {{episode.name}}</li>
+    </ul>
+</div>

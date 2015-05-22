@@ -30,10 +30,9 @@ angular.module('mediaCenter.core.controllers', [])
         };
         $scope.select = function (i) {
             $scope.selected = $scope.list.elements[i];
-            NavigationService.navigateTo(i);
-            ListService.setSelected($scope.selected);
-            $state.go("series.selected", $scope.selected);
-            console.log(i);
+            //NavigationService.navigateTo(i);
+            //ListService.setSelected($scope.selected);
+            $state.go("series", $scope.selected,{reload:true});
         };
     })
     .controller('NavigationController', function ($scope, hotkeys, NavigationService, WebSocketService) {

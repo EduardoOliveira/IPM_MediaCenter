@@ -74,15 +74,26 @@
     <script src="assets/js/modules/series/js/configs.js"></script>
     <link href="assets/js/modules/series/css/seriesDetails.css" rel="stylesheet">
 
+    <!--playback-->
+    <script src="assets/js/modules/playback/exports.js"></script>
+    <script src="assets/js/modules/playback/js/configs.js"></script>
+    <script src="assets/js/modules/playback/js/controllers.js"></script>
+    <link href="assets/js/modules/playback/css/playbackLayer.css" rel="stylesheet">
+
 </head>
 <body data-ng-app="mediaCenter" data-bg-image>
+<!--<div class="playback-layer">
+    <div class="black-screen">
+        <video class="video-player" src="https://guest:guest@files.knoker.tk/series/Gotham/S01/Gotham.S01E14.HDTV.x264-LOL[ettv]/gotham.114.hdtv-lol.mp4"></video>
+    </div>
+</div>-->
 <div class="overlay" ng-controller="NavigationController">
     <div class="header">
         <session-widget></session-widget>
     </div>
-    <div class="main-container" ui-view="main-view"></div>
+    <div class="main-container" data-ui-view="main-view"></div>
     <div class="bottom-bar">
-        wqeqweqwe
+        Playback Controller PlaceHolder
     </div>
 </div>
 <loading-screen/>
