@@ -12,5 +12,10 @@
     "id" : "format",
     "value" : "/(?<title>.*)/(.*?)\\.(?<ext>.\\w+)$",
     "description" : "Movies library format"
+  },{
+    "label" : "Image Storage",
+    "id" : "images_dir",
+    "value" : "./web/assets/images/movies",
+    "description" : "Location of the movie images"
   } ]
 }
