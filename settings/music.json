@@ -5,7 +5,7 @@
   "settings" : [ {
     "label" : "Music Directory",
     "id" : "dir",
-    "value" : "C:\\Users\\KnoKer\\Music",
+    "value" : "Z:\\knoker.no-ip.org\\music\\",
     "description" : "Music library location"
   }, {
     "label" : "Music format",

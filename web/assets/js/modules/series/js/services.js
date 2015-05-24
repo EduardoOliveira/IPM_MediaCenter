@@ -2,7 +2,7 @@
 
 angular.module('mediaCenter.series.services', [])
     .service('SeriesListService', function (SeriesService) {
-        this.series = SeriesService.series;
+        this.series = SeriesService.getSeries();
         this.selected = {};
         this.getList = function () {
             return {
@@ -17,49 +17,15 @@ angular.module('mediaCenter.series.services', [])
             this.selected = series;
         };
     })
-    .service('EpisodeListService', function () {
-        this.getList = function () {
-            return {
-                name: 'episodes-list',
-                elements: [
-                    {
-                        number: 0,
-                        episodes: [
-                            {
-                                name: "bla",
-                                epNum: 1
-                            },
-                            {
-                                name: "bla2",
-                                epNum: 2
-                            }
-                        ]
-                    }, {
-                        number: 1,
-                        episodes: [
-                            {
-                                name: "bla",
-                                epNum: 1
-                            },
-                            {
-                                name: "bla2",
-                                epNum: 2
-                            }
-                        ]
-                    }
-                ],
-                content: 'number',
-                id: 'number',
-                sub: {
-                    prop:'episodes',
-                    content: 'name',
-                    id: 'epNum'
-                }
-            };
-        };
-    })
     .service('SeriesService', function (SeriesFactory) {
-        this.series = SeriesFactory.query();
+        var series = [];
+
+        this.getSeries = function(){
+            if( series.length == 0){
+                series = SeriesFactory.query();
+            }
+            return series;
+        }
     })
     .factory('SeriesFactory', function ($resource) {
         return $resource('/api/series/');

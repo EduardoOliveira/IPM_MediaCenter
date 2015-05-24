@@ -74,16 +74,28 @@
     <script src="assets/js/modules/series/js/configs.js"></script>
     <link href="assets/js/modules/series/css/seriesDetails.css" rel="stylesheet">
 
+    <!--playback-->
+    <script src="assets/js/modules/playback/exports.js"></script>
+    <script src="assets/js/modules/playback/js/configs.js"></script>
+    <script src="assets/js/modules/playback/js/controllers.js"></script>
+    <script src="assets/js/modules/playback/js/directives.js"></script>
+    <script src="assets/js/modules/playback/js/services.js"></script>
+    <link href="assets/js/modules/playback/css/playbackLayer.css" rel="stylesheet">
+    <link href="assets/js/modules/playback/css/videoPlayer.css" rel="stylesheet">
+
 </head>
 <body data-ng-app="mediaCenter" data-bg-image>
+<div class="playback-layer">
+    <div class="black-screen" data-ng-video>
+        <video class="player video active" src="http://techslides.com/demos/sample-videos/small.mp4" data-vi-screen></video>
+    </div>
+</div>
 <div class="overlay" ng-controller="NavigationController">
     <div class="header">
         <session-widget></session-widget>
     </div>
-    <div class="main-container" ui-view="main-view"></div>
-    <div class="bottom-bar">
-        wqeqweqwe
-    </div>
+    <div class="main-container" data-ui-view="main-view"></div>
+    <playback-controls class="bottom-bar"/>
 </div>
 <loading-screen/>
 </body>

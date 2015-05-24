@@ -1,18 +1,51 @@
 'use strict';
 
 angular.module('mediaCenter.series.controllers', [])
-    .controller('SeriesManagerController', function ($scope,SeriesListService,BackgroundImageService,$stateParams,SeriesService,$filter) {
-        var series = SeriesService.series;
-        console.log($stateParams);
-        var selected = $filter('filter')(series,$stateParams,true);
-        if(selected.length > 0){
-            selected = selected[0];
-            $scope.selected = selected;
-            if($scope.selected.posterImages != undefined){
-                var size = $scope.selected.posterImages.length;
-                $scope.poster = $scope.selected.posterImages[Math.floor(Math.random() * size)].webPath;
-                size = $scope.selected.fanArtImages.length;
-                BackgroundImageService.image = $scope.selected.fanArtImages[Math.floor(Math.random() * size)].webPath;
+    .controller('SeriesController', function ($rootScope, $scope, SeriesService, $stateParams, $filter, $state) {
+        var that = this;
+        $scope.selectedSeries = {};
+        $scope.series = [];
+
+
+        this.updateSeries = function (series) {
+            $scope.series = series;
+            that.checkForSelection();
+        };
+
+        this.checkForSelection = function () {
+            var selected = $filter('filter')($scope.series, $stateParams, true);
+            if (selected.length == 1) {
+                selected = selected[0];
+                $scope.selectedSeries = selected;
+                $state.go("series.details", $scope.selectedSeries);
             }
+        };
+
+        var series = SeriesService.getSeries();
+        if (series.$resolved) {
+            that.updateSeries(series);
+        } else {
+            series.$promise.then(function (data) {
+                that.updateSeries(data);
+            });
+        }
+    })
+    .controller('SeriesDetailsController', function ($scope, BackgroundImageService) {
+        $scope.$watch('selectedSeries', function () {
+            if ($scope.selectedSeries != undefined && $scope.selectedSeries.posterImages != undefined) {
+                var size = $scope.selectedSeries.posterImages.length;
+                $scope.poster = $scope.selectedSeries.posterImages[Math.floor(Math.random() * size)].webPath;
+                size = $scope.selectedSeries.fanArtImages.length;
+                BackgroundImageService.image = $scope.selectedSeries.fanArtImages[Math.floor(Math.random() * size)].webPath;
+            }
+        });
+    })
+    .controller('SeriesEpisodesController', function ($scope, $state) {
+        $scope.select = function (element) {
+            $state.go('playback.series', {
+                series: $scope.selectedSeries.id,
+                season: element.season,
+                episode: element.epNum
+            });
         }
     });
