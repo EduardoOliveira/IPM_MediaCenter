@@ -17,7 +17,7 @@ angular.module('mediaCenter.series.controllers', [])
             if (selected.length == 1) {
                 selected = selected[0];
                 $scope.selectedSeries = selected;
-                $state.go("series.details",$scope.selectedSeries);
+                $state.go("series.details", $scope.selectedSeries);
             }
         };
 
@@ -32,7 +32,6 @@ angular.module('mediaCenter.series.controllers', [])
     })
     .controller('SeriesDetailsController', function ($scope, BackgroundImageService) {
         $scope.$watch('selectedSeries', function () {
-            console.log($scope.selectedSeries);
             if ($scope.selectedSeries != undefined && $scope.selectedSeries.posterImages != undefined) {
                 var size = $scope.selectedSeries.posterImages.length;
                 $scope.poster = $scope.selectedSeries.posterImages[Math.floor(Math.random() * size)].webPath;
@@ -41,6 +40,12 @@ angular.module('mediaCenter.series.controllers', [])
             }
         });
     })
-    .controller('SeriesEpisodesController', function ($scope) {
-
+    .controller('SeriesEpisodesController', function ($scope, $state) {
+        $scope.select = function (element) {
+            $state.go('playback.series', {
+                series: $scope.selectedSeries.id,
+                season: element.season,
+                episode: element.epNum
+            });
+        }
     });

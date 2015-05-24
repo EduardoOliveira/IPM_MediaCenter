@@ -2,8 +2,8 @@
 
 angular.module('mediaCenter',
     [
-        'duScroll',
-        'jQueryScrollbar',
+        //'duScroll',
+        //'jQueryScrollbar',
         'ngResource',
         'LocalStorageModule',
         'ui.router',

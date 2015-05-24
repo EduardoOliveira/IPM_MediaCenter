@@ -14,6 +14,12 @@ angular.module('mediaCenter.playback.configs', [])
             })
             .state('playback.series', {
                 url: '/playback/:series/:season/:episode',
+                onEnter: function(){
+                    angular.element('.playback-layer').show()
+                },
+                onExit: function(){
+                    angular.element('.playback-layer').hide()
+                }
                 /*views: {
                     'playback-layer': {
                         controller: 'VideoPlaybackController',

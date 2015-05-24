@@ -8,6 +8,6 @@
             data-navigation-group="{{list.name}}" data-navigation-id="{{$index}}">Season {{season.number}}
         </li>
         <li data-ng-repeat-end data-ng-repeat="episode in season.episodes | orderBy:'-epNum'"
-            class="list-element">{{episode.epNum}} - {{episode.name}}</li>
+            class="list-element" data-ng-click="select(episode)">{{episode.epNum}} - {{episode.name}}</li>
     </ul>
 </div>

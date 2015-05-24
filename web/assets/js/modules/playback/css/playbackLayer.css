@@ -1,5 +1,6 @@
 .playback-layer{
-    position: fixed;
+    display: none;
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;

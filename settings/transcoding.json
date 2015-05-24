@@ -1,0 +1,18 @@
+{
+  "label": "Transcoding",
+  "id": "transcoding",
+  "description": "Transcoding Configurations",
+  "settings": [
+    {
+      "label": "Transcoder location",
+      "id": "transcoder",
+      "value": "bin/ffmpeg/windowsX64/ffmpeg.exe ",
+      "description": "Transcoder program"
+    },{
+      "label": "TV Show Transcoding",
+      "id": "SHOW",
+      "value": " -i C:\\Users\\KnoKer\\Downloads\\big_buck_bunny_1080p_stereo.ogg -f ogg -",
+      "description": "Transcoding settings"
+    }
+  ]
+}
