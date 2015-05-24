@@ -1,0 +1,13 @@
+{
+  "label": "TheMovieDB",
+  "id": "moviedb",
+  "description": "TheMovieDB configurations",
+  "settings": [
+    {
+      "label": "API Key",
+      "id": "api_key",
+      "value": "6c02321d4fe207f340d665df51a726db",
+      "description": "TheMovieDB API key"
+    }
+  ]
+}
