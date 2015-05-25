@@ -1,6 +1,8 @@
 package pt.iscte.tsi.mediamood;
+import pt.iscte.tsi.mediamood.connection.ConnectionProlog;
 import pt.iscte.tsi.mediamood.database.entity.Movie;
 import pt.iscte.tsi.mediamood.database.entity.MovieDAO;
+import pt.iscte.tsi.mediamood.gui.Gui;
 import weka.core.Instances;
 import weka.core.converters.ArffLoader.ArffReader;
 import java.io.BufferedReader;
@@ -13,17 +15,9 @@ import java.util.List;
  */
 public class Main {
 
-    public void connectToDB(){
-        MovieDAO movieDao = new MovieDAO();
-        List<Movie> movies = movieDao.find().asList();
-        int i = 0;
-        for(Movie m: movies){
-            if(i<10){
-           System.out.println(m.getClusters());
-            i++;}
-        }
-    }
 
+    public Main() {
+    }
 
     public void readArffFile() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("weka/clusters/Blood.arff"));
@@ -41,9 +35,17 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        Main m = new Main();
-        m.connectToDB();
-       // try {
+
+        //Main m = new Main();
+        //m.connectToDB();
+
+        //ConnectionProlog connection = new ConnectionProlog();
+        //connection.init();
+        //connection.insertMoviesAsFacts();
+
+        Gui g = new Gui();
+
+        // try {
             //m.readArffFile();
         //} catch (IOException e) {
         //    e.printStackTrace();

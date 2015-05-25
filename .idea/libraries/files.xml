@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="files">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/prologFiles/files" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/prologFiles/files" />
+    </NATIVE>
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/prologFiles/files" recursive="false" />
+  </library>
+</component>

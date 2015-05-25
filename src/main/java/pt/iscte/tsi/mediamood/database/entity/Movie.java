@@ -12,7 +12,7 @@ public class Movie {
     @Id
     private String id;
 
-    @Embedded("Clusters")
+    @Embedded("clusters")
     private Clusters clusters;
 
     @Property("full_desc")

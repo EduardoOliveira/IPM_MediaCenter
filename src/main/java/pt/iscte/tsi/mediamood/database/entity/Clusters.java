@@ -19,6 +19,10 @@ public class Clusters {
     private String Tobaco;
     private String Violence;
 
+    public Clusters(){
+
+    }
+
     public Clusters(String blood,
                     String discrimination,
                     String drink,
@@ -119,5 +123,22 @@ public class Clusters {
 
     public void setViolence(String violence) {
         Violence = violence;
+    }
+
+    @Override
+    public String toString() {
+        //return "Clusters{" +
+        //        "Blood='" + Blood + '\'' +
+        //        ", Discrimination='" + Discrimination + '\'' +
+        //        ", Drink='" + Drink + '\'' +
+        //        ", Gambling='" + Gambling + '\'' +
+        //        ", Nudity='" + Nudity + '\'' +
+        //        ", Profanity='" + Profanity + '\'' +
+        //        ", Sex='" + Sex + '\'' +
+        //        ", Tobaco='" + Tobaco + '\'' +
+        //        ", Violence='" + Violence + '\'' +
+        //        '}';
+        return "{" + Blood + "," + Discrimination + "," + Drink + "," + Drugs + "," + Gambling
+                + "," + Nudity + "," + Profanity + "," + Sex + "," + Tobaco + "," + Violence + "}";
     }
 }
