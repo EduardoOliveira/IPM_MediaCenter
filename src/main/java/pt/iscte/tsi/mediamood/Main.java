@@ -39,9 +39,9 @@ public class Main {
         //Main m = new Main();
         //m.connectToDB();
 
-        //ConnectionProlog connection = new ConnectionProlog();
-        //connection.init();
-        //connection.insertMoviesAsFacts();
+        ConnectionProlog.getInstance().init();
+        //ConnectionProlog.getInstance().testQuery();
+        //ConnectionProlog.getInstance().insertMoviesAsFacts();
 
         Gui g = new Gui();
 

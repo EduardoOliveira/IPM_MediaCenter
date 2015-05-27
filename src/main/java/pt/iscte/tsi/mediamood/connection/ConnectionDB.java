@@ -14,10 +14,11 @@ public class ConnectionDB {
     private List<Movie> movies;
 
     private List<Movie> moviesForTest = new ArrayList<>();
+    private MovieDAO movieDAO;
 
     public ConnectionDB() {
-        MovieDAO movieDao = new MovieDAO();
-        movies = movieDao.find().asList();
+        movieDAO = new MovieDAO();
+        movies = movieDAO.find().asList();
         int i = 0;
         for (Movie m : movies) {
             if(m.getClusters()!= null) {
@@ -29,6 +30,26 @@ public class ConnectionDB {
             }
         }
     }
+
+    public List<Movie> getByGenreWithList (String genre, List<Movie> moviesToCheck){
+        List<Movie> moviesOfGenre = new ArrayList<>();
+        for(Movie m : moviesToCheck){
+            if(m.getGenre0().equals(genre)){
+                moviesOfGenre.add(m);
+            }
+        }
+        return moviesOfGenre;
+    }
+
+    public Movie getMovieByTitle(String title){
+        for(Movie m : movies){
+            if(m.getTitle().equals(title)){
+                return m;
+            }
+        }
+        return null;
+    }
+
     public List<Movie> getMoviesForTest(){
         return moviesForTest;
     }

@@ -69,5 +69,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="files" level="project" />
+    <orderEntry type="library" name="bin" level="project" />
   </component>
 </module>

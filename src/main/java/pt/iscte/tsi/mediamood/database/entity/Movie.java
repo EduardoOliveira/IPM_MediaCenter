@@ -78,6 +78,7 @@ public class Movie {
         this.genre1 = genre1;
     }
 
+
     @Override
     public String toString() {
         return "Movie{" +
