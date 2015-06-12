@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component LANGUAGE_LEVEL="JDK_1_7" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/target/test-classes"/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<excludeFolder url="file://$MODULE_DIR$/target"/>
+	</contentEntry>
+	<levels>
+		<level name="libs" value="project"/>
+		<level name="Node.js v0.10.36 Core Modules" value="project"/>
+		<level name="Maven: org.mongodb.morphia:morphia:0.110" value="project"/>
+		<level name="Maven: org.mongodb:mongo-java-driver:2.13.0" value="project"/>
+		<level name="Maven: org.mongodb.morphia:morphia-util:0.110" value="project"/>
+		<level name="Maven: com.thoughtworks.proxytoys:proxytoys:1.0" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-server:9.3.0.M2" value="project"/>
+		<level name="Maven: javax.servlet:javax.servlet-api:3.1.0" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-http:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-io:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-servlet:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-security:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-webapp:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-xml:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty.websocket:websocket-server:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty.websocket:websocket-common:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty.websocket:websocket-api:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty.websocket:websocket-client:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty.websocket:websocket-servlet:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-servlets:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-continuation:9.3.0.M2" value="project"/>
+		<level name="Maven: org.eclipse.jetty:jetty-util:9.3.0.M2" value="project"/>
+		<level name="Maven: com.sun.jersey:jersey-core:1.18.1" value="project"/>
+		<level name="Maven: com.sun.jersey:jersey-servlet:1.18.1" value="project"/>
+		<level name="Maven: com.sun.jersey:jersey-server:1.18.1" value="project"/>
+		<level name="Maven: com.omertron:thetvdbapi:1.5" value="project"/>
+		<level name="Maven: commons-codec:commons-codec:1.7" value="project"/>
+		<level name="Maven: org.apache.commons:commons-lang3:3.1" value="project"/>
+		<level name="Maven: log4j:log4j:1.2.17" value="project"/>
+		<level name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" value="project"/>
+		<level name="Maven: com.omertron:themoviedbapi:4.0" value="project"/>
+		<level name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.1" value="project"/>
+		<level name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.5.1" value="project"/>
+		<level name="Maven: com.fasterxml.jackson.core:jackson-databind:2.5.1" value="project"/>
+		<level name="Maven: org.slf4j:slf4j-api:1.7.10" value="project"/>
+		<level name="Maven: org.yamj:api-common:1.4" value="project"/>
+		<level name="Maven: commons-dbcp:commons-dbcp:1.4" value="project"/>
+		<level name="Maven: commons-pool:commons-pool:1.6" value="project"/>
+		<level name="Maven: org.apache.httpcomponents:httpclient:4.4" value="project"/>
+		<level name="Maven: org.apache.httpcomponents:httpcore:4.4" value="project"/>
+		<level name="Maven: commons-logging:commons-logging:1.2" value="project"/>
+		<level name="Maven: com.github.kevinsawicki:http-request:6.0" value="project"/>
+		<level name="Maven: com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.2.1" value="project"/>
+		<level name="Maven: com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.2.1" value="project"/>
+		<level name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.2.1" value="project"/>
+		<level name="Maven: com.mpatric:mp3agic:0.8.1" value="project"/>
+	</levels>
+</component>

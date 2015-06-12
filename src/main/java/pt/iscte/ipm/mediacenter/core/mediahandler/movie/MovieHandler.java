@@ -22,11 +22,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MovieHandler implements MediaHandler {
+    /*
+        MovieDAO movieDAO = new MovieDAO();
+        TheMovieDbApi movieDB = new TheMovieDbApi(SettingsManager.getSetting("moviedb","api_key"));
 
-    MovieDAO movieDAO = new MovieDAO();
-    TheMovieDbApi movieDB = new TheMovieDbApi(SettingsManager.getSetting("moviedb","api_key"));
-
-
+    */
     @Override
     public void handle(Path path) {
         String pathStr = path.toString().toLowerCase();
@@ -40,11 +40,13 @@ public class MovieHandler implements MediaHandler {
 
         private Path path;
 
-        public MovieProcess (Path path){this.path=path;}
+        public MovieProcess(Path path) {
+            this.path = path;
+        }
 
         @Override
         public void run() {
-            System.out.println("start");
+            /*System.out.println("start");
             Pattern pattern = Pattern.compile(SettingsManager.getSetting("movies","format"));
             Matcher matcher = pattern.matcher(path.toString());
             synchronized (PlayBackDevice.class){
@@ -57,23 +59,25 @@ public class MovieHandler implements MediaHandler {
                 }
                 System.out.println("pending-" + WorkersManager.getPendingTasksCount());
                 System.out.println("total-" + WorkersManager.getTotalTasksCount());
-            }
+            }*/
 
         }
-        }
+    }
+
+    /*
         private Movie processMovie(RegexMovie regexMovie) {
-           Movie movie = movieDAO.findByAlias(regexMovie.name);
+            Movie movie = movieDAO.findByAlias(regexMovie.name);
             if (movie == null) {
                 String searchName = regexMovie.prettyName + (regexMovie.year != null ? " " + regexMovie.year : "");
                 System.out.println(searchName);
                 List<MovieInfo> searchMovie = movieDB
                 if (searchMovie.size() > 0) {
                     MovieInfo foundMovie = movieDB.getMovieInfo(searchMovie.get(0).getId(), "en");
-                    movie = new Movie(foundMovie.getId(), foundMovie.getTitle(),foundMovie.getOverview(), foundMovie.getReleaseDate(),
+                    movie = new Movie(foundMovie.getId(), foundMovie.getTitle(), foundMovie.getOverview(), foundMovie.getReleaseDate(),
                             Float.parseFloat(foundMovie.getUserRating()));
                     String id = searchMovie.get(0).getId();
                     Artwork banners = movieDB.getMovieImages();
-                    movie.(getBanners(banners.getSeriesList(), id));
+                    movie. (getBanners(banners.getSeriesList(), id));
                     tvShow.addPosterImages(getBanners(banners.getPosterList(), id));
                     tvShow.addFanArtImages(getBanners(banners.getFanartList(), id));
                     tvShow.addSeasonImages(getBanners(banners.getSeasonList(), id));
@@ -87,7 +91,8 @@ public class MovieHandler implements MediaHandler {
             }
             return movie;
 
-        }
+        }*/
+/*
     private List<Image> getBanners(List<Artwork> banners, String id) {
         List<Image> images = new ArrayList<>();
         for (Artwork b : banners) {
@@ -112,21 +117,22 @@ public class MovieHandler implements MediaHandler {
         }
         return images;
     }
-        private class RegexMovie {
-            String name = "";
-            String prettyName = "";
-            String year = "";
+*/
+    private class RegexMovie {
+        String name = "";
+        String prettyName = "";
+        String year = "";
 
-            public RegexMovie(Matcher matcher) {
-                name = matcher.group("ShowNameA");
-                prettyName = matcher.group("ShowNameA").replaceAll("[._]", " ");
+        public RegexMovie(Matcher matcher) {
+            name = matcher.group("ShowNameA");
+            prettyName = matcher.group("ShowNameA").replaceAll("[._]", " ");
 
-                if (matcher.group("ShowYearA") != null) {
-                    year = matcher.group("ShowYearA");
-                }
-
+            if (matcher.group("ShowYearA") != null) {
+                year = matcher.group("ShowYearA");
             }
+
         }
+
     }
 
 }

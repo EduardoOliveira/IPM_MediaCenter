@@ -5,7 +5,7 @@
   "settings" : [ {
     "label" : "Series directory",
     "id" : "dir",
-    "value" : "Z:\\knoker.no-ip.org\\series\\",
+    "value" : "/run/user/1000/gvfs/smb-share:server=odroid-server,share=share/files.knoker.tk/series",
     "description" : "Series library location"
   }, {
     "label" : "Series format",

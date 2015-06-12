@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MongoConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="label" value="ODROID" />
+          <option name="password" value="bla123" />
+          <option name="serverUrls">
+            <list>
+              <option value="knoker.tk:27017" />
+            </list>
+          </option>
+          <option name="userDatabase" value="admin" />
+          <option name="username" value="mediaCenter" />
+        </ServerConfiguration>
+      </list>
+    </option>
+    <option name="shellPath" value="mongo" />
+  </component>
+</project>

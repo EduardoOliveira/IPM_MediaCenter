@@ -1,0 +1,11 @@
+<div class="list-component" data-list-component="{{list.name}}">
+    <div class="search-bar">
+        <input data-ng-model="seriesList.name">
+    </div>
+    <ul class="list-content" data-navigation-group="seriesList" >
+        <li data-ng-repeat="series in allSeries | filter:search"
+            class="list-element" data-ng-click="select(series.name)" data-ng-class="isSelected(element)"
+            data-navigation-id="{{series.id}}" data-name="{{series.name}}">{{series.name}}
+        </li>
+    </ul>
+</div>
