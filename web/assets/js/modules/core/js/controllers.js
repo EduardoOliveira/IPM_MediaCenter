@@ -101,14 +101,14 @@ angular.module('mediaCenter.core.controllers', [])
     })
     .controller('MainMenuController', function ($scope, NavigationService,BackgroundImageService, $state) {
         var mainMenuGui = new MainMenuGui({$element: $('.main-menu')});
-        this.navigation = function (current) {
+        this.navigation = function (parent,current) {
             var opts = {
                 movies: {
                     left: function (params) {
-                        return 'settings'
+                        return {navigationId: 'settings'}
                     },
                     right: function (params) {
-                        return 'series'
+                        return {navigationId: 'series'}
                     },
                     in: function (params) {
                         $scope.go('movies');
@@ -116,10 +116,10 @@ angular.module('mediaCenter.core.controllers', [])
                 },
                 series: {
                     left: function (params) {
-                        return 'movies'
+                        return {navigationId: 'movies'}
                     },
                     right: function (params) {
-                        return 'music'
+                        return {navigationId: 'music'}
                     },
                     in: function (params) {
                         $scope.go('series');
@@ -127,10 +127,10 @@ angular.module('mediaCenter.core.controllers', [])
                 },
                 music: {
                     left: function (params) {
-                        return 'series'
+                        return {navigationId: 'series'}
                     },
                     right: function (params) {
-                        return 'settings'
+                        return {navigationId: 'settings'}
                     },
                     in: function (params) {
                         $scope.go('music');
@@ -138,22 +138,22 @@ angular.module('mediaCenter.core.controllers', [])
                 },
                 settings: {
                     left: function (params) {
-                        return 'music'
+                        return {navigationId: 'music'}
                     },
                     right: function (params) {
-                        return 'movies'
+                        return {navigationId: 'movies'}
                     },
                     in: function (params) {
                         $scope.go('settings');
                     }
                 }
             };
-            return opts[current];
+            return opts[current.navigationId];
         };
 
 
         NavigationService.registerNavigationGroup({
-            default: 'movies',
+            default: {navigationId: 'movies'},
             name: 'main-menu',
             navFn: this.navigation
         });

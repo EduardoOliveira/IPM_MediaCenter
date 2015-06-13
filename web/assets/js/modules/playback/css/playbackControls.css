@@ -1,0 +1,23 @@
+playback-controls .progress-bars{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 10px;
+}
+
+playback-controls .progress-bars .loaded {
+    width: 0;
+}
+playback-controls .progress-bars .progress {
+    width: 0;
+}
+
+playback-controls .controls{
+    position: fixed;
+    bottom: 0;
+}
+
+playback-controls . info-text{
+    position: fixed;
+    bottom: 0;
+}

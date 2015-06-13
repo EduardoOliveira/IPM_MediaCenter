@@ -3,8 +3,6 @@
 angular.module('mediaCenter.core.services', [])
     .service('NavigationService', function () {
         this.navigationGroups = [];
-        this.previousGroupName = "";
-        this.activeGroupName = "";
         this.activeGroup = {};
         this.graphicalNavigation = new GraphicalNavigation();
         var that = this;
@@ -14,59 +12,72 @@ angular.module('mediaCenter.core.services', [])
         };
 
         this.setActiveGroup = function (name) {
-            this.previousGroupName = this.activeGroupName;
-            this.activeGroupName = name;
             this.activeGroup = this.navigationGroups[name];
             this.activeGroup.focused = this.navigationGroups[name].default;
-            if(this.activeGroup.onEnter != undefined) this.activeGroup.onEnter();
+            if (this.activeGroup.onEnter != undefined) this.activeGroup.onEnter();
             this.navigateTo(this.activeGroup.default);
         };
 
         this.navigateTo = function (next) {
             that.activeGroup.previous = that.activeGroup.focused;
             that.activeGroup.focused = next;
-            var $current = $('[data-navigation-group="' + this.activeGroupName + '"][data-navigation-id].focused');
-            var $next = $('[data-navigation-group="' + this.activeGroupName + '"][data-navigation-id="' + next + '"]');
+            var $next = {};
+            if(next.navigationIndex!=null){
+                $next = angular.element('[data-navigation-group="' + this.activeGroup.name + '"] :nth-child('+next.navigationIndex+')');
+            }else{
+                $next = angular.element('[data-navigation-group="' + this.activeGroup.name + '"] [data-navigation-id="' + next.navigationId + '"]');
+            }
+            var $current = angular.element('[data-navigation-group="' + this.activeGroup.name + '"] [data-navigation-id].focused');
             this.graphicalNavigation.focus({current: $current, next: $next});
         };
 
         this.goIn = function () {
-            var element = that.activeGroup.navFn(that.activeGroup.focused);
+            var element = that.activeGroup.navFn(
+                angular.element('[data-navigation-group="' + that.activeGroup.name + '"]'),
+                that.activeGroup.focused);
             if (element.in !== undefined) {
                 element.in({});
             }
         };
 
         this.goUp = function () {
-            var element = that.activeGroup.navFn(that.activeGroup.focused);
+            var element = that.activeGroup.navFn(
+                angular.element('[data-navigation-group="' + that.activeGroup.name + '"]'),
+                that.activeGroup.focused);
             if (element.up !== undefined) {
                 that.navigateTo(element.up({}));
             }
         };
 
         this.goDown = function () {
-            var element = that.activeGroup.navFn(that.activeGroup.focused);
+            var element = that.activeGroup.navFn(
+                angular.element('[data-navigation-group="' + that.activeGroup.name + '"]'),
+                that.activeGroup.focused);
             if (element.down !== undefined) {
                 that.navigateTo(element.down({}));
             }
         };
 
         this.goLeft = function () {
-            var element = that.activeGroup.navFn(that.activeGroup.focused);
+            var element = that.activeGroup.navFn(
+                angular.element('[data-navigation-group="' + that.activeGroup.name + '"]'),
+                that.activeGroup.focused);
             if (element.left !== undefined) {
                 that.navigateTo(element.left({}));
             }
         };
 
         this.goRight = function () {
-            var element = that.activeGroup.navFn(that.activeGroup.focused);
+            var element = that.activeGroup.navFn(
+                angular.element('[data-navigation-group="' + that.activeGroup.name + '"]'),
+                that.activeGroup.focused);
             if (element.right !== undefined) {
                 that.navigateTo(element.right({}));
             }
         };
 
         this.goBack = function () {
-
+            if (that.activeGroup.onBack != undefined) that.activeGroup.onBack();
         };
 
         this.goDevices = function () {
@@ -118,17 +129,18 @@ angular.module('mediaCenter.core.services', [])
     })
     .service('LoadingService', function () {
         this.loaders = 0;
-        this.start=function(){
+        this.start = function () {
             this.loaders++;
         };
 
-        this.stop=function(){
+        this.stop = function () {
             this.loaders--;
         };
     })
-    .service('BackgroundImageService',function(){
-        this.getDefault = function(){
-            return "/assets/images/bg.jpg";
+    .service('BackgroundImageService', function () {
+        this.image = "";
+        this.setDefault = function () {
+            this.image =  "/assets/images/bg.jpg";
         };
-        this.image = this.getDefault();
+        this.setDefault();
     });

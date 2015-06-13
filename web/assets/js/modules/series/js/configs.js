@@ -6,12 +6,13 @@ angular.module('mediaCenter.series.configs', [])
             .state('series', {
                 url: '/series/:name?',
                 resolve: {
-                    ListService: function (SeriesListService) {
-                        return SeriesListService;
-                    },
                     detailpartial: function ($templateCache, $http) {
                         $http.get('/assets/js/modules/series/templates/seriesDetails.html', { cache: $templateCache });
                         $http.get('/assets/js/modules/series/templates/episodesList.html', { cache: $templateCache });
+                    },
+                    seriesService: 'SeriesService',
+                    series: function(seriesService){
+                        return seriesService.getSeries().$promise;
                     }
                 },
                 views: {
@@ -20,8 +21,8 @@ angular.module('mediaCenter.series.configs', [])
                         templateUrl: '/assets/js/modules/core/templates/splitPane.html'
                     },
                     'leftPane@series': {
-                        controller: 'ListController',
-                        templateUrl: '/assets/js/modules/core/templates/listComponent.html'
+                        controller: 'SeriesListController',
+                        templateUrl: '/assets/js/modules/series/templates/seriesList.html'
                     }
                 }
             })
