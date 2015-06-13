@@ -19,13 +19,12 @@ import java.util.List;
 public class Movie {
 
     @Id
-    private ObjectId id;
-
+    private String id;
     private String name;
-    private String plot_summary;
+    private String plotSummary;
     private String fullPlot;
     private int releaseYear;
-    private int rate;
+    private float rating;
     private String country;
 
 
@@ -42,15 +41,24 @@ public class Movie {
     }
 
 
+    public Movie(String id, String name, String plotSummary, int releaseYear, float rating) {
+        this.id = id;
+        this.name = name;
+        this.plotSummary = plotSummary;
+        this.releaseYear=releaseYear;
+        this.rating = rating;
+    }
+
+
     //Getters
-    public ObjectId getId(){
+    public String getId(){
         return id;
     }
     public String getName() {
         return name;
     }
     public String getPlot_summary(){
-        return plot_summary;
+        return plotSummary;
     }
     public String getFullPlot(){
         return fullPlot;
@@ -65,8 +73,8 @@ public class Movie {
     public int getReleaseYear() {
         return releaseYear;
     }
-    public int getRate() {
-        return rate;
+    public float getRate() {
+        return rating;
     }
 
 
@@ -87,15 +95,15 @@ public class Movie {
     }
 
     public void setPlot_summary(String plot_summary){
-        this.plot_summary = plot_summary;
+        this.plotSummary = plotSummary;
     }
 
     public void setFullPlot(String fullPlot){
         this.fullPlot = fullPlot;
     }
 
-    public void rate(int rate) {
-        this.rate = rate;
+    public void rate(double rate) {
+        this.rating = rating;
     }
 
     public void setCountry(String country){

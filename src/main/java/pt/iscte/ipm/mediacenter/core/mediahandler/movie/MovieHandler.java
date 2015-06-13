@@ -1,6 +1,8 @@
 package pt.iscte.ipm.mediacenter.core.mediahandler.movie;
 
+import com.omertron.themoviedbapi.MovieDbException;
 import com.omertron.themoviedbapi.model.movie.MovieInfo;
+import com.omertron.themoviedbapi.results.ResultList;
 import pt.iscte.ipm.mediacenter.core.database.movie.Movie;
 import pt.iscte.ipm.mediacenter.core.database.movie.MovieDAO;
 import pt.iscte.ipm.mediacenter.core.database.embedded.Image;
@@ -24,7 +26,15 @@ import java.util.regex.Pattern;
 public class MovieHandler implements MediaHandler {
 
     MovieDAO movieDAO = new MovieDAO();
-    TheMovieDbApi movieDB = new TheMovieDbApi(SettingsManager.getSetting("moviedb","api_key"));
+    TheMovieDbApi movieDB;
+
+    public MovieHandler() {
+        try {
+            movieDB = new TheMovieDbApi(SettingsManager.getSetting("moviedb", "api_key"));
+        } catch (MovieDbException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Override
@@ -60,35 +70,42 @@ public class MovieHandler implements MediaHandler {
             }
 
         }
-        }
-        private Movie processMovie(RegexMovie regexMovie) {
-           Movie movie = movieDAO.findByAlias(regexMovie.name);
-            if (movie == null) {
-                String searchName = regexMovie.prettyName + (regexMovie.year != null ? " " + regexMovie.year : "");
-                System.out.println(searchName);
-                List<MovieInfo> searchMovie = movieDB
-                if (searchMovie.size() > 0) {
-                    MovieInfo foundMovie = movieDB.getMovieInfo(searchMovie.get(0).getId(), "en");
-                    movie = new Movie(foundMovie.getId(), foundMovie.getTitle(),foundMovie.getOverview(), foundMovie.getReleaseDate(),
-                            Float.parseFloat(foundMovie.getUserRating()));
-                    String id = searchMovie.get(0).getId();
-                    Artwork banners = movieDB.getMovieImages();
-                    movie.(getBanners(banners.getSeriesList(), id));
-                    tvShow.addPosterImages(getBanners(banners.getPosterList(), id));
-                    tvShow.addFanArtImages(getBanners(banners.getFanartList(), id));
-                    tvShow.addSeasonImages(getBanners(banners.getSeasonList(), id));
-                    tvShow.addAlias(regexShow.name);
-
-                } else {
-                    System.out.println("not found");
-                }
-            } else {
-                System.out.println("skip");
+    }
+    private Movie processMovie(RegexMovie regexMovie) {
+        Movie movie = movieDAO.findByAlias(regexMovie.name);
+        if (movie == null) {
+            String searchName = regexMovie.prettyName; //+ (regexMovie.year != null ? " " + regexMovie.year : "");
+            int searchYear = Integer.parseInt(regexMovie.year);
+            System.out.println(searchName);
+            ResultList<MovieInfo> searchMovie = null;
+            try {
+                searchMovie  = movieDB.searchMovie(searchName,0,"en",true, searchYear,searchYear,null);
+            } catch (MovieDbException e) {
+                e.printStackTrace();
             }
-            return movie;
+            if (!searchMovie.isEmpty()) {
+                MovieInfo foundMovie = null;
+                try {
+                    foundMovie = movieDB.getMovieInfo(searchMovie.getResults().get(0).getId(), "en");
+                } catch (MovieDbException e) {
+                    e.printStackTrace();
+                }
+                movie = new Movie(String.valueOf(foundMovie.getId()), foundMovie.getTitle(),foundMovie.getOverview(), Integer.parseInt(foundMovie.getReleaseDate()), foundMovie.getUserRating());
+                String id = String.valueOf(searchMovie.getResults().get(0).getId());
+           //     Artwork banners = movieDB.getMovieImages;
+               // movie.(getBanners(banners.getSeriesList(), id));
 
+
+            } else {
+                System.out.println("not found");
+            }
+        } else {
+            System.out.println("skip");
         }
-    private List<Image> getBanners(List<Artwork> banners, String id) {
+        return movie;
+
+    }
+   /* private List<Image> getBanners(List<Artwork> banners, String id) {
         List<Image> images = new ArrayList<>();
         for (Artwork b : banners) {
             StringBuilder builder = new StringBuilder();
@@ -111,22 +128,23 @@ public class MovieHandler implements MediaHandler {
             }
         }
         return images;
-    }
-        private class RegexMovie {
-            String name = "";
-            String prettyName = "";
-            String year = "";
+    }*/
 
-            public RegexMovie(Matcher matcher) {
-                name = matcher.group("ShowNameA");
-                prettyName = matcher.group("ShowNameA").replaceAll("[._]", " ");
+    private class RegexMovie {
+        String name = "";
+        String prettyName = "";
+        String year = "";
 
-                if (matcher.group("ShowYearA") != null) {
-                    year = matcher.group("ShowYearA");
-                }
+        public RegexMovie(Matcher matcher) {
+            name = matcher.group("ShowNameA");
+            prettyName = matcher.group("ShowNameA").replaceAll("[._]", " ");
 
+            if (matcher.group("ShowYearA") != null) {
+                year = matcher.group("ShowYearA");
             }
+
         }
     }
-
 }
+
+
